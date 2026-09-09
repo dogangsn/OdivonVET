@@ -55,3 +55,5 @@ Giriş ve klinik başvuru sayfası tarayıcıda kontrol edildi. Canlı proje olu
 Envanterdeki bir işlemin eşleştirilmiş olması, onun bütün ekran senaryolarının doğrulandığı anlamına gelmez. Özellikle çok depolu stok/alış akışları, otomatik hatırlatmalar, finansal ekranların tüm filtreleri, eski özel rol ekranlarının yeni sabit rollere uyarlanması ve tüm menülerin görsel kabulü pilot öncesi takip edilmelidir.
 
 Fuse ve diğer ticari arayüz bağımlılıklarının mevcut lisans dosyaları korunmuştur.
+
+Kayıt ve canlı ortam değişkenleri: [Kurulum rehberi](docs/registration-deployment.md).

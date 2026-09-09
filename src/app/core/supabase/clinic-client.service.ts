@@ -17,15 +17,26 @@ export class ClinicClientService {
     profile: ClinicProfile;
     permissions:ScopePermission[]=[];
     async config(): Promise<OdivonConfig> {
-        if (!this.configPromise) this.configPromise = fetch('/assets/odivon-config.json').then(async r => {
+        if (!this.configPromise) this.configPromise = fetch(new URL('assets/odivon-config.json', document.baseURI), {cache:'no-cache'}).then(async r => {
             if (!r.ok) throw new Error('Klinik bağlantısı henüz hazırlanmadı. Lütfen Odivon desteğiyle iletişime geçin.');
-            return r.json();
+            const config = await r.json();
+            if (!config?.management?.url || !config?.management?.publishableKey) throw new Error('Kayıt hizmeti henüz kullanıma açılmadı.');
+            return config;
         }).catch(e => { this.configPromise=undefined; throw e; });
         return this.configPromise;
     }
     async management(): Promise<SupabaseClient> {
         if (!this.managementInstance) { const c=await this.config(); this.managementInstance=createClient(c.management.url,c.management.publishableKey,{auth:{storageKey:'odivon-management',flowType:'pkce'}}); }
         return this.managementInstance;
+    }
+    async connectForEmail(email: string): Promise<SupabaseClient> {
+        const normalizedEmail=(email || '').trim().toLowerCase();
+        if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizedEmail)) throw new Error('Geçerli bir e-posta adresi girin.');
+        const result=await (await this.management()).functions.invoke('clinic-directory',{body:{email:normalizedEmail}});
+        if(!result.error && result.data?.code && result.data?.url && result.data?.publishableKey) return this.connectResolved(result.data);
+        const savedCode=(localStorage.getItem('odivon-clinic-code') || '').trim().toLowerCase();
+        if(savedCode) return this.connect(savedCode);
+        throw new Error('Klinik hesabı bulunamadı.');
     }
     async connect(code: string): Promise<SupabaseClient> {
         code=(code || '').trim().toLowerCase();
@@ -38,6 +49,11 @@ export class ClinicClientService {
             if (result.error || !result.data?.url) throw new Error('Klinik bulunamadı veya kurulumu tamamlanmadı.');
             clinic=result.data;
         }
+        return this.connectResolved(clinic);
+    }
+    private async connectResolved(clinic: PublicClinicConfig): Promise<SupabaseClient> {
+        const code=clinic.code.trim().toLowerCase();
+        if (this.instance && this.code===code) return this.instance;
         if (this.instance) { this.authSubscription?.unsubscribe(); await this.instance.removeAllChannels(); this.instance.auth.stopAutoRefresh(); }
         this.profile=undefined; this.permissions=[]; this.entitled=false; this.code=code;
         this.instance=createClient(clinic.url,clinic.publishableKey,{auth:{storageKey:'odivon-clinic-'+code,flowType:'pkce',detectSessionInUrl:true}});

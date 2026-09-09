@@ -1,0 +1,41 @@
+<div class="odivon-auth">
+ <aside class="odivon-story" aria-label="Odivon Vet">
+  <a class="odivon-brand" routerLink="/auth/sign-in"><img src="assets/brand/favicon.svg" alt="" width="40" height="40">Odivon <span>Vet</span></a>
+  <div class="odivon-story-copy"><span class="odivon-eyebrow">KLİNİĞİNİZİN YENİ ÇALIŞMA ALANI</span><h2>Bakım sizden.<br>Düzen Odivon’dan.</h2><p>Hastalarınız, randevularınız ve kliniğinizin günlük işleri, tek bir yerde.</p></div>
+  <img class="odivon-loop" src="assets/brand/odivon-violet-loop.png" alt="" width="1254" height="1254">
+  <p class="odivon-story-footer">Daha düzenli bir klinik. Bakıma daha çok zaman.</p>
+ </aside>
+ <main class="odivon-form-panel">
+  <div class="odivon-form-content">
+   <a class="odivon-mobile-brand" routerLink="/auth/sign-in"><img src="assets/brand/favicon.svg" width="36" height="36" alt="">Odivon Vet</a>
+   <ng-container *ngIf="!application; else completed">
+    <span class="odivon-eyebrow">ODIVON VET’E HOŞ GELDİNİZ</span>
+    <h1>{{hasAccount?'Son bir adım.':'Kliniğiniz için yeni bir başlangıç.'}}</h1>
+    <p class="odivon-subtitle">{{hasAccount?'Üyeliğiniz hazır. Klinik bilgilerinizi tamamlayın.':'Hesabınızı oluşturun, kliniğinizi birlikte hazırlayalım.'}}</p>
+    <div *ngIf="loading" class="odivon-notice" role="status">Kayıt hizmetine bağlanılıyor…</div>
+    <div *ngIf="message" class="odivon-error" role="alert">{{message}}</div>
+    <button *ngIf="!loading&&!ready" mat-stroked-button type="button" (click)="initialize()">Bağlantıyı yeniden kontrol et</button>
+    <form [formGroup]="form" (ngSubmit)="submit()" [attr.aria-busy]="busy">
+     <mat-form-field appearance="outline"><mat-label>Klinik adı</mat-label><input matInput formControlName="name" autocomplete="organization" maxlength="120"><mat-error>2–120 karakter arasında klinik adı girin.</mat-error></mat-form-field>
+     <mat-form-field appearance="outline"><mat-label>Ad soyad</mat-label><input matInput formControlName="owner" autocomplete="name" maxlength="120"><mat-error>Adınızı ve soyadınızı girin.</mat-error></mat-form-field>
+     <ng-container *ngIf="!hasAccount">
+      <mat-form-field appearance="outline"><mat-label>E-posta adresi</mat-label><input matInput type="email" formControlName="email" autocomplete="email"><mat-error>Geçerli bir e-posta adresi girin.</mat-error></mat-form-field>
+      <mat-form-field appearance="outline"><mat-label>Parola</mat-label><input matInput [type]="showPassword?'text':'password'" formControlName="password" autocomplete="new-password"><button mat-button matSuffix type="button" (click)="showPassword=!showPassword" [attr.aria-label]="showPassword?'Parolayı gizle':'Parolayı göster'">{{showPassword?'Gizle':'Göster'}}</button><mat-hint>En az 12 karakter kullanın.</mat-hint><mat-error>Parolanız en az 12 karakter olmalı.</mat-error></mat-form-field>
+     </ng-container>
+     <div id="registration-captcha"></div>
+     <button class="odivon-submit" mat-flat-button type="submit" [disabled]="busy||loading||!ready"><span *ngIf="busy" class="odivon-spinner" aria-hidden="true"></span>{{busy?'İşleminiz tamamlanıyor…':hasAccount?'Başvuruyu tamamla':'Üye ol'}}</button>
+    </form>
+    <p class="odivon-fineprint">14 günlük denemeniz kliniğiniz kullanıma hazır olduğunda başlar.</p>
+    <button *ngIf="!hasAccount" class="odivon-resume" type="button" (click)="resume()" [disabled]="busy||loading||!ready">Daha önce başvurdum, hesabımla devam et</button>
+   </ng-container>
+   <ng-template #completed>
+    <span class="odivon-success-icon" aria-hidden="true">✓</span><span class="odivon-eyebrow">HOŞ GELDİNİZ</span><h1>Üyeliğiniz tamamlandı.</h1><p class="odivon-subtitle">{{application.clinic_name}}</p>
+    <div class="odivon-notice" role="status">{{stateLabel(application.state)}}</div>
+    <div *ngIf="message" class="odivon-error" role="alert">{{message}}</div>
+    <p class="odivon-fineprint" *ngIf="application.state==='ready'">Klinik giriş kodunuz: <strong>{{application.code}}</strong></p>
+    <button mat-stroked-button type="button" (click)="refresh()" [disabled]="busy">{{busy?'Kontrol ediliyor…':'Durumu yenile'}}</button>
+   </ng-template>
+   <p class="odivon-login-link">Kliniğiniz hazır mı? <a routerLink="/auth/sign-in">Klinik girişine dön →</a></p>
+  </div>
+ </main>
+</div>

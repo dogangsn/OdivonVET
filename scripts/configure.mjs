@@ -1,13 +1,28 @@
-import { writeFile, mkdir } from 'node:fs/promises';
-const management={url:process.env.ODIVON_MANAGEMENT_URL,publishableKey:process.env.ODIVON_MANAGEMENT_PUBLIC_KEY};
-if(!management.url || !management.publishableKey) throw new Error('Set ODIVON_MANAGEMENT_URL and ODIVON_MANAGEMENT_PUBLIC_KEY. Never use a secret/service-role key.');
-function publicKey(key){
- if(typeof key!=='string'||!key.trim())throw new Error('A public key is required for each configured project');
- if(key.startsWith('sb_secret_')) throw new Error('Secret keys must not enter browser configuration');
- if(key.startsWith('eyJ')){const body=JSON.parse(Buffer.from(key.split('.')[1],'base64url'));if(body.role!=='anon')throw new Error('Only anon/public keys are allowed');}
+import {writeFile, mkdir} from 'node:fs/promises';
+export function configuration(env) {
+ const project = (url, publishableKey) => {
+  if (!url || !publishableKey) throw new Error('Supabase URL and public key are required.');
+  const parsed = new URL(url);
+  if (parsed.username || parsed.password || parsed.search || parsed.hash || parsed.pathname !== '/' || (parsed.protocol !== 'https:' && !(parsed.protocol === 'http:' && ['localhost','127.0.0.1','[::1]'].includes(parsed.hostname)))) throw new Error('Invalid Supabase URL. HTTPS is required except on localhost.');
+  let valid = /^sb_publishable_[A-Za-z0-9_-]+$/.test(publishableKey);
+  if (publishableKey.startsWith('eyJ')) {
+   try { valid = publishableKey.split('.').length === 3 && JSON.parse(Buffer.from(publishableKey.split('.')[1],'base64url')).role === 'anon'; } catch { valid = false; }
+  }
+  if (!valid) throw new Error('Only publishable/anon keys are allowed in browser configuration.');
+  return {url:parsed.origin,publishableKey};
+ };
+ const management = project(env.ODIVON_MANAGEMENT_URL ?? env.NEXT_PUBLIC_SUPABASE_URL, env.ODIVON_MANAGEMENT_PUBLIC_KEY ?? env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
+ const clinics = [];
+ if (env.ODIVON_CLINIC_URL || env.ODIVON_CLINIC_PUBLIC_KEY) {
+  const code = env.ODIVON_CLINIC_CODE || 'local-clinic';
+  if (!/^[a-z0-9][a-z0-9-]{2,47}$/.test(code)) throw new Error('Invalid clinic code.');
+  clinics.push({code,...project(env.ODIVON_CLINIC_URL,env.ODIVON_CLINIC_PUBLIC_KEY)});
+ }
+ return {management,clinics,...(env.ODIVON_TURNSTILE_SITE_KEY ? {turnstileSiteKey:env.ODIVON_TURNSTILE_SITE_KEY} : {})};
 }
-publicKey(management.publishableKey);
-const clinics=[];
-if(process.env.ODIVON_CLINIC_URL){publicKey(process.env.ODIVON_CLINIC_PUBLIC_KEY);clinics.push({code:process.env.ODIVON_CLINIC_CODE||'local-clinic',url:process.env.ODIVON_CLINIC_URL,publishableKey:process.env.ODIVON_CLINIC_PUBLIC_KEY});}
-await mkdir('src/assets',{recursive:true});await writeFile('src/assets/odivon-config.json',JSON.stringify({management,clinics,turnstileSiteKey:process.env.ODIVON_TURNSTILE_SITE_KEY||undefined},null,2));
-console.log('Wrote public Odivon configuration.');
+if (import.meta.main) {
+ const config = configuration(process.env);
+ await mkdir('src/assets',{recursive:true});
+ await writeFile('src/assets/odivon-config.json',JSON.stringify(config,null,2));
+ console.log('Public Odivon configuration generated.');
+}

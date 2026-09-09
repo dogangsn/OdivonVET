@@ -7,8 +7,8 @@ export class AuthService {
  constructor(private clinics:ClinicClientService, private users:UserService){}
  get accessToken():string{return localStorage.getItem('accessToken')||'';}
  set accessToken(value:string){localStorage.setItem('accessToken',value);}
- signIn(credentials:{email:string;password:string;rememberMe?:boolean;clinicCode?:string}):Observable<any>{return defer(async()=>{
-  const client=await this.clinics.connect(credentials.clinicCode||localStorage.getItem('odivon-clinic-code'));
+ signIn(credentials:{email:string;password:string;rememberMe?:boolean}):Observable<any>{return defer(async()=>{
+  const client=await this.clinics.connectForEmail(credentials.email);
   const {data,error}=await client.auth.signInWithPassword({email:credentials.email,password:credentials.password});
   if(error)throw error;
   try{const p=await this.clinics.loadProfile();this.users.user={id:p.id,name:p.name,email:p.email};return data;}

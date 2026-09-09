@@ -46,7 +46,6 @@ export class AuthSignInComponent implements OnInit
     ngOnInit(): void
     {
         this.signInForm = this._formBuilder.group({
-            clinicCode: [localStorage.getItem('odivon-clinic-code') || '', Validators.required],
             email     : ['', [Validators.required, Validators.email]],
             password  : ['', Validators.required],
             rememberMe: ['']
@@ -120,7 +119,7 @@ export class AuthSignInComponent implements OnInit
                     // Set the alert
                     this.alert = {
                         type   : 'error',
-                        message: 'Yanlış e-posta veya şifre'
+                        message: 'Klinik hesabı bulunamadı veya e-posta/parola hatalı'
                     };
 
                     // Show the alert

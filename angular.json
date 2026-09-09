@@ -63,6 +63,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/devextreme/dist/css/",
                 "output": "src/styles"
+              },
+              {
+                "glob": "_headers",
+                "input": "src",
+                "output": "/"
               }
             ],
             "stylePreprocessorOptions": {
