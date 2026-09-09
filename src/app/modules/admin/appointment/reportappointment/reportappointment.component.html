@@ -1,0 +1,143 @@
+<p *ngIf="error" class="p-6" role="alert">{{error}}</p>
+<div class="flex flex-col flex-auto w-full">
+
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+
+        <div role="status" class="animate-pulse grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0"
+            *ngIf="loader">
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+
+        </div>
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0" *ngIf="!loader && dashboards">
+
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Bu Hafta Randevu</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+
+
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500"> {{
+                        dashboards.totalAppointmentWeek }}</div>
+                    <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Randevu</div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Bu Ay Randevu</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+
+
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">{{
+                        dashboards.totalAppointmentMonth }}</div>
+                    <div class="text-lg font-medium text-red-600 dark:text-red-500">Randevu</div>
+
+                </div>
+            </div>
+
+
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Bu Yıl Randevu</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">{{
+                        dashboards.totalAppointmentYear }}</div>
+                    <div class="text-lg font-medium  text-blue-600 dark:text-blue-500">Randevu</div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-between">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Tamamlanan Randevular</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">{{
+                        dashboards.totalCompletedAppointments }}</div>
+                    <div class="text-lg font-medium text-red-600 dark:text-red-500">Randevu</div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+
+        <div class="w-full">
+            <div
+                class="sm:col-span-2 md:col-span-4 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex flex-col sm:flex-row items-start justify-between">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Aylara Göre Randevu
+                        Grafiği</div>
+                    <div class="mt-3 sm:mt-0 sm:ml-2">
+                        <!-- <mat-button-toggle-group value="this-year"
+                            #githubIssuesWeekSelector="matButtonToggleGroup">
+                            <mat-button-toggle value="this-year" (click)="getGraphicList(1)">Bu
+                                Yıl</mat-button-toggle>
+                        </mat-button-toggle-group> -->
+                        <mat-button-toggle-group value="this-week" #githubIssuesWeekSelector="matButtonToggleGroup">
+                            <mat-button-toggle value="this-week">Bu Yıl</mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-1 grid-flow-row gap-6 w-full mt-8 sm:mt-4">
+
+                    <div class="flex flex-col flex-auto">
+                        <div class="flex flex-col flex-auto">
+                            <!-- <apx-chart class="flex-auto w-full h-80" [chart]="chartGithubIssues.chart"
+                                [colors]="chartGithubIssues.colors" [dataLabels]="chartGithubIssues.dataLabels"
+                                [grid]="chartGithubIssues.grid" [labels]="chartGithubIssues.labels"
+                                [legend]="chartGithubIssues.legend"
+                                [plotOptions]="chartGithubIssues.plotOptions"
+                                [series]="chartGithubIssues.series[githubIssuesWeekSelector.value]"
+                                [states]="chartGithubIssues.states" [stroke]="chartGithubIssues.stroke"
+                                [tooltip]="chartGithubIssues.tooltip" [xaxis]="chartGithubIssues.xaxis"
+                                [yaxis]="chartGithubIssues.yaxis"></apx-chart> -->
+                                
+                            <apx-chart class="flex-auto w-full h-80" [chart]="chartGithubIssues.chart"
+                                [colors]="chartGithubIssues.colors" [dataLabels]="chartGithubIssues.dataLabels"
+                                [grid]="chartGithubIssues.grid" [labels]="chartGithubIssues.labels"
+                                [legend]="chartGithubIssues.legend" [plotOptions]="chartGithubIssues.plotOptions"
+                                [series]="chartGithubIssues.series[githubIssuesWeekSelector.value]"
+                                [states]="chartGithubIssues.states" [stroke]="chartGithubIssues.stroke"
+                                [tooltip]="chartGithubIssues.tooltip" [xaxis]="chartGithubIssues.xaxis"
+                                [yaxis]="chartGithubIssues.yaxis"></apx-chart>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>

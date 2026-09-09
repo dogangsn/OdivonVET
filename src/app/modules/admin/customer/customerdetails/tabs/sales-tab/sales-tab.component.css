@@ -1,0 +1,25 @@
+.full-width-table {
+    width: 100%;
+  }
+  
+  .paid {
+    color: #155724; /* Dark green */
+  }
+  
+  .unpaid {
+    color: #721c24; /* Dark red */
+  }
+
+  .menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button-container {
+    flex: 1; /* Container'ı tam genişliğe genişlet */
+    display: flex; /* Flexbox layout'u etkinleştir */
+     /* Butonları yatay olarak ortala */
+    align-items: center; /* Butonları dikey olarak ortala (isteğe bağlı) */
+  }
+ 

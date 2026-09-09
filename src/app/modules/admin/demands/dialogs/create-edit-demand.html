@@ -1,0 +1,439 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1" >
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+<div class="modalForm">
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="!selecteddemand">Sipariş Ekle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-productcategory">
+            <div class="qm-pr-content">
+
+                <div class="container-fluid" [formGroup]="demandList">
+                    <div class="row">
+                        <div class="col-sm-4 mt-2 common-width">
+                            <mat-form-field class="w-1/3 pr-2">
+                                <mat-label>Tarih</mat-label>
+                                <input matInput [matDatepicker]="firstPicker" readonly [formControlName]="'date'">
+                                <mat-datepicker-toggle matIconSuffix [for]="firstPicker"></mat-datepicker-toggle>
+                                <mat-datepicker #firstPicker></mat-datepicker>
+                            </mat-form-field>
+                            <mat-form-field style="width:100%">
+                                <mat-label>Döküman No</mat-label>
+                                <input matInput [formControlName]="'documentno'" >
+                                <!-- <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+                            </mat-form-field>
+                            <mat-form-field style="width:100%">
+                                <mat-label>Tedarikçi</mat-label>
+                                <mat-select [formControlName]="'suppliers'" [placeholder]="'Tedarikçi'"
+                                    >
+                                    <mat-select-filter [ngModelOptions]="{standalone: true}" [ngModel]="selectedCustomerId"
+                                    (ngModelChange)="filterCustomerId($event)">
+                                    </mat-select-filter>
+                                    <!-- <mat-option>None</mat-option> -->
+                                    <mat-option *ngFor="let item of supplierscards"
+                                        [value]="item.id">{{item.suppliername}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                                <mat-form-field style="width:100%">
+                                    <mat-label>Teslimat Tarihi</mat-label>
+                                    <input matInput [matDatepicker]="picker" readonly [formControlName]="'deliverydate'">
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <!-- <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+                                  </mat-form-field>
+                                  <!-- <mat-form-field class="w-1/3 pr-2">
+                                    <mat-label>Tarih</mat-label>
+                                    <input matInput [matDatepicker]="firstPicker" readonly [formControlName]="'date'">
+                                    <mat-datepicker-toggle matIconSuffix [for]="firstPicker"></mat-datepicker-toggle>
+                                    <mat-datepicker #firstPicker></mat-datepicker>
+                                </mat-form-field> -->
+                                  
+                        </div>
+                        <!-- <div class="col-sm-4 mt-2 common-width">
+                            
+                        </div> -->
+                        <!-- <div class="col-sm-4 mt-2 common-width">
+                           
+                        </div> -->
+                        <div class="col-sm-8 mt-2 common-width">
+                            <mat-form-field class="flex-auto">
+                                <mat-label>Not</mat-label>
+                                <textarea matInput cdkTextareaAutosize [cdkAutosizeMinRows]="5" [formControlName]="'note'"></textarea>
+                                <!-- <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                            </mat-form-field>
+                            
+                            <mat-form-field style="width:50%">
+                                <mat-label>Durumu</mat-label>
+                                <mat-select [formControlName]="'state'" [(ngModel)]="selectedValue">
+                                    <mat-option value=1>Acil</mat-option>
+                                    <mat-option value=0>Normal</mat-option>
+                                    <mat-option value=-1>Planlı</mat-option>
+                                </mat-select>
+                                <div class="hidden lg:flex items-center">
+                                    <!-- Low stock -->
+                                    <div
+                                        class="flex items-end ml-2 w-5 h-4 bg-red-200 rounded overflow-hidden"
+                                        *ngIf="selectedValue > 0">
+                                        <div class="flex w-full h-full bg-red-600"></div>
+                                    </div>
+                                    <!-- Medium stock -->
+                                    <div
+                                        class="flex items-end ml-2 w-5 h-4 bg-orange-200 rounded overflow-hidden"
+                                        *ngIf="selectedValue > -1 && selectedValue < 1">
+                                        <div class="flex w-full h-2/4 bg-orange-400"></div>
+                                    </div>
+                                    <!-- High stock -->
+                                    <div
+                                        class="flex items-end ml-2 w-5 h-4 bg-green-100 rounded overflow-hidden"
+                                        *ngIf="selectedValue < 0">
+                                        <div class="flex w-full h-1/3 bg-green-400"></div>
+                                    </div>
+                                </div>
+                            </mat-form-field>
+                            
+                            
+                            
+                            
+                        </div>
+                        <div > 
+
+                            
+                            <!-- Products list -->
+                            <!-- 
+                            <div> -->
+                            <ng-container>
+                                <ng-container *ngIf="(productsList) as products">
+                                    <!-- <ng-container #noProducts> -->
+                            
+                                    <!-- </ng-container> -->
+                                    <ng-container *ngIf="products.length > 0; else noProducts">
+                            
+                                        <div class="grid">
+                            
+                                            <!-- Header -->
+                                            <div class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                                                matSort matSortDisableClear>
+                                                <div>İşlem</div>
+                                                <!-- <div></div> -->
+                                                <!-- <div
+                                                            class="hidden md:block"
+                                                            [mat-sort-header]="'sku'">
+                                                            SKU
+                                                        </div> -->
+                            
+                            
+                                                <div class="hidden sm:block" [mat-sort-header]="'productId'">Ürün Adı</div>
+                                                <div class="hidden sm:block" [mat-sort-header]="reserved">
+                                                    Toplam Tutar
+                                                </div>
+                                                <div class="hidden lg:block" [mat-sort-header]="stockState">
+                                                    Adet
+                                                </div>
+                                                <div class="hidden lg:block" [mat-sort-header]="'isActive'">
+                                                    Aktif
+                                                </div>
+                            
+                            
+                            
+                                                <div class="hidden sm:block w-12">Detay</div>
+                            
+                                            </div>
+                                            <!-- Rows -->
+                                            <ng-container *ngIf="(productsList) as products">
+                                                <ng-container *ngFor="let product of products; trackBy: trackByFn">
+                                                    <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                                                        <!-- Image -->
+                            
+                                                        <div class="flex flex-col gt-sm:flex-row">
+                                                            <div class="flex flex-col">
+                            
+                                                                <mat-checkbox class="mb-2" type="checkbox" [checked]="product.selected"
+                                                                    [(ngModel)]="product.selected" [color]="'primary'" (change)="onCheckboxChange(product.id)">
+                            
+                                                                </mat-checkbox>
+                            
+                                                            </div>
+                                                        </div>
+                            
+                                                        <!-- <div class="form-check"><input type="checkbox" [(ngModel)]="product.selected"></div> -->
+                                                        <!-- <div class="flex items-center">
+                                                            <div
+                                                                class="relative flex flex-0 items-center justify-center w-12 h-12 mr-6 rounded overflow-hidden border">
+                                                                <img class="w-8">
+                                                                <div
+                                                                    class="flex items-center justify-center w-full h-full text-xs font-semibold leading-none text-center uppercase">
+                                                                    NO THUMB
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                        <div>
+                                                            <ng-container *ngFor="let productDescription of productdescription">
+                                                                <div class="truncate" *ngIf="productDescription.id === product.productId">
+                                                                    {{ productDescription.name }}
+                                                                </div>
+                            
+                                                            </ng-container>
+                                                            <div class="truncate text-red-500"
+                                                                *ngIf=" product.productId === '00000000-0000-0000-0000-000000000000'">
+                                                                ÜRÜN SEÇİNİZ..
+                                                            </div>
+                                                        </div>
+                                                        <!-- Price -->
+                                                        <div class="hidden sm:block">
+                                                            {{product.reserved | currency:'₺':'symbol':'1.2-2'}}
+                                                        </div>
+                            
+                                                        <!-- Stock -->
+                                                        <div class="hidden lg:flex items-center">
+                                                            <div class="min-w-4">{{product.stockState}}</div>
+                                                            <!-- Low stock -->
+                                                            <div class="flex items-end ml-2 w-1 h-4 bg-red-200 rounded overflow-hidden"
+                                                                *ngIf="product.stockState < 20">
+                                                                <div class="flex w-full h-1/3 bg-red-600"></div>
+                                                            </div>
+                                                            <!-- Medium stock -->
+                                                            <div class="flex items-end ml-2 w-1 h-4 bg-orange-200 rounded overflow-hidden"
+                                                                *ngIf="product.stockState >= 20 && product.stockState < 30">
+                                                                <div class="flex w-full h-2/4 bg-orange-400"></div>
+                                                            </div>
+                                                            <!-- High stock -->
+                                                            <div class="flex items-end ml-2 w-1 h-4 bg-green-100 rounded overflow-hidden"
+                                                                *ngIf="product.stockState >= 30">
+                                                                <div class="flex w-full h-full bg-green-400"></div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- Active -->
+                                                        <div class="hidden lg:block">
+                                                            <ng-container *ngIf="product.isActive === 1">
+                                                                <mat-icon class="text-green-400 icon-size-5"
+                                                                    [svgIcon]="'heroicons_solid:check'"></mat-icon>
+                                                            </ng-container>
+                                                            <ng-container *ngIf="product.isActive === 0">
+                                                                <mat-icon class="text-gray-400 icon-size-5"
+                                                                    [svgIcon]="'heroicons_solid:x'"></mat-icon>
+                                                            </ng-container>
+                                                        </div>
+                            
+                                                        <!-- Details button -->
+                                                        <div>
+                                                            <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
+                                                                (click)="toggleDetails(product.id)">
+                                                                <mat-icon class="icon-size-5"
+                                                                    [svgIcon]="selectedProduct?.id === product.id ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"></mat-icon>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                            
+                                                    <div class="grid">
+                                                        <ng-container *ngIf="selectedProduct?.id === product.id">
+                                                            <ng-container
+                                                                *ngTemplateOutlet="rowDetailsTemplate; context: {$implicit: product}"></ng-container>
+                                                        </ng-container>
+                                                    </div>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                            
+                                        <!-- <mat-paginator
+                                                    class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                                                    [ngClass]="{'pointer-events-none': isLoading}"
+                                                    [length]="pagination.length"
+                                                    [pageIndex]="pagination.page"
+                                                    [pageSize]="pagination.size"
+                                                    [pageSizeOptions]="[5, 10, 25, 100]"
+                                                    [showFirstLastButtons]="true"></mat-paginator> -->
+                            
+                                    </ng-container>
+                                </ng-container>
+                            </ng-container>
+                            <ng-template #rowDetailsTemplate let-product>
+                                <div class="shadow-lg overflow-hidden">
+                                    <div class="flex border-b">
+                                        <!-- Selected product form -->
+                                        <form class="flex flex-col w-full" [formGroup]="selectedProductForm">
+                            
+                                            <div class="flex flex-col sm:flex-row p-8">
+                                                <!-- Product images and status -->
+                                                <div class="flex flex-col items-center sm:items-start mb-8 sm:mb-0">
+                            
+                                                    <div class="flex flex-col items-center">
+                            
+                                                        <div class="w-32 h-44 border rounded overflow-hidden">
+                                                            <!-- <ng-container>
+                                                                          <img class="w-full h-full object-cover">
+                                                                        </ng-container> -->
+                                                            <ng-template>
+                                                                <span class="flex items-center min-h-20 text-lg font-semibold">NO
+                                                                    IMAGE</span>
+                                                            </ng-template>
+                                                        </div>
+                            
+                                                    </div>
+                                                    <div class="flex flex-col mt-8">
+                                                        <span class="font-semibold mb-2">Ürün Durumu</span>
+                                                        <mat-slide-toggle [formControlName]="'isActive'" [color]="'primary'" [disabled]="true"
+                                                            (click)="isActiveClick">
+                                                            {{selectedProductForm.get('isActive').value === 1 ? 'Aktif' : 'Pasif'}}
+                                                        </mat-slide-toggle>
+                                                    </div>
+                                                </div>
+                            
+                                                <div class="flex flex-auto flex-wrap">
+                                                    <!-- Name, SKU & etc. -->
+                                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+                            
+                                                        <mat-form-field class="w-full">
+                                                            <mat-label>Ürün Adı</mat-label>
+                            
+                                                            <!-- <mat-select [formControlName]="'productId'" [placeholder]="'name'"
+                                                                      name="productdescription">
+                                                                         <mat-option>None</mat-option>
+                                                                        <mat-option *ngFor="let productdescript of productdescription"
+                                                                         [value]="productdescript.id">{{productdescript.name}}</mat-option>
+                                                                    </mat-select> -->
+                                                            <mat-select [formControlName]="'productId'" [placeholder]="'name'" 
+                                                                name="productdescription" (selectionChange)="onProductSelectionChange($event)">
+                                                                <mat-option>None</mat-option>
+                                                                <mat-option *ngFor="let productdescript of productdescription"
+                                                                    [value]="productdescript.id">{{productdescript.name}}</mat-option>
+                                                            </mat-select>
+                            
+                                                        </mat-form-field>
+                            
+                            
+                            
+                                                        <!-- SKU and Barcode -->
+                                                        <div class="flex">
+                                                            <mat-form-field class="w-2/3 pl-2">
+                                                                <mat-label>Barcode</mat-label>
+                                                                <input readonly='true' matInput [formControlName]="'barcode'">
+                                                            </mat-form-field>
+                                                        </div>
+                            
+                                                        <!-- Category, Brand & Vendor -->
+                                                        <div class="flex">
+                                                        </div>
+                            
+                                                        <!-- Stock and Reserved -->
+                            
+                                                    </div>
+                            
+                                                    <!-- Cost, Base price, Tax & Price -->
+                                                    <div class="flex flex-col w-full lg:w-1/4 sm:pl-8">
+                                                        <mat-form-field class="w-full">
+                                                            <mat-label>Alış Fiyat</mat-label>
+                                                            <span matPrefix>₺</span>
+                                                            <input matInput [formControlName]="'unitPrice'" readonly='true'>
+                                                        </mat-form-field>
+                                                        <mat-form-field class="w-full">
+                                                            <mat-label>Kdv Tutar</mat-label>
+                                                            <span matSuffix>₺</span>
+                                                            <input matInput [formControlName]="'amount'" readonly='true'>
+                                                        </mat-form-field>
+                                                    </div>
+                            
+                                                    <!-- Weight & Tags -->
+                                                    <div class="flex flex-col w-full lg:w-1/4 sm:pl-8">
+                                                        <!-- <div class="flex"> -->
+                                                        <mat-form-field class="w-full">
+                                                            <mat-label>Adet</mat-label>
+                                                            <input type="number" matInput [formControlName]="'stockState'" readonly='true'
+                                                                (input)="onQuantitySelectionChange($event)">
+                                                        </mat-form-field>
+                                                        <mat-form-field class="w-full">
+                                                            <mat-label>Toplam Tutar</mat-label>
+                                                            <input type="number" matInput [formControlName]="'reserved'" readonly='true'>
+                                                        </mat-form-field>
+                            
+                                                    </div>
+                            
+                                                </div>
+                            
+                                            </div>
+                            
+                                            
+                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <!-- <div *ngIf="!productsList || productsList.length === 0">
+                                            <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center"> Veri bulunamadı.</div>
+                                        </div> -->
+                            
+                            <ng-template #noProducts>
+                                <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">Veri bulunamadı.</div>
+                            </ng-template>
+                            
+                            
+                            
+                            <!-- </div> -->
+                            
+                            <!-- </div> -->
+                        </div>
+                       
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+                    <!-- Attach file -->
+                     <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:paper-clip'"></mat-icon>
+                    </button> 
+                     Insert link 
+                     <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                    </button> 
+                    <!-- Insert emoji -->
+                     <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:emoji-happy'"></mat-icon>
+                    </button> 
+                    <!-- Insert image -->
+                        <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:photograph'"></mat-icon>
+                    </button> 
+                </div>
+    
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button
+                        class="ml-auto sm:ml-0"
+                        mat-stroked-button
+                        (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button
+                        class="order-first sm:order-last"
+                        mat-flat-button
+                        [color]="'primary'"
+                        (click)="addOrUpdateStore()">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+          
+    </mat-dialog-content>
+</div>

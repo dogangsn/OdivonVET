@@ -1,0 +1,87 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+<div class="modalForm">
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span>Randevu Güncelle</span>
+            </h5>
+        </div>
+        <div class="modal-body mbody-customeradd">
+            <div class="qm-pr-content">
+                <div class="container-fluid" [formGroup]="appointmentEdit">
+                    <div class="flex float: left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <mat-label>Randevu Tipi</mat-label>
+                            <mat-select
+                                [placeholder]="'Randevu Tipi'"
+                                [formControlName]="'appointmentType'"
+                                name="doctor"
+                                (selectionChange)="
+                                    onAppointmentTypeChange($event)
+                                "
+                            >
+                                <mat-option
+                                    *ngFor="let item of appointmentsList"
+                                    [value]="item.id"
+                                    >{{ item.remark }}</mat-option
+                                >
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div *ngIf="visibleVaccine" class="flex float: left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pl-3 w-full">
+                            <mat-label>Aşı Tipi</mat-label>
+                            <mat-select
+                                [placeholder]="'Randevu Tipi'"
+                                name="doctor"
+                                [formControlName]="'vaccineId'"
+                                (selectionChange)="
+                                    onVaccineTypeChange($event, item.id)
+                                "
+                            >
+                                <mat-option
+                                    *ngFor="let item of productdescription"
+                                    [value]="item.id"
+                                    >{{ item.name }}</mat-option
+                                >
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="dx-field">
+                        <dx-date-box
+                            [value]="selectedAppointment.beginDate"
+                            type="datetime"
+                            [min]="now"
+                            [inputAttr]="{ 'aria-label': 'Date And Time' }"
+                            (onValueChanged)="handleValueChangeList($event)"
+                        >
+                        </dx-date-box>
+                    </div>
+
+                    <div class="flex float : left gt-xs:flex-row gap-t-3">
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <mat-label>Not</mat-label>
+                            <input matInput [formControlName]="'note'" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>
+
+<div class="flex items-center mt-4 sm:mt-0 justify-end mr-7">
+    <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+      Vazgeç
+    </button>
+    <button class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'" (click)="UpdateAppointment()">
+      Kaydet
+    </button>
+  </div>

@@ -1,0 +1,33 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+<div class="modalForm">
+  <mat-dialog-content>
+
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span>Ön İzleme</span>
+      </h5>
+    </div>
+    
+    <div class="modal-body">
+      <div class="a4-page">
+        <div class="a4-page-content" [innerHTML]="data.content"></div> <!-- A4 boyutunda içerik -->
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+      <div class="-ml-2">
+      </div>
+      <div class="flex items-center mt-4 sm:mt-0">
+          <button class="ml-auto sm:ml-0 mr-2" mat-stroked-button (click)="closeDialog()">
+              Kapat
+          </button> 
+      </div>
+  </div>
+
+  </mat-dialog-content>
+</div>
+ 

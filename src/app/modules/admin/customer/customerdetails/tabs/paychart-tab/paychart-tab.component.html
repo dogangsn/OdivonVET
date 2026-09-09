@@ -1,0 +1,74 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Tarih </th>
+      <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="credit">
+      <th mat-header-cell *matHeaderCellDef> Borç Tutarı</th>
+      <td mat-cell *matCellDef="let element"> {{element.credit}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="paid">
+      <th mat-header-cell *matHeaderCellDef> Tahsilat Tutarı </th>
+      <td mat-cell *matCellDef="let element"> {{element.paid}} </td>
+    </ng-container>
+    <!-- 
+      <ng-container matColumnDef="totalPaid">
+        <th mat-header-cell *matHeaderCellDef> Toplam Ödenen </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalPaid}} </td>
+      </ng-container> -->
+
+    <ng-container matColumnDef="paymentName">
+      <th mat-header-cell *matHeaderCellDef> Ödeme Yöntemi </th>
+      <td mat-cell *matCellDef="let element"> {{element.paymentName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="remark">
+      <th mat-header-cell *matHeaderCellDef> Açıklama </th>
+      <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="payChart?.action !== 'Okuma'" mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <button *ngIf="payChart?.action !== 'Okuma'" mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+          <mat-icon class="mat-18">delete</mat-icon>
+        </button>
+
+        <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon class="mat-icons">more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>view_headline</mat-icon>
+            <span>Alacaklar</span>
+          </button>
+          <button  mat-menu-item color="warn" (click)="redirectToDelete(element.id)">
+            <mat-icon class="mat-18">delete</mat-icon>
+            <span>Sil</span>
+          </button>
+          <button  mat-menu-item color="accent" (click)="redirectToPrint(element.id)">
+            <mat-icon aria-label="Print">print</mat-icon>
+            <span>Yazdır</span>
+          </button>
+        </mat-menu> -->
+
+
+      </td>
+    </ng-container>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons #paginator
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+
+</div>

@@ -1,0 +1,163 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div>
+                <div class="flex sm:hidden">
+                    <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+                        <mat-icon class="icon-size-5 text-secondary"
+                            [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                        <span class="ml-1">Back</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Kasa Hareketleri
+                </h2>
+            </div>
+            <div class="font-medium tracking-tight text-secondary">Kasa'da yapılan işlemler</div>
+        </div>
+        <!-- Actions -->
+        <div *ngIf="cashtransactionsAct?.action !== 'Okuma'" class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+          <!--   <button mat-stroked-button>
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                Kasa Para Girişi Yap
+            </button>
+            <button class="ml-3" mat-flat-button [color]="'primary'">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                Masraf Girişi
+            </button> -->
+        </div>
+    </div>
+
+    <!-- Main -->
+    <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+        <!-- CONTENT GOES HERE -->
+
+        <div class="float : left flex  gt-xs:flex-row" [formGroup]="formGroup">
+
+            <mat-form-field class="ml-12 flex-auto gt-xs:pl-3">
+                <mat-label>Ödeme Türü</mat-label>
+                <mat-select [value]="'all'" [formControlName]="'paymenttype'">
+                    <mat-option [value]="'all'">Hepsi</mat-option>
+                    <ng-container *ngFor="let category of payments;">
+                        <mat-option [value]="category.recId">{{category.name}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="ml-12 flex-auto gt-xs:pl-3">
+                <mat-label>Başlangıç Tarihi</mat-label>
+                <input matInput [matDatepicker]="picker" [formControlName]="'begindate'">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="ml-12 flex-auto gt-xs:pl-3">
+                <mat-label>Bitiş Tarihi</mat-label>
+                <input matInput [matDatepicker]="pickers" [formControlName]="'endDate'">
+                <mat-datepicker-toggle matIconSuffix [for]="pickers"></mat-datepicker-toggle>
+                <mat-datepicker #pickers></mat-datepicker>
+            </mat-form-field>
+            <div class="ml-12 flex-auto gt-xs:pl-3">
+                <mat-label></mat-label>
+                <button class="ml-3" mat-flat-button [color]="'primary'" (click)="getRecordFilter()">
+                    <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                    Filtrele
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Tarih </th>
+                    <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+                </ng-container>
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef> Tipi </th>
+                    <td mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="element.type === 2; else trendingUp">
+                            <mat-icon class="icon-size-5 text-red-500"
+                                [svgIcon]="'heroicons_solid:trending-down'"></mat-icon>
+                        </ng-container>
+                        <ng-template #trendingUp>
+                            <mat-icon class="icon-size-5 text-green-500"
+                                [svgIcon]="'heroicons_solid:trending-up'"></mat-icon>
+                        </ng-template>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="invoiceNo">
+                    <th mat-header-cell *matHeaderCellDef> Fatura No </th>
+                    <td mat-cell *matCellDef="let element"> {{element.invoiceNo}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="supplierName">
+                    <th mat-header-cell *matHeaderCellDef>Tedarikçi</th>
+                    <td mat-cell *matCellDef="let element"> {{element.supplierName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="customerName">
+                    <th mat-header-cell *matHeaderCellDef>Müşteri</th>
+                    <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="productName">
+                    <th mat-header-cell *matHeaderCellDef>Ürün/Adet</th>
+                    <td mat-cell *matCellDef="let element"> {{element.productName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="payment">
+                    <th mat-header-cell *matHeaderCellDef> Ödeme Yöntemi </th>
+                    <td mat-cell *matCellDef="let element"> {{element.paymentName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="netPrice">
+                    <th mat-header-cell *matHeaderCellDef>Net Tutar</th>
+                    <td mat-cell *matCellDef="let element"> {{element.netPrice | number:'1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="kdv">
+                    <th mat-header-cell *matHeaderCellDef>KDV</th>
+                    <td mat-cell *matCellDef="let element"> {{element.kdv | number:'1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="discount">
+                    <th mat-header-cell *matHeaderCellDef>İndirim</th>
+                    <td mat-cell *matCellDef="let element"> {{element.discount | number:'1.2-2'}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="total">
+                    <th mat-header-cell *matHeaderCellDef>Tutar</th>
+                    <td mat-cell *matCellDef="let element"> {{element.total | number:'1.2-2'}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+                    <td mat-cell *matCellDef="let element">
+                        <!-- <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                                <mat-icon aria-label="Edit">edit</mat-icon>
+                            </button> -->
+                        <button *ngIf="cashtransactionsAct?.action !== 'Okuma'" mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                            <mat-icon class="mat-18">delete</mat-icon>
+                        </button>
+                    </td>
+
+                </ng-container>
+
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]"  [pageSize]="20"  showFirstLastButtons #paginator
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+
+    </div>

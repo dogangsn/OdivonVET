@@ -1,0 +1,422 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <div>
+                <div class="flex sm:hidden">
+                    <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+                        <mat-icon class="icon-size-5 text-secondary"
+                            [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                        <span class="ml-1">Back</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2" *ngIf="!loader">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    {{this.firstname}}
+                    {{this.lastname}}
+                </h2>
+            </div>
+            <div class="mt-2" *ngIf="loader">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    ...
+                </h2>
+            </div>
+            <div class="font-medium tracking-tight text-secondary">{{ this.phonenumber + " / " + this.email }}</div>
+        </div>
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                {{this.recid}}
+            </h2>
+        </div>
+    </div>
+    <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+        <div *ngIf="customerdetailAction?.action !== 'Okuma'"
+            class="flex flex-wrap gap-2 shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <button mat-flat-button [color]="'primary'" (click)="openSaleCustomers()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                &nbsp;Satış
+            </button>
+            <button class="ml-3" mat-stroked-button (click)="addAppointment()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                &nbsp;Randevu/Aşı Takvimi Oluştur
+            </button>
+            <button class="ml-3" mat-flat-button [color]="'primary'" (click)="openAppointmentHistory()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                &nbsp;Randevu Geçmişi
+            </button>
+            <button class="ml-3" mat-stroked-button (click)="openNewPatients()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                &nbsp;Hasta Ekle
+            </button>
+            <!-- <button class="ml-3" mat-flat-button [color]="'primary'" (click)="openvaccinationcard()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                &nbsp;Aşı Kartı
+            </button> -->
+            <button class="ml-3" mat-stroked-button [matMenuTriggerFor]="menu"><mat-icon
+                    svgIcon="heroicons_outline:chevron-down"></mat-icon> &nbsp;Tahsilat</button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openGetCollection()">
+                    <mat-icon class="icon-size-5 mr-2" [svgIcon]="'calendar_today'"></mat-icon>
+                    Randevu Tahsilatı Al</button>
+                <button mat-menu-item (click)="openBalanceCollection()" *ngIf="(totalEarnings - totalCollection) > 0">
+                    <mat-icon class="icon-size-5 mr-2" [svgIcon]="'warning'"></mat-icon>
+                    {{ totalEarnings - totalCollection }} ₺ Bakiye
+                </button>
+                <!-- <button mat-menu-item (click)="openCollectionTransaction()">Tahsilat İşlemleri</button> -->
+            </mat-menu>
+            <!-- <button class="ml-3" mat-flat-button [color]="'primary'" (click)="openPayChart()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                Ödeme Tablosu
+            </button> -->
+            <button class="ml-3" mat-stroked-button [matMenuTriggerFor]="menus"><mat-icon
+                    svgIcon="heroicons_outline:chevron-down"></mat-icon> &nbsp;Mesaj Gönder</button>
+            <mat-menu #menus="matMenu">
+                <button mat-menu-item (click)="smstransactions()">
+                    <mat-icon class="icon-size-5 mr-2" [svgIcon]="'textsms'"></mat-icon>
+                    SMS Gönder</button>
+                <button mat-menu-item><i class="fab fa-whatsapp"></i> Whatsapp Mesaj Gönder</button>
+            </mat-menu>
+
+        </div>
+        <div class="my-10 border-t"></div>
+
+
+        <mat-tab-group class="sm:px-2" mat-stretch-tabs="false" [animationDuration]="'0'"
+            (selectedIndexChange)="onTabChange($event)">
+
+            <mat-tab label="Genel Bakış">
+
+                <div role="status"
+                    class="animate-pulse grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0"
+                    *ngIf="loader">
+                    <div class="flex items-center justify-center h-36 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+                    </div>
+                    <div class="flex items-center justify-center h-36 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+                    </div>
+                    <div class="flex items-center justify-center h-36 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+                    </div>
+                    <div class="flex items-center justify-center h-36 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0" *ngIf="!loader">
+                    <div class="flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                            <div class="flex items-start justify-between">
+                                <div class="text-lg font-medium tracking-tight leading-6 truncate">
+                                    Toplam Yapılan Satış
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center mt-2">
+                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
+                                    {{totalSaleBuyCount}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                            <div class="flex items-start justify-between">
+                                <div class="text-lg font-medium tracking-tight leading-6 truncate">
+                                    Toplam Ziyaret Sayısı
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center mt-2">
+                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">
+                                    {{totalVisitCount}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                            <div class="flex items-start justify-between">
+                                <div class="text-lg font-medium tracking-tight leading-6 truncate">
+                                    Toplam Kazanç
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center mt-2">
+                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">
+                                    {{totalCollection}} ₺
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col flex-auto bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                            <div class="flex items-start justify-between">
+                                <div class="text-lg font-medium tracking-tight leading-6 truncate">
+                                    Gönderilen Mesaj Sayısı
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center mt-2">
+                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">
+                                    {{totalMessageCount}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div role="status"
+                    class="animate-pulse grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-6 w-full min-w-0"
+                    *ngIf="loader">
+                    <div class="flex items-center justify-center h-192 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+                    </div>
+                    <div class="flex items-center justify-center h-192 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap" *ngIf="!loader">
+                    <div class="w-full md:w-6/12 p-2">
+
+                        <div class="flex flex-row flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden z-50"
+                            style="justify-content: space-between; margin-bottom: 3px; position: absolute; width: 38%; margin-left: 4rem;">
+
+                            <img class="w-32 h-32 rounded-full ring-4 ring-bg-card"
+                                src="assets/images/avatars/noimage.jpg" alt="User avatar" />
+                            <h1 style="font-size: 40px; padding-top: 50px; padding-left: 25px;">{{this.firstname}}
+                                {{this.lastname}}</h1>
+                            <h1 style="padding-top: 110px;">Bakiye: {{ totalEarnings - totalCollection }} ₺</h1>
+                        </div>
+                        <div class="flex-auto p-6 sm:p-10 rounded-t-2xl shadow bg-card overflow-hidden"
+                            style="margin-top: 5rem;" [formGroup]="customerDetailForm">
+                            <div style="margin-top: 5rem;">
+                                <div class="flex float:right md:max-sm:flex-column" style="justify-content: flex-end;">
+                                    <button mat-icon-button color="accent" matTooltip="Düzenle"
+                                        (click)="addPanelOpen()">
+                                        <mat-icon aria-label="Edit">edit</mat-icon>
+                                    </button>
+                                </div>
+                                <div class="flex float:left md:max-sm:flex-column ">
+                                    <mat-form-field class="flex-auto gt-xs:pr-6">
+                                        <mat-label class="boldFont">E-mail</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'email'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="ml-5 flex-auto gt-xs:pl-6">
+                                        <mat-label class="boldFont">Telefon No</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'phonenumber'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex float:left gt-xs:flex-row">
+                                    <mat-form-field class="flex-auto gt-xs:pr-3">
+                                        <mat-label class="boldFont">Telefon No 2</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'phonenumber2'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                        <mat-label class="boldFont">İl</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'city'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex float:left gt-xs:flex-row">
+                                    <mat-form-field class="flex-auto gt-xs:pr-3">
+                                        <mat-label class="boldFont">İlçe</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'district'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                        <mat-label class="boldFont">Vergi Dairesi</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'taxoffice'"
+                                            class="disableCustomCss">
+
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex float:left gt-xs:flex-row">
+                                    <mat-form-field class="flex-auto gt-xs:pr-3">
+                                        <mat-label class="boldFont">VN/TC No</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'vkntcno'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:identification'"></mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                        <mat-label class="boldFont">Not</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'note'"
+                                            class="disableCustomCss">
+
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex float:left gt-xs:flex-row">
+                                    <mat-form-field class="flex-auto gt-xs:pr-3">
+                                        <mat-label class="boldFont">Adres</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'address'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                                    </mat-form-field>
+                                    <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                        <mat-label class="boldFont">Müşteri İndirim Oranı</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'customerdiscount'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex float:left gt-xs:flex-row">
+                                    <mat-form-field class="flex-auto gt-xs:pr-3">
+                                        <mat-label>Müşteri Grubu</mat-label>
+                                        <mat-select [placeholder]="'Müşteri Grubu'" [formControlName]="'customerGroup'"
+                                            name="customergroup" disabled="true">
+                                            <mat-option>None</mat-option>
+                                            <mat-option *ngFor="let customergroup of customergroupList"
+                                                [value]="customergroup.id">{{customergroup.name}}</mat-option>
+                                        </mat-select>
+                                        <!-- <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                                    </mat-form-field>
+                                    <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                        <mat-label class="boldFont">Kayıt Tarihi</mat-label>
+                                        <input matInput disabled="true" [formControlName]="'recordDate'"
+                                            class="disableCustomCss">
+                                        <mat-icon class="icon-size-5" matSuffix
+                                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="flex float:left gt-xs:flex-row">
+                                    <!-- <mat-form-field class="flex-auto gt-xs:pr-3"> -->
+                                    <!-- <mat-label class="boldFont">SMS Bildirimi</mat-label>
+                                <input matInput disabled="true" [formControlName]="'smsNotification'" [ngStyle]="{'color': customerDetailForm.get('smsNotification').value ? 'green' : 'red'}">
+                                <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+
+                                    <mat-checkbox class="flex-auto gt-xs:pr-3" [checked]="true" [color]="'primary'"
+                                        [formControlName]="'smsNotification'">
+                                        SMS Bildirimi
+                                    </mat-checkbox>
+                                    <!-- </mat-form-field> -->
+
+                                    <!-- <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                <mat-label class="boldFont">E-Mail Bildirimi</mat-label>
+                                <input matInput disabled="true" [formControlName]="'emailNotification'"
+                                    [ngStyle]="{'color': customerDetailForm.get('emailNotification').value ? 'green' : 'red'}">
+                                <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field> -->
+                                    <mat-checkbox class="ml-5 flex-auto gt-xs:pl-3" [color]="'primary'"
+                                        [formControlName]="'emailNotification'">
+                                        E-Posta Bildirimi
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-6/12 lg:w-6/12 p-2">
+                        <div class="flex flex-wrap gap-4 flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden"
+                            style="justify-content: space-between;    display: flex !important;flex-wrap: wrap !important;">
+                            <div class="col-6 col-md-12" *ngFor="let patient of patientDetails">
+                                <fuse-card class="flex flex-col  w-full p-6 pb-4 filter-article">
+                                    <div class="flex items-center">
+                                        <img *ngIf="patient.animalType==1"
+                                            src="../../../../../assets/images/illustrasyonlar/kopkeillustra.jpg"
+                                            alt="Kedi Illustration"
+                                            class="w-20 h-20 rounded-full my-auto mx-auto min-w-20">
+                                        <img *ngIf="patient.animalType==2"
+                                            src="../../../../../assets/images/illustrasyonlar/kediillustra.jpg"
+                                            alt="Kedi Illustration"
+                                            class="w-20 h-20 rounded-full my-auto mx-auto min-w-20">
+                                        <div class="flex flex-col ml-6">
+                                            <div class="text-2xl font-semibold leading-tight">Hasta Adı</div>
+                                            <div class="text-secondary font-medium text-md">{{patient.name}}</div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="container" style="margin-top: 1rem; padding: 0;">
+                                        <div class="row">
+                                            <div class="col-md-6"
+                                                style="border-right: 1px solid rgba(var(--fuse-text-secondary-rgb), var(--tw-text-opacity)); display: flex; flex-direction: column; align-items: center; position: relative;">
+                                                <div style="font-weight: 600;">
+                                                    Çip Numarası
+                                                </div>
+                                                <div
+                                                    style="font-weight: 500; font-size: 0.8rem; color: rgba(var(--fuse-text-secondary-rgb), var(--tw-text-opacity)) !important;">
+                                                    {{patient.chipNumber}}
+                                                </div>
+                                                <div
+                                                    style="content: ''; position: absolute; height: 100%; width: 1px; background-color: black; right: 0;">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6"
+                                                style="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; position: relative;">
+                                                <div style="font-weight: 600;">
+                                                    Hasta Tipi
+                                                </div>
+                                                <div
+                                                    style="font-weight: 500; font-size: 0.8rem; color: rgba(var(--fuse-text-secondary-rgb), var(--tw-text-opacity)) !important;">
+                                                    {{patient.animalTypeName}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-wrap mt-3 -mx-3" style="justify-content: space-between;">
+                                        <a class="px-3" mat-button [color]="'warn'" [routerLink]="['./']"
+                                            (click)="redirectToDeletePatient(patient.recId)">
+                                            Sil
+                                        </a>
+
+                                        <a class="px-3" mat-button [color]="'primary'" [routerLink]="['./']"
+                                            (click)="redirectToUpdatePatient(patient.recId)">
+                                            Düzenle
+                                        </a>
+                                    </div>
+                                </fuse-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-tab>
+
+            <mat-tab label="Hastalar">
+                <app-patient-tab></app-patient-tab>
+            </mat-tab>
+
+            <mat-tab label="Muayeneler">
+                <app-examination-tab></app-examination-tab>
+            </mat-tab>
+
+            <mat-tab label="Aşı Takvimi">
+                <app-vaccine-tab></app-vaccine-tab>
+            </mat-tab>
+
+            <mat-tab label="Konaklama">
+                <app-accommodations-tab></app-accommodations-tab>
+            </mat-tab>
+
+            <mat-tab label="Satışlar">
+                <app-sales-tab></app-sales-tab>
+            </mat-tab>
+
+            <mat-tab label="Ödeme Tablosu">
+                <app-pay-chart-tab></app-pay-chart-tab>
+            </mat-tab>
+
+            <!-- 
+            <mat-tab label="İşlem Geçmişi">
+
+            </mat-tab> -->
+
+
+        </mat-tab-group>
+
+
+    </div>
+</div>

@@ -1,0 +1,152 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span>Muayene Ödeme Geçmişi</span>
+      </h5>
+    </div>
+    <div class="modal-body mbody-customeradd">
+
+
+      <div class="text-lg font-medium tracking-tight leading-6 truncate ml-3 text-slate-500">Satışlar  </div>
+
+      <ng-container>
+        <ng-container>
+          <ng-container *ngIf="examinationSales.length > 0; else noProducts">
+            <div class="grid">
+              <div
+                class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                rt matSortDisableClear>
+                <div class="hidden sm:block">
+                  Satış Id</div>
+                <div class="hidden sm:block">
+                  Tarih
+                </div>
+                <div class="hidden lg:block">
+                  Fatura No
+                </div>
+                <div class="hidden lg:block">
+                  KDV
+                </div>
+                <div class="hidden lg:block">
+                  Total
+                </div>
+              </div>
+
+              <ng-container>
+                <ng-container *ngFor="let item of examinationSales; trackBy: trackByFn">
+                  <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                    <div class="hidden md:block truncate">
+                      {{item.id}}
+                    </div>
+
+                    <div class="truncate">
+                      {{item.date}}
+                    </div>
+
+                    <div class="truncate">
+                      {{item.invoiceno}}
+                    </div>
+
+                    <div class="truncate">
+                      {{item.kdv}}
+                    </div>
+                    <div class="truncate">
+                      {{item.total}}
+                    </div>
+
+                  </div>
+
+                </ng-container>
+              </ng-container>
+
+            </div>
+
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <ng-template #noProducts>
+        <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">
+          Satış bulunamadı.</div>
+      </ng-template>
+
+      <br>
+
+      <div class="text-lg font-medium tracking-tight leading-6 truncate ml-3 text-slate-500">Ödemeler  </div>
+      <ng-container>
+        <ng-container>
+          <ng-container *ngIf="examinationSalesCollection.length > 0; else noProducts">
+            <div class="grid">
+              <div
+                class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                rt matSortDisableClear>
+                <div class="hidden sm:block">
+                  Satış Id</div>
+                <div class="hidden sm:block">
+                  Tarih
+                </div>
+                <div class="hidden lg:block">
+                  Fatura No
+                </div>
+                <div class="hidden lg:block">
+                  KDV
+                </div>
+                <div class="hidden lg:block">
+                  Total
+                </div>
+              </div>
+
+              <ng-container>
+                <ng-container *ngFor="let item of examinationSalesCollection; trackBy: trackByFn">
+                  <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+                    <div class="hidden md:block truncate">
+                      {{item.id}}
+                    </div>
+
+                    <div class="truncate">
+                      {{item.date}}
+                    </div>
+
+                    <div class="truncate">
+                      {{item.invoiceNo}}
+                    </div>
+
+                    <div class="truncate">
+                      {{item.kdv}}
+                    </div>
+                    <div class="truncate">
+                      {{item.total}}
+                    </div>
+
+                  </div>
+
+                </ng-container>
+              </ng-container>
+
+            </div>
+
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <ng-template #noProducts>
+        <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">
+          Ödemem bulunamadı.</div>
+      </ng-template>
+
+    </div>
+
+  </mat-dialog-content>
+</div>
+
+<div class="flex items-center mt-4 sm:mt-0 justify-end mr-7">
+  <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+    Kapat
+  </button>
+
+</div>

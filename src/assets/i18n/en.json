@@ -1,0 +1,26 @@
+{
+    "welcome-back": "Welcome back",
+    "Project": "Project",
+    "Analytics": "Analytics",
+    "sweetalert": {
+        "success": "Success !",
+        "error": "Error !",
+        "transactionSuccessful": "Transaction Successful",
+        "transactionFailed": "Transaction Failed",
+        "areYouSure": "Are you sure ?",
+        "areYouSureDelete": "Are you sure you want to delete ?",
+        "pleaseSelectLanguage": "Please select the languages to be translated and the default language !",
+        "enterpriseLevel": "You're going to the enterprise level. What have you done here will affect all the properties your enterprise have, do you confirm?",
+        "propertyLevel": "You're going to the property level, do you confirm?",
+        "nothingChanged": "Nothing Changed.",
+        "approve": "Are you sure you want to approve the selected request?",
+        "undoApprove": "Are you sure you want to cancel the approval of the selected request?",
+        "showThePayrollErrorList": "Show error list.",
+        "erpCariDepartmentAlert": "This Department Already Used This Current Card.",
+        "nothingSelected": "Nothing Selected.",
+        "selectBranch": "Select a Branch...",
+        "selectDepartment": "Select a Department...",
+        "selectPricing": "Select the personnel whose salary will be updated.",
+        "areYouSureChange": "Değiştirilecektir emin misiniz ?"
+    }
+}

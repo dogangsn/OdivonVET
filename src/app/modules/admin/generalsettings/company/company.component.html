@@ -1,0 +1,154 @@
+<div class="w-full max-w-3xl">
+
+    <!-- Form -->
+
+    <div role="status" class="animate-pulse" *ngIf="loader">
+        <div class="gap-6 w-full mt-14">
+            <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700 mb-11"></div>
+            <div class="flex gap-2 mb-11">
+                <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+                <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+            </div>
+
+            <div class="flex items-center mb-4 mt-3">
+                <div class="h-40 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <form [formGroup]="companyForm">
+
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8" *ngIf="!loader">
+            <!-- companyName -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Şirket İsmi</mat-label>
+                    <input [formControlName]="'companyName'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- eMail -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>E-Mail</mat-label>
+                    <input [formControlName]="'eMail'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- phone -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Telefon</mat-label>
+                    <input placeholder="(555) 555-5555" (input)="formatPhoneNumber($event.target.value)"
+                        [formControlName]="'phone'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- adress -->
+            <div class="sm:col-span-4">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Adres</mat-label>
+                    <textarea matInput [formControlName]="'adress'" cdkTextareaAutosize
+                        [cdkAutosizeMinRows]="5"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+        <!-- Section -->
+        <div class="w-full">
+            <div class="text-xl">E-Fatura İşlemleri</div>
+            <div class="text-secondary">Ön Muhasebe işlemleri üzerinde tanımlamalar.</div>
+        </div>
+        <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!-- Email -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Ünvanı</mat-label>
+                    <input [formControlName]="'companyTitle'" matInput>
+                </mat-form-field>
+            </div>
+            <div class="sm:col-span-2">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Ticari Ünvanı</mat-label>
+                    <input [formControlName]="'tradeName'" matInput>
+                </mat-form-field>
+            </div>
+            <!-- taxNumber -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Vergi Kimlik Numarası</mat-label>
+                    <input [formControlName]="'taxNumber'" matInput (keypress)="allowOnlyNumbers($event)">
+                </mat-form-field>
+            </div>
+            <!-- taxOffice -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Vergi Dairesi</mat-label>
+                    <mat-select [formControlName]="'taxOffice'">
+                        <mat-option>None</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!-- Language -->
+            <div class="sm:col-span-2">
+                <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+                    <mat-label>Varsayılan Fatura Türü</mat-label>
+                    <mat-select [formControlName]="'defaultInvoiceType'">
+                        <mat-option>None</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="mt-11 mb-10 border-t"></div>
+
+        <!-- Section -->
+        <div class="w-full text-xl">Diğer</div>
+        <div class="grid grid-cols-1 gap-6 w-full mt-8">
+            <!-- invoiceAmountNotes -->
+            <div class="flex items-center justify-between">
+                <div class="flex-auto cursor-pointer" (click)="communication.toggle()">
+                    <div class="leading-6 font-medium">Fatura Tutarı Yazıyla Not Bölümüne Eklensin:</div>
+                </div>
+                <mat-slide-toggle class="ml-2" [color]="'primary'" [formControlName]="'invoiceAmountNotes'"
+                    #communication>
+                </mat-slide-toggle>
+            </div>
+            <!-- invoiceNoAutoCreate -->
+            <div class="flex items-center justify-between">
+                <div class="flex-auto cursor-pointer" (click)="securityToggle.toggle()">
+                    <div class="leading-6 font-medium">Fatura Numarası Gönderilirken Oluşturulsun:</div>
+                </div>
+                <mat-slide-toggle class="ml-2" [color]="'primary'" [formControlName]="'invoiceNoAutoCreate'"
+                    #securityToggle>
+                </mat-slide-toggle>
+            </div>
+            <!-- invoiceSendEMail -->
+            <div class="flex items-center justify-between">
+                <div class="flex-auto cursor-pointer" (click)="meetupsToggle.toggle()">
+                    <div class="leading-6 font-medium">Fatura Gönderildiğinde e-Posta Gönderilsin:</div>
+                </div>
+                <mat-slide-toggle class="ml-2" [color]="'primary'" [formControlName]="'invoiceSendEMail'"
+                    #meetupsToggle>
+                </mat-slide-toggle>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="my-10 border-t"></div>
+
+
+
+        <!-- Actions -->
+        <div class="flex items-center justify-end">
+            <button mat-stroked-button type="button">
+                Vazgeç
+            </button>
+            <button class="ml-4" mat-flat-button type="button" (click)="updateCompany()" [color]="'primary'">Kaydet
+            </button>
+        </div>
+    </form>
+
+</div>

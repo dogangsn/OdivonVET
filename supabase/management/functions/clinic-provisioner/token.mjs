@@ -1,0 +1,1 @@
+export async function clinicWorkerToken(secret,ref){const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);const result=await crypto.subtle.sign('HMAC',key,new TextEncoder().encode('odivon-clinic-worker:'+ref));return Array.from(new Uint8Array(result),b=>b.toString(16).padStart(2,'0')).join('');}

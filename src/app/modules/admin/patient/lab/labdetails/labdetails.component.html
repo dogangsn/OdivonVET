@@ -1,0 +1,116 @@
+<p role="alert">{{error}}</p><div class="flex flex-col flex-auto min-w-0">
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <div>
+                <div class="flex sm:hidden">
+                    <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+                        <mat-icon class="icon-size-5 text-secondary"
+                            [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                        <span class="ml-1">Back</span>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Laboratuvar Dökümanları
+                </h2>
+            </div>
+        </div>
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <button mat-raised-button color="primary" (click)="openFileUpload()">
+                <mat-icon>cloud_upload</mat-icon> Yeni Döküman Yükle
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+        <!-- Animal and Customer Details -->
+        <div class="grid grid-cols-12 gap-8">
+            <!-- Hayvan Detayı (col-12 for mobile, col-6 for larger screens) -->
+            <mat-card class="shadow-lg col-span-12 sm:col-span-6">
+                <mat-card-header>
+                    <mat-card-title>Hayvan Detayı</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p><strong>Adı:</strong> {{labdocumentdto?.patientName }}</p>
+                    <p><strong>Türü:</strong> {{labdocumentdto?.patientType}}</p>
+                    <p><strong>Irkı:</strong> {{labdocumentdto?.patientBreed }} </p>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Müşteri Detayı (col-12 for mobile, col-6 for larger screens) -->
+            <mat-card class="shadow-lg col-span-12 sm:col-span-6">
+                <mat-card-header>
+                    <mat-card-title>Müşteri Detayı</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p><strong>Adı:</strong> {{labdocumentdto?.customerName }}</p>
+                    <p><strong>Telefon:</strong> {{labdocumentdto?.customerPhone }}</p>
+                    <p><strong>Email:</strong> {{labdocumentdto?.customerEmail }}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <br>
+        <div class="grid grid-cols-12 gap-8">
+
+            <mat-card class="shadow-lg col-span-12 sm:col-span-6">
+                <mat-card-header>
+                    <mat-card-title>Dökümanlar</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
+                        <mat-grid-tile *ngFor="let document of labdocuementlist">
+                            <mat-card class="shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                <mat-card-header>
+                                    <mat-card-title>{{ document.documentName }}</mat-card-title>
+                                    <mat-card-subtitle>{{ document.documentDate | date }}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-actions align="end">
+                                    <button mat-button color="primary" (click)="downloadDocument(document)">
+                                        <mat-icon>file_download</mat-icon> İndir
+                                    </button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </mat-grid-tile>
+                    </mat-grid-list>
+                    <div *ngIf="labdocuementlist && labdocuementlist.length === 0">
+                        <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">
+                            Veri bulunamadı.</div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <mat-card class="shadow-lg col-span-12 sm:col-span-6 flex-auto">
+                <dx-html-editor [height]="300" [(valueType)]="editorValueType" [(value)]="valueContent">
+                    <dxo-toolbar>
+                        <dxi-item name="undo"></dxi-item>
+                        <dxi-item name="redo"></dxi-item>
+                        <dxi-item name="separator"></dxi-item>
+                        <dxi-item name="size" [acceptedValues]="['8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt']"
+                            [options]="{ inputAttr: { 'aria-label': 'Font size' } }"></dxi-item>
+                        <dxi-item name="font"
+                            [acceptedValues]="['Arial','Courier New','Georgia','Impact','Lucida Console','Tahoma','Times New Roman','Verdana']"
+                            [options]="{ inputAttr: { 'aria-label': 'Font family' } }"></dxi-item>
+                        <dxi-item name="separator"></dxi-item>
+                        <dxi-item name="bold"></dxi-item>
+                        <dxi-item name="italic"></dxi-item>
+                        <dxi-item name="strike"></dxi-item>
+                        <dxi-item name="underline"></dxi-item>
+                        <dxi-item name="separator"></dxi-item>
+                        <dxi-item name="alignLeft"></dxi-item>
+                        <dxi-item name="alignCenter"></dxi-item>
+                        <dxi-item name="alignRight"></dxi-item>
+                        <dxi-item name="alignJustify"></dxi-item>
+                        <dxi-item name="separator"></dxi-item>
+                        <dxi-item name="color"></dxi-item>
+                        <dxi-item name="background"></dxi-item>
+                    </dxo-toolbar>
+                </dx-html-editor>
+            </mat-card>
+
+        </div>
+
+    </div>
+</div>

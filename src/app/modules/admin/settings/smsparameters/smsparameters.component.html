@@ -1,0 +1,73 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 sm:py-8 sm:px-10 border-b bg-card dark:bg-transparent">
+      <div class="flex-1 min-w-0">
+          <!-- Breadcrumbs -->
+          <div>
+              <div class="flex sm:hidden">
+                  <a
+                      class="inline-flex items-center -ml-1.5 text-secondary font-medium"
+                      [routerLink]="'./..'">
+                      <mat-icon
+                          class="icon-size-5 text-secondary"
+                          [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                      <span class="ml-1">Back</span>
+                  </a>
+              </div>
+          </div>
+          <!-- Title -->
+          <div class="mt-2">
+              <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                  SMS Parametreleri
+              </h2>
+          </div>
+          <div class="font-medium tracking-tight text-secondary">SMS Tanımlamları</div>
+      </div>
+      <!-- Actions -->
+      <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+          <!-- <button mat-stroked-button>
+              <mat-icon
+                  class="icon-size-5 mr-2"
+                  [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+              Yeni Tedarikçiden Alış
+          </button>
+          <button
+              class="ml-3"
+              mat-flat-button
+              [color]="'primary'">
+              <mat-icon
+                  class="icon-size-5 mr-2"
+                  [svgIcon]="'heroicons_solid:link'"></mat-icon>
+              Kayıtlı Tedarikçiden Alış
+          </button> -->
+      </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-auto p-6 sm:p-10">
+
+    <div class="flex flex-wrap items-start w-full max-w-400 -m-4">
+
+      <fuse-card class="flex flex-col items-center max-w-80 w-full p-8 filter-info">
+        <div class="flex items-center justify-center p-5 rounded-full bg-primary-100 dark:bg-gray-600">
+            <mat-icon
+                class="icon-size-10 text-primary-500 dark:text-primary-300"
+                [svgIcon]="'heroicons_outline:support'"></mat-icon>
+        </div>
+        <div class="text-2xl font-semibold leading-tight text-center mt-6">MutluCELL</div>
+        <div class="text-center text-secondary mt-3">İletişim sektöründe 10. yılını geride bırakan Mutlucell 2010 yılından itibaren BTK (Bilgi Teknoloji Kurumu) tarafından temin edilen STH (Sabit Telefon Hizmeti) ve SMŞH (Sanal Mobil Şebeke Hizmeti) Yetki Belgeleri ile Hizmet veren bir telekomünikasyon firmasıdır.</div>
+        <a
+            class="px-6 mt-8"
+            mat-flat-button
+            [color]="'primary'"
+            (click)="updatesms(1)">
+            Bilgileri Güncelle
+        </a>
+    </fuse-card>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,214 @@
+<div class="flex flex-col flex-auto min-w-0">
+  <div
+    class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-18 sm:pt-8 sm:pb-22 sm:px-10 bg-default dark:bg-transparent">
+    <div class="flex-1 min-w-0">
+      <div>
+        <div class="flex sm:hidden">
+          <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+            <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+            <span class="ml-1">Back</span>
+          </a>
+        </div>
+      </div>
+      <!-- Title -->
+      <div *ngIf="loader" class="mt-2">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+          ...
+        </h2>
+      </div>
+      <div *ngIf="!loader" class="mt-2">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+          {{patient.name}}
+        </h2>
+      </div>
+      <div class="font-medium tracking-tight text-secondary">
+        {{customer.phonenumber}}
+      </div>
+    </div>
+  </div>
+  <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card ">
+    <div role="status" class="animate-pulse mb-4" *ngIf="loader">
+      <div class="h-64 bg-gray-200 rounded-2xl dark:bg-gray-700 w-full mb-4"></div>
+    </div>
+    <div role="status" class="animate-pulse mt-4 mb-4 sm:mt-0 md:mt-4" *ngIf="loader">
+      <div class="h-10 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+    </div>
+    <div role="status" class="animate-pulse mt-14" *ngIf="loader">
+      <div class="h-2.5  bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4" *ngFor="let _ of items"></div>
+    </div>
+    <div *ngIf="!loader" class="bg-default rounded-2xl w-full ">
+      <div class="sm:flex flex-auto gap-3 w-full h-full p-3">
+        <div class="w-1/3 h-full justify-center flex-auto items-center mx-auto my-auto">
+          <div class="flex-auto p-3 rounded-2xl shadow bg-slate-50 flex-col mx-auto my-auto min-h-40 w-2/3">
+            <div class="w-full item s-center justify-center">
+              <img *ngIf="patient.animalType==1" src="../../../../../assets/images/illustrasyonlar/kopkeillustra.jpg" alt="Kedi Illustration" class="w-20 h-20 rounded-full my-auto mx-auto min-w-20">
+              <img *ngIf="patient.animalType==2" src="../../../../../assets/images/illustrasyonlar/kediillustra.jpg" alt="Kedi Illustration" class="w-20 h-20 rounded-full my-auto mx-auto min-w-20">
+              <!-- <div class="bg-slate-500 w-20 h-20 rounded-full my-auto mx-auto min-w-20"></div> -->
+            </div>
+            <h2 class="px-6 text-xl md:text-2xl font-bold tracking-tight leading-7 sm:leading-10 truncate text-center">
+              {{patient.name}}
+            </h2>
+          </div>
+        </div>
+        
+        
+          <div class="sm:flex flex-auto justify-around w-full sm:mt-0 mt-3">
+            <div>
+              <h2 class="px-6 text-l md:text-xl font-bold tracking-tight leading-7 sm:leading-10 truncate">
+                Detay
+              </h2>
+              <table class="min-w-full divide-y">
+                <thead>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Hasta No</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{patient.id}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Tür/Irk</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{patient.animalType}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Doğum Tarihi</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{formatDate(patient.birthDate)}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Cinsiyet</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{this.sexText}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Renk</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{patient.animalColor}}</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class=" sm:mt-0 mt-3">
+              <h2 class="px-6 text-l md:text-xl font-bold tracking-tight leading-7 sm:leading-10 truncate">
+                İletişim
+              </h2>
+              <table class="min-w-full divide-y">
+                <thead class="">
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Sahibi</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{customer.firstname}}{{customer.lastname}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Güncel Bakiye</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">630.20</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">Telefon</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{customer.phonenumber}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">İkincil Telefon</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{customer.phonenumber2}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="col" class="font-bold   px-6 py-2 text-left text-md text-gray-500 tracking-wider">TC Kimlik No</th>
+                    <td class="text-start px-6 py-3 text-md font-medium text-gray-500 tracking-wider">{{customer.vkntcno}}</td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+      </div>
+    </div>
+    <mat-tab-group *ngIf="!loader" class="sm:px-2 mt-3"  [animationDuration]="'0'"
+            [selectedIndex]="selectedTabIndex"
+            (selectedIndexChange)="onTabChange($event)">
+            <mat-tab label="Müşteri Hastaları">
+              <app-customer-patients-tab></app-customer-patients-tab>
+            </mat-tab>
+      
+            <mat-tab label="Konaklama">
+                <app-patient-accommodation-tab></app-patient-accommodation-tab>
+            </mat-tab>
+      
+            <mat-tab label="Randevular">
+                <app-patient-appointments-tab></app-patient-appointments-tab>
+            </mat-tab>
+
+            <mat-tab label="Aşı Takvimi">
+              <app-patient-vaccine-appointment-tab></app-patient-vaccine-appointment-tab>
+          </mat-tab>
+      
+            <mat-tab label="Muayeneler">
+                <app-patient-examinations-tab></app-patient-examinations-tab>
+            </mat-tab>
+
+            <mat-tab label="Kilo Takibi">
+              <app-wight-history-tab></app-wight-history-tab>
+            </mat-tab>
+
+          </mat-tab-group>
+  </div>
+</div>
+
+<!-- <div class="container my-5">
+  <p-card header="Hasta Bilgilerini Düzenle">
+    <form [formGroup]="patientForm" (ngSubmit)="saveChanges()">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="custom-file-upload">
+            <div *ngIf="!imageUrl">
+              <p-fileUpload mode="basic" name="demo[]" url="./upload" chooseLabel="Fotoğraf Seç" auto="true"
+                (onSelect)="onSelect($event)" (uploadHandler)="onUpload($event)" formControlName="patientImg"></p-fileUpload>
+            </div>
+            <div class="image-preview" *ngIf="imageUrl">
+              <img [src]="imageUrl" alt="Seçilen Fotoğraf" />
+              <button type="button" class="remove-button" (click)="removeImage()">Kaldır</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-xl-6">
+          <div class="container">
+            <div class="form-group col-md-12">
+              <label for="customer">Müşteri / Sahibi</label>
+              <p-dropdown class="flex flex-column" [options]="customers" formControlName="patientCustomer"
+                placeholder="Müşteri Seç"></p-dropdown>
+            </div>
+
+            <div class="flex flex-row my-5">
+              <div class="flex flex-column col-md-6">
+                <label for="type">Türü (Zorunlu)</label>
+                <p-dropdown class="flex flex-column" [options]="types" formControlName="patientType"
+                  placeholder="Tür Seç"></p-dropdown>
+              </div>
+              <div class="flex flex-column col-md-6">
+                <label for="breed">Irkı (Zorunlu)</label>
+                <p-dropdown class="flex flex-column" [options]="breeds" formControlName="patientBreed"
+                  placeholder="Irk Seç"></p-dropdown>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="patientName">Hasta adı (Zorunlu)</label>
+              <input pInputText formControlName="patientName" placeholder="Hasta Adı Girin" />
+            </div>
+
+            <div class="flex flex-row my-5">
+              <div class="flex flex-column col-md-6">
+                <label for="birthDate">Doğum Tarihi (Zorunlu)</label>
+                <p-calendar class="flex flex-column" formControlName="patientBirthDate" dateFormat="dd-mm-yy"
+                  placeholder="Doğum Tarihi Seç"></p-calendar>
+              </div>
+              <div class="flex flex-column col-md-6">
+                <label class="flex justify-center" for="gender">Cinsiyet (Zorunlu)</label>
+                <div class="flex justify-center">
+                  <p-radioButton class="mx-2" name="gender" value="male" formControlName="patientGender" label="Erkek"></p-radioButton>
+                  <p-radioButton name="gender" value="female" formControlName="patientGender" label="Dişi"></p-radioButton>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <button pButton type="submit" label="Değişiklikleri Hızlı Kaydet"></button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </form>
+  </p-card>
+</div> -->

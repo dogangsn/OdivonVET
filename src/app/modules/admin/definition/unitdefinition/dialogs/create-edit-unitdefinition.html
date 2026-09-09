@@ -1,0 +1,62 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()">
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+<div class="modalForm">
+    <mat-dialog-content>
+
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="selectedunitdefinition">Birim Güncelle</span>
+                <span *ngIf="!selectedunitdefinition">Birim Ekle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-unitdefinition">
+            <div class="qm-pr-content">
+                <div class="container-fluid" [formGroup]="unitdefinition">
+                    <div class="row">
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Birim Kodu</mat-label>
+                                <input matInput [formControlName]="'unitCode'">
+               
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Birim Adı</mat-label>
+                                <input matInput [formControlName]="'unitName'">
+                  
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+                 
+                </div>
+
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'"
+                        (click)="addOrUpdateUnitDef()"  [disabled]="buttonDisabled" >
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </mat-dialog-content>
+</div>

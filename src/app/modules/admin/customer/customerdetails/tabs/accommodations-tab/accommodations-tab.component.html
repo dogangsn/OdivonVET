@@ -1,0 +1,68 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="customerName">
+      <th mat-header-cell *matHeaderCellDef> Hasta </th>
+      <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="roomName">
+      <th mat-header-cell *matHeaderCellDef> Oda </th>
+      <td mat-cell *matCellDef="let element"> {{element.roomName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checkinDate">
+      <th mat-header-cell *matHeaderCellDef> Giriş Tarihi </th>
+      <td mat-cell *matCellDef="let element"> {{ formatDate(element.checkinDate) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="checkOutDate">
+      <th mat-header-cell *matHeaderCellDef> Çıkış Tarihi </th>
+      <td mat-cell *matCellDef="let element"> {{ formatDate(element.checkoutDate) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="isLogOut">
+      <th mat-header-cell *matHeaderCellDef> Çıkış Yaptı </th>
+      <td mat-cell *matCellDef="let element">
+          <mat-icon *ngIf="element.isLogOut; else inactiveIcon" class="mat-18">check_box</mat-icon>
+          <ng-template #inactiveIcon>
+              <mat-icon class="mat-18">check_box_outline_blank</mat-icon>
+          </ng-template>
+      </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="accomodationsAction?.action !== 'Okuma'" mat-icon-button color="accent" (click)="updateAccomodation(element.id)" [disabled]="element.isLogOut">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+        <button *ngIf="accomodationsAction?.action !== 'Okuma'" mat-icon-button color="warn" (click)="accomodationDelete(element.id)" [disabled]="element.isLogOut">
+          <mat-icon class="mat-18">delete</mat-icon>
+        </button>
+        <button *ngIf="accomodationsAction?.action !== 'Okuma'" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button *ngIf="accomodationsAction?.action !== 'Okuma'" mat-menu-item (click)="reservationlogout(element.id)" [disabled]="element.isLogOut">
+            <mat-icon>done_all</mat-icon>
+            <span>Çıkış Yap</span>
+          </button>
+          <button mat-menu-item (click)="pritnt(element.id)">
+            <mat-icon>print</mat-icon>
+            <span>Çıktı Al</span>
+          </button>
+          <button mat-menu-item (click)="logView(element.id)">
+            <mat-icon>history</mat-icon>
+            <span>İşlem Geçmişi</span>
+          </button>
+        </mat-menu> 
+      </td>
+    </ng-container>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons #paginator
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

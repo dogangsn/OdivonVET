@@ -1,0 +1,115 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+
+<div class="modalForm">
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="!selectedusers">Kullanıcı Ekle</span>
+                <span *ngIf="selectedusers">Kullanıcı Güncelle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-users">
+            <div class="qm-pr-content">
+
+                <div class="container-fluid" [formGroup]="users">
+                    <div class="row">
+                        <div class="flex flex-col gt-sm:flex-row">
+                            <div class="flex flex-col">
+                                <mat-checkbox class="mb-2" [checked]="false" [formControlName]="'active'"
+                                    [color]="'primary'">
+                                    Aktif
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <div class="float : left flex  gt-xs:flex-row">
+                            <mat-form-field class="flex-auto gt-xs:pl-3">
+
+                                <mat-label>Ad Soyad</mat-label>
+                                <input matInput [formControlName]="'firstLastName'">
+                                <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                <mat-label>Ünvan</mat-label>
+                                <mat-select [formControlName]="'titleid'" name="titleid">
+                                    <mat-option>None</mat-option>
+                                    <mat-option *ngFor="let item of title" [value]="item.id">{{item.name}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                        </div>
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>E-Mail</mat-label>
+                                <input matInput [formControlName]="'email'">
+                                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Rol</mat-label>
+                                <mat-select [formControlName]="'roleId'">
+                                    <mat-option *ngFor="let item of rols" [value]="item.id">{{ item.rolecode
+                                        }}</mat-option>
+                                </mat-select>
+                                <!-- <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Telefon</mat-label>
+                                <input placeholder="(555) 555-5555" (input)="formatPhoneNumber($event.target.value)"
+                                    matInput [formControlName]="'phone'">
+                                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>AppKey</mat-label>
+                                <input matInput [formControlName]="'appKey'">
+                                <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:identification'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+                    <button mat-icon-button>
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:paper-clip'"></mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:emoji-happy'"></mat-icon>
+                    </button>
+                    <button mat-icon-button>
+                        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:photograph'"></mat-icon>
+                    </button>
+                </div>
+
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <button class="order-first sm:order-last" mat-flat-button [color]="'primary'"
+                        (click)="addOrUpdateUsers()">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </mat-dialog-content>
+</div>

@@ -1,0 +1,132 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span *ngIf="!selectedrole">Role Ekle</span>
+        <span *ngIf="selectedrole">Role Güncelle</span>
+      </h5>
+    </div>
+
+    <div class="modal-body mbody-users">
+        <div class="" [formGroup]="roles">
+          <div class="row">
+            <div class="float : left flex  gt-xs:flex-row">
+              <mat-form-field class="flex-auto gt-xs:pl-3">
+                <mat-label>Role Adi</mat-label>
+                <input matInput [formControlName]="'rolecode'">
+                <!-- <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+              </mat-form-field>
+
+              <mat-form-field class=" ml-5 flex-auto gt-xs:pl-3">
+                <mat-label>Giriş Sayfası</mat-label>
+                <mat-select [formControlName]="'mainpage'">
+                  <mat-option *ngFor="let item of selectedItemsTitle" [value]="item">{{ item }}</mat-option>
+                </mat-select>
+                <!-- <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+              </mat-form-field>
+
+            </div>
+
+            <div role="status" class="animate-pulse" *ngIf="loader">
+              <div class="gap-6 w-full mt-14">
+                <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700 mb-11"></div>
+                <div class="flex gap-2 mb-11">
+                  <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+                  <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+                </div>
+
+                <div class="flex items-center mb-4 mt-3">
+                  <div class="h-40 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+                </div>
+
+              </div>
+            </div>
+            <div *ngIf="!loader">
+              <mat-tab-group >
+                <mat-tab label="Ekranlar">
+                  <div class="" style="overflow: auto;">
+                    <mat-checkbox class="bg-slate-300 rounded-xl" (change)="selectAllNodes($event.checked)" [checked]="allNodesChecked">
+                      Tümünü Seç
+                    </mat-checkbox>
+                    <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="h-1/4">
+                      <!-- This is the tree node template for leaf nodes -->
+                      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+                        <mat-checkbox (change)="nodeSelectionToggle(node, $event.checked)"
+                          [checked]="node.checked"></mat-checkbox>
+                        {{node.title}}
+                      </mat-tree-node>
+                      <!-- This is the tree node template for expandable nodes -->
+                      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+                        <!-- <mat-checkbox (change)="nodeSelectionToggle(node, $event.checked)" [checked]="node.checked"></mat-checkbox> -->
+                        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.title">
+                          <mat-icon class="mat-icon-rtl-mirror">
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                          </mat-icon>
+                        </button>
+                        {{node.title}}
+                      </mat-tree-node>
+                    </mat-tree>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Aksiyonlar">
+                  <div class="min-h-80">
+                    <div *ngFor="let node of selectedNodes">
+                      <div style="display: flex; align-items: center;">
+                        <mat-label class="w-1/2">{{node.title}}</mat-label>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3 w-1/2">
+                          <mat-select [panelClass]="'w-72 min-w-72 max-w-72 h-auto max-h-none'" disableOptionCentering
+                          [formControl]="roles.get('role')" #roleSelect="matSelect" (selectionChange)="selectAction(node.id, roleSelect.value)">
+                            <mat-select-trigger class="text-md">
+                              <span>Rol:</span>
+                              <span class="ml-1 font-medium">{{roleSelect.value | titlecase}}</span>
+                            </mat-select-trigger>
+                            <ng-container *ngFor="let role of rolesAction">
+                              <mat-option class="h-auto py-4 leading-none" [value]="role.value">
+                                <div class="font-medium">{{role.label}}</div>
+                                <div class="mt-1.5 text-sm whitespace-normal leading-normal text-secondary">{{role.description}}
+                                </div>
+                              </mat-option>
+                            </ng-container>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </mat-tab>
+              </mat-tab-group>
+            </div>
+
+
+
+          </div>
+
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6" id="common-dialog-buttons">
+          <div class="-ml-2">
+            <button mat-icon-button>
+              <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:id'"></mat-icon>
+            </button>
+          </div>
+    
+          <div class="flex items-center mt-4 sm:mt-0">
+            <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+              Vazgeç
+            </button>
+            <button class="order-first sm:order-last" mat-flat-button [color]="'primary'" (click)="addOrUpdateRole()">
+              Kaydet
+            </button>
+          </div>
+        </div>
+
+    </div>
+    
+
+  </mat-dialog-content>
+</div>

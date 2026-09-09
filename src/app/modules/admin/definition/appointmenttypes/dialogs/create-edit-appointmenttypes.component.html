@@ -1,0 +1,105 @@
+<!-- <h1 mat-dialog-title class="mat-dialog-title">
+   
+</h1> -->
+
+<div class="modalForm">
+    <mat-dialog-content>
+        
+        <div class="modal-header">
+            
+            <h5 class="modal-title">
+                <span *ngIf="!selectedappointmenttypes">Randevu Tipi Ekle</span>
+                <span *ngIf="selectedappointmenttypes">Randevu Tipi Güncelle</span>
+            </h5>
+            <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+                <span class="material-icons"> highlight_off </span>
+            </button>
+        </div>
+
+        <div class="modal-body mbody-productcategory">
+            <div class="qm-pr-content">
+
+                <div class="container-fluid" [formGroup]="appointmentType">
+                    <div class="row">
+
+                        <!-- <div class="flex flex-col gt-sm:flex-row">
+                            <div class="flex flex-col">
+                                <mat-checkbox class="mb-2" [checked]="true" 
+                                [formControlName]="'active'"
+                                    [color]="'primary'">
+                                    Aktif
+                                </mat-checkbox>
+                            </div>
+                        </div> -->
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Randevu Tipi</mat-label>
+                                <input matInput [formControlName]="'remark'">
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field>
+                                <mat-label>Randevu Takvimi Rengi</mat-label>
+                                <input matInput [ngxMatColorPicker]="picker" [formControlName]="'colors'">
+                                <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                                <ngx-mat-color-picker #picker ></ngx-mat-color-picker>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-checkbox class="mb-2" [checked]="false" [formControlName]="'isDefaultPrice'"
+                                (change)="togglePriceInput($event.checked)" [color]="'primary'">
+                                Varsayılan Fiyat Ekle
+                            </mat-checkbox>
+                        </div>
+
+                        <div *ngIf="showPriceRatio">
+                            <div class="row">
+                                <div class="col-sm-6 mt-2 common-width">
+                                    <mat-form-field style="width:100%">
+                                        <mat-label>Fiyat</mat-label>
+                                        <input matInput [formControlName]="'price'">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-sm-6 mt-2 common-width">
+                                    <mat-form-field class="flex-auto gt-xs:pl-3">
+                                        <mat-label>KDV (%)</mat-label>
+                                        <mat-select [formControlName]="'taxisId'" [placeholder]="'KDV (%)'"
+                                            name="taxisList">
+                                            <mat-option *ngFor="let item of taxisList"
+                                                [value]="item.id">{{item.taxRatio}}</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+
+                </div>
+
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'"
+                        (click)="addOrUpdateStore()" [disabled]="buttonDisabled">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </mat-dialog-content>
+</div>

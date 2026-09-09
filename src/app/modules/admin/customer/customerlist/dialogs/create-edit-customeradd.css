@@ -1,0 +1,11 @@
+.flex {
+    display: flex;
+}
+
+.equal-width {
+    flex: 1;
+}
+
+.wide-input {
+    width: 150%; /* Özel input alanının genişliğini %150 olarak ayarla */
+}

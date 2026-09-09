@@ -1,0 +1,102 @@
+<h1 mat-dialog-title class="mat-dialog-title" mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragHandle>
+  <button class="dialog-close-button">
+    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+      </path>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+    </svg>
+  </button>
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+
+<div class="modalForm">
+  <mat-dialog-content>
+
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span *ngIf="selectedsmstemplate">Şablon Güncelle</span>
+        <span *ngIf="!selectedsmstemplate">Şablon Ekle</span>
+      </h5>
+    </div>
+
+    <div class="modal-body mbody-accommodationrooms">
+      <div class="container-fluid" [formGroup]="smstemplate">
+
+        <div class="row">
+
+          <div class="flex flex-col">
+            <mat-checkbox class="mb-2" [checked]="true" [formControlName]="'active'" [color]="'primary'">
+              Aktif
+            </mat-checkbox>
+          </div>
+
+
+          <div class="col-sm-12 mt-2 common-width">
+            <mat-form-field style="width:100%">
+              <mat-label>Şablon Adı</mat-label>
+              <input matInput [formControlName]="'templatename'">
+            </mat-form-field>
+          </div>
+
+          <div class="col-sm-12 mt-2 common-width mb-3">
+            <mat-slide-toggle class="mr-6" formControlName="enableSMS">SMS</mat-slide-toggle>
+            <mat-slide-toggle class="mr-6" formControlName="enableAppNotification">Mobil Uygulama
+              Bildirimi</mat-slide-toggle>
+            <mat-slide-toggle class="mr-6" formControlName="enableEmail">E-Posta</mat-slide-toggle>
+            <mat-slide-toggle formControlName="enableWhatsapp">Whatsapp</mat-slide-toggle>
+          </div>
+
+          <div class="col-sm-12 mt-2 common-width">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-select [formControlName]="'smstype'" [placeholder]="'Sms Tipi'" name="smstype"
+                (selectionChange)="updateAvailableOptions($event.value)">
+                <mat-option *ngFor="let type of printTypes" [value]="type">{{ getPrintTypeDisplay(type) }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+
+          <div class="col-sm-12 mt-2 common-width">
+            <mat-chip-listbox>
+              <mat-chip *ngFor="let option of availableOptions" [selected]="option.selected"
+                (click)="toggleSelection(option)" selectable="true" color="primary" selectedColor="accent">
+                {{ option.name }}
+              </mat-chip>
+            </mat-chip-listbox>
+          </div>
+
+          <mat-form-field class="flex-auto">
+            <mat-label>Şablon Metni</mat-label>
+            <textarea #textareaElement matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"
+              [formControlName]="'templatecontent'"></textarea>
+          </mat-form-field>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+      <div class="-ml-2">
+
+      </div>
+
+      <div class="flex items-center mt-4 sm:mt-0">
+        <button class="ml-auto sm:ml-0 mr-2" mat-stroked-button (click)="closeDialog()">
+          Vazgeç
+        </button>
+        <button class="order-first sm:order-last" mat-flat-button [color]="'primary'"
+          (click)="addOrUpdateSmsTemplate()">
+          Kaydet
+        </button>
+      </div>
+    </div>
+
+  </mat-dialog-content>
+</div>

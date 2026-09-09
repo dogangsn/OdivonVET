@@ -1,0 +1,60 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span>Döküman Ekle</span>
+      </h5>
+    </div>
+    <div class="modal-body mbody-productcategory">
+      <div class="qm-pr-content">
+        <div class="container-fluid">
+
+          <input type="file" class="file-input" (change)="onChange($event)" #fileUpload />
+
+          <div *ngIf="file">
+            <section class="file-info">
+              File details:
+              <ul>
+                <li>Name: {{file.name}}</li>
+                <li>Type: {{file.type}}</li>
+                <li>Size: {{file.size}} bytes</li>
+              </ul>
+            </section>
+            <!-- 
+            <button (click)="onUpload()">Upload the file</button> -->
+
+            <section [ngSwitch]="status">
+              <p *ngSwitchCase="'uploading'">⏳ Uploading...</p>
+              <p *ngSwitchCase="'success'">✅ Done!</p>
+              <p *ngSwitchCase="'fail'">❌ Error!</p>
+              <p *ngSwitchDefault>😶 Waiting to upload...</p>
+            </section>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+        <div class="-ml-2">
+        </div>
+        <div class="flex items-center mt-4 sm:mt-0">
+          <button class="ml-auto sm:ml-0 mr-2" mat-stroked-button (click)="closeDialog()">
+            Vazgeç
+          </button>
+          <button class="order-first sm:order-last" mat-flat-button [color]="'primary'" (click)="addOrUpdateDocument()"
+            [disabled]="buttonDisabled">
+            Kaydet
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,151 @@
+<h1 mat-dialog-title class="mat-dialog-title" mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragHandle>
+  <button class="dialog-close-button">
+    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+      </path>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+    </svg>
+  </button>
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span>Müşteri Bilgileri Düzenle</span>
+      </h5>
+    </div>
+
+    <div class="modal-body mbody-customeradd">
+      <div class="qm-pr-content">
+        <div class="container-fluid" [formGroup]="customerEditForm">
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [formControlName]="'email'" />
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+              </mat-form-field>
+            
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field>
+                <mat-label>Telefon No</mat-label>
+                <input matInput [formControlName]="'phonenumber'" />
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Telefon No 2</mat-label>
+                <input matInput [formControlName]="'phonenumber2'" />
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+              </mat-form-field>
+            </div>
+
+
+            <div class="col-md-6">
+              <mat-form-field>
+                <!-- <mat-label>İl</mat-label>
+                <input matInput [formControlName]="'city'" />
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                <mat-label>İl</mat-label>
+                <mat-select [formControlName]="'province'" [placeholder]="'İl'"  name="province" (selectionChange)="handleCityChange($event)">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let item of cities" 
+                        [value]="item.name">{{item.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <!-- <mat-label>İlçe</mat-label>
+                <input matInput [formControlName]="'district'" />
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                <mat-label>İlçe</mat-label>
+                <mat-select [formControlName]="'district'" [placeholder]="'İl'"  name="province">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let item of district"
+                        [value]="item">{{item}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-12">
+              <mat-form-field class="flex-auto">
+                <mat-label>Adres</mat-label>
+                <textarea matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"
+                    [formControlName]="'address'"></textarea>
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+            </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <mat-form-field>
+                <mat-label>Vergi Dairesi</mat-label>
+                <input matInput [formControlName]="'taxoffice'" />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>VN/TC No</mat-label>
+                <input matInput [formControlName]="'vkntcno'" />
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:identification'"></mat-icon>
+              </mat-form-field>
+            </div>
+            
+            <div class="col-md-12">
+              <mat-form-field>
+                <mat-label>Not</mat-label>
+                <input matInput [formControlName]="'note'" />
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="flex-auto gt-xs:pr-3">
+                <mat-label>SMS Bildirimi</mat-label>
+                <mat-select [formControlName]="'smsNotification'" name="smsNotification">
+                  <mat-option [value]="true">Evet</mat-option>
+                  <mat-option [value]="false">Hayır</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="flex-auto gt-xs:pr-3">
+                <mat-label>E-Mail Bildirimi</mat-label>
+                <mat-select [formControlName]="'emailNotification'" name="emailNotification"
+                            [ngStyle]="{'color': customerEditForm.get('emailNotification').value ? 'green' : 'red'}">
+                  <mat-option [value]="true">Evet</mat-option>
+                  <mat-option [value]="false">Hayır</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field >
+                <mat-label>Müşteri Grubu</mat-label>
+                <mat-select [placeholder]="'Müşteri Grubu'" [formControlName]="'customerGroup'" name="customergroup">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let customergroup of customergroupList"
+                        [value]="customergroup.id">{{customergroup.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+              <mat-form-field>
+                <mat-label>Müşteri İndirim Oranı</mat-label>
+                <input matInput [formControlName]="'customerdiscount'" />
+                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+              </mat-form-field>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
+
+<div class="flex items-center mt-4 sm:mt-0 justify-end mr-7">
+  <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+    Vazgeç
+  </button>
+  <button [disabled]="buttonDisabled" class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'"
+    (click)="updateCustomerDetail()">
+    Kaydet
+  </button>
+</div>

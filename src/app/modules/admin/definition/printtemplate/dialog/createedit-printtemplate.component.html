@@ -1,0 +1,75 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+<div class="modalForm">
+    <mat-dialog-content>
+
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="selectedprinttemplate">Şablon Güncelle</span>
+                <span *ngIf="!selectedprinttemplate">Şablon Ekle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+            <div class="container-fluid" [formGroup]="printtemplate">
+
+                <div class="row">
+                    <div class="col-sm-12 mt-2 common-width">
+                        <mat-form-field style="width:100%">
+                            <mat-label>Şablon Adı</mat-label>
+                            <input matInput [formControlName]="'templatename'">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <mat-form-field  class="flex-auto gt-xs:pl-3">
+                        <mat-select [formControlName]="'printType'" [placeholder]="'Çıktı Tipi'" name="printType" (selectionChange)="updateAvailableOptions($event.value)">
+                            <mat-option *ngFor="let type of printTypes" [value]="type">{{ getPrintTypeDisplay(type) }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="row" *ngIf="availableOptions.length > 0">
+                    <div class="col-sm-12 mt-2 common-width">
+                      <mat-chip-listbox>
+                        <mat-chip *ngFor="let option of availableOptions" [selected]="option.selected"
+                                  (click)="toggleSelection(option)" selectable="true" color="primary" selectedColor="accent">
+                          {{ option.name }}
+                        </mat-chip>
+                      </mat-chip-listbox>
+                    </div>
+                  </div>
+
+                <div class="row">
+                    <div class="col-sm-12 mt-2 common-width">
+                           <editor [init]="tinymceOptions" id="basic-example" [formControlName]="'templatecontent'"
+                           (ngModelChange)="setHtmlEditorValue($event)">
+                       </editor>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+            <div class="-ml-2">
+
+            </div>
+
+            <div class="flex items-center mt-4 sm:mt-0">
+                <button class="ml-auto sm:ml-0 mr-2" mat-stroked-button (click)="closeDialog()">
+                    Vazgeç
+                </button>
+                <button class="order-first sm:order-last" mat-flat-button [color]="'primary'"
+                    (click)="addOrUpdatePrintTemplate()" [disabled]="buttonDisabled">
+                    Kaydet
+                </button>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+</div>

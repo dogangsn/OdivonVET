@@ -1,0 +1,4974 @@
+[
+  {
+    "path": "api/auth/forgot-password",
+    "group": "auth",
+    "action": "forgot-password",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "api/auth/reset-password",
+    "group": "auth",
+    "action": "reset-password",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "identityserver/connect/token",
+    "group": "auth",
+    "action": "token",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "api/auth/sign-in-with-token",
+    "group": "auth",
+    "action": "sign-in-with-token",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "identityserver/api/user/SignUp",
+    "group": "auth",
+    "action": "SignUp",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "api/auth/unlock-session",
+    "group": "auth",
+    "action": "unlock-session",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "identityserver/api/account/create",
+    "group": "account",
+    "action": "create",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "create",
+    "parameters": []
+  },
+  {
+    "path": "identityserver/api/account/complateactivation",
+    "group": "account",
+    "action": "complateactivation",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "identityserver/api/account/RefreshActivation",
+    "group": "account",
+    "action": "RefreshActivation",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/GetUsersList",
+    "group": "settings",
+    "action": "GetUsersList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/GetCompany",
+    "group": "settings",
+    "action": "GetCompany",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/UpdateCompany",
+    "group": "settings",
+    "action": "UpdateCompany",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "companyCode"
+      },
+      {
+        "type": "string",
+        "name": "companyName"
+      },
+      {
+        "type": "string",
+        "name": "eMail"
+      },
+      {
+        "type": "string",
+        "name": "phone"
+      },
+      {
+        "type": "string",
+        "name": "adress"
+      },
+      {
+        "type": "string",
+        "name": "companyTitle"
+      },
+      {
+        "type": "string",
+        "name": "tradeName"
+      },
+      {
+        "type": "int?",
+        "name": "taxNumber"
+      },
+      {
+        "type": "string",
+        "name": "taxOffice"
+      },
+      {
+        "type": "int?",
+        "name": "defaultInvoiceType"
+      },
+      {
+        "type": "bool?",
+        "name": "invoiceAmountNotes"
+      },
+      {
+        "type": "bool?",
+        "name": "invoiceNoAutoCreate"
+      },
+      {
+        "type": "bool?",
+        "name": "invoiceSendEMail"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/CreateUser",
+    "group": "settings",
+    "action": "CreateUser",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "firstName"
+      },
+      {
+        "type": "string",
+        "name": "lastName"
+      },
+      {
+        "type": "string",
+        "name": "email"
+      },
+      {
+        "type": "string",
+        "name": "phone"
+      },
+      {
+        "type": "string",
+        "name": "roleId"
+      },
+      {
+        "type": "string",
+        "name": "appKey"
+      },
+      {
+        "type": "string",
+        "name": "userName"
+      },
+      {
+        "type": "Guid?",
+        "name": "titleId"
+      },
+      {
+        "type": "string[]",
+        "name": "properties"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/UpdateUser",
+    "group": "settings",
+    "action": "UpdateUser",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "userId"
+      },
+      {
+        "type": "string",
+        "name": "userName"
+      },
+      {
+        "type": "string",
+        "name": "firstName"
+      },
+      {
+        "type": "string",
+        "name": "lastName"
+      },
+      {
+        "type": "string",
+        "name": "email"
+      },
+      {
+        "type": "string",
+        "name": "roleId"
+      },
+      {
+        "type": "string",
+        "name": "appKey"
+      },
+      {
+        "type": "bool?",
+        "name": "authorizeEnterprise"
+      },
+      {
+        "type": "bool",
+        "name": "isLicenceAccount"
+      },
+      {
+        "type": "string",
+        "name": "titleId"
+      },
+      {
+        "type": "bool?",
+        "name": "active"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/GetRoleSettingList",
+    "group": "settings",
+    "action": "GetRoleSettingList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/GetUserRoleSettingList",
+    "group": "settings",
+    "action": "GetUserRoleSettingList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/GetRoleSettingById",
+    "group": "settings",
+    "action": "GetRoleSettingById",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/CreateRoleSetting",
+    "group": "settings",
+    "action": "CreateRoleSetting",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "rolecode"
+      },
+      {
+        "type": "string",
+        "name": "mainPage"
+      },
+      {
+        "type": "List<SelectedNavigationDto>",
+        "name": "selectedNavigations"
+      },
+      {
+        "type": "List<SelectedActionsDto>",
+        "name": "selectedActions"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/UpdateRoleSetting",
+    "group": "settings",
+    "action": "UpdateRoleSetting",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "roleOwnerId"
+      },
+      {
+        "type": "string",
+        "name": "rolecode"
+      },
+      {
+        "type": "string",
+        "name": "mainPage"
+      },
+      {
+        "type": "List<SelectedNavigationDto>",
+        "name": "selectedNavigations"
+      },
+      {
+        "type": "List<SelectedActionsDto>",
+        "name": "selectedActions"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/DeleteRoleSetting",
+    "group": "settings",
+    "action": "DeleteRoleSetting",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/GetNavigation",
+    "group": "settings",
+    "action": "GetNavigation",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "bool",
+        "name": "all"
+      },
+      {
+        "type": "Guid?",
+        "name": "roleId"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/GetActiveUser",
+    "group": "settings",
+    "action": "GetActiveUser",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/GetBranchList",
+    "group": "settings",
+    "action": "GetBranchList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/CreateBranch",
+    "group": "settings",
+    "action": "CreateBranch",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "district"
+      },
+      {
+        "type": "string",
+        "name": "address"
+      },
+      {
+        "type": "string",
+        "name": "phone"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/UpdateBranch",
+    "group": "settings",
+    "action": "UpdateBranch",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "district"
+      },
+      {
+        "type": "string",
+        "name": "address"
+      },
+      {
+        "type": "string",
+        "name": "phone"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/DeleteBranch",
+    "group": "settings",
+    "action": "DeleteBranch",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/CustomersList",
+    "group": "customers",
+    "action": "CustomersList",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "bool",
+        "name": "isArchive"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/CreateCustomer",
+    "group": "customers",
+    "action": "CreateCustomer",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "CustomersDto",
+        "name": "createCustomers"
+      },
+      {
+        "type": "bool",
+        "name": "isCreateVaccine"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/DeleteCustomer",
+    "group": "customers",
+    "action": "DeleteCustomer",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/VetAnimalsTypeList",
+    "group": "customers",
+    "action": "VetAnimalsTypeList",
+    "entity": "VetAnimalsType",
+    "table": "vetanimalstype",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Customers/AnimalBreedsDefList",
+    "group": "customers",
+    "action": "AnimalBreedsDefList",
+    "entity": "VetAnimalBreedsDef",
+    "table": "vetanimalbreedsdef",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Customers/GetCustomersFindById",
+    "group": "customers",
+    "action": "GetCustomersFindById",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Customers/UpdateCustomerById",
+    "group": "customers",
+    "action": "UpdateCustomerById",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Customers/CreatePatient",
+    "group": "customers",
+    "action": "CreatePatient",
+    "entity": "VetPatients",
+    "table": "vetpatients",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      },
+      {
+        "type": "PatientsDetailsDto",
+        "name": "patientDetails"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/DeletePatient",
+    "group": "customers",
+    "action": "DeletePatient",
+    "entity": "VetPatients",
+    "table": "vetpatients",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/GetTransactionMovementList",
+    "group": "customers",
+    "action": "GetTransactionMovementList",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/GetPaymentTransactionList",
+    "group": "customers",
+    "action": "GetPaymentTransactionList",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/CreateCollection",
+    "group": "customers",
+    "action": "CreateCollection",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      },
+      {
+        "type": "Guid",
+        "name": "collectionId"
+      },
+      {
+        "type": "int",
+        "name": "paymentType"
+      },
+      {
+        "type": "decimal",
+        "name": "amount"
+      },
+      {
+        "type": "decimal",
+        "name": "ratio"
+      },
+      {
+        "type": "bool?",
+        "name": "enterAmount"
+      },
+      {
+        "type": "Guid?",
+        "name": "vaccineid"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/GetPayChartList",
+    "group": "customers",
+    "action": "GetPayChartList",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/DeletePayChart",
+    "group": "customers",
+    "action": "DeletePayChart",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "Guid",
+        "name": "appointmentId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/GetPatientsByCustomerId",
+    "group": "customers",
+    "action": "GetPatientsByCustomerId",
+    "entity": "VetPatients",
+    "table": "vetpatients",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/SendMessage",
+    "group": "customers",
+    "action": "SendMessage",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "MessageType",
+        "name": "type"
+      },
+      {
+        "type": "string",
+        "name": "title"
+      },
+      {
+        "type": "string",
+        "name": "content"
+      },
+      {
+        "type": "Guid",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/CreateSale",
+    "group": "customers",
+    "action": "CreateSale",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      },
+      {
+        "type": "List<SaleTransRequestDto>?",
+        "name": "trans"
+      },
+      {
+        "type": "bool",
+        "name": "isPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "price"
+      },
+      {
+        "type": "Guid",
+        "name": "examinationId"
+      },
+      {
+        "type": "bool?",
+        "name": "isExaminations"
+      },
+      {
+        "type": "bool?",
+        "name": "isAccomodation"
+      },
+      {
+        "type": "Guid?",
+        "name": "accomodationId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/UpdateSale",
+    "group": "customers",
+    "action": "UpdateSale",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "List<SaleTransRequestDto>",
+        "name": "trans"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/GetSalesCustomerList",
+    "group": "customers",
+    "action": "GetSalesCustomerList",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/CreateSaleCollection",
+    "group": "customers",
+    "action": "CreateSaleCollection",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "saleOwnerId"
+      },
+      {
+        "type": "Guid",
+        "name": "customerId"
+      },
+      {
+        "type": "int",
+        "name": "paymentId"
+      },
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "decimal",
+        "name": "amount"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "Guid?",
+        "name": "collectionId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/UpdateSaleCollection",
+    "group": "customers",
+    "action": "UpdateSaleCollection",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "saleOwnerId"
+      },
+      {
+        "type": "Guid",
+        "name": "customerId"
+      },
+      {
+        "type": "int",
+        "name": "paymentId"
+      },
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "decimal",
+        "name": "amount"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "Guid?",
+        "name": "collectionId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/DeleteCollection",
+    "group": "customers",
+    "action": "DeleteCollection",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/GetSalesById",
+    "group": "customers",
+    "action": "GetSalesById",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/CreateBalanceSaleCollection",
+    "group": "customers",
+    "action": "CreateBalanceSaleCollection",
+    "entity": "VetPaymentCollection",
+    "table": "vetpaymentcollection",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      },
+      {
+        "type": "int",
+        "name": "paymentId"
+      },
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "decimal",
+        "name": "amount"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/UpdatePatient",
+    "group": "customers",
+    "action": "UpdatePatient",
+    "entity": "VetPatients",
+    "table": "vetpatients",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      },
+      {
+        "type": "PatientsDetailsDto",
+        "name": "patientDetails"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/UpdateCustomerArchive",
+    "group": "customers",
+    "action": "UpdateCustomerArchive",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "customerId"
+      },
+      {
+        "type": "bool",
+        "name": "archive"
+      }
+    ]
+  },
+  {
+    "path": "vet/Customers/GetFarmCustomersList",
+    "group": "customers",
+    "action": "GetFarmCustomersList",
+    "entity": "VetCustomers",
+    "table": "vetcustomers",
+    "scope": "customers",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Patient/GetExaminations",
+    "group": "examinations",
+    "action": "GetExaminations",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/GetExaminationByRecId",
+    "group": "examinations",
+    "action": "GetExaminationByRecId",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/CreateExamination",
+    "group": "examinations",
+    "action": "CreateExamination",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "string",
+        "name": "status"
+      },
+      {
+        "type": "string",
+        "name": "customerId"
+      },
+      {
+        "type": "string",
+        "name": "patientId"
+      },
+      {
+        "type": "double",
+        "name": "bodyTemperature"
+      },
+      {
+        "type": "int",
+        "name": "pulse"
+      },
+      {
+        "type": "int",
+        "name": "respiratoryRate"
+      },
+      {
+        "type": "double",
+        "name": "weight"
+      },
+      {
+        "type": "string",
+        "name": "complaintStory"
+      },
+      {
+        "type": "string",
+        "name": "treatmentDescription"
+      },
+      {
+        "type": "string",
+        "name": "symptoms"
+      },
+      {
+        "type": "bool",
+        "name": "isPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "price"
+      },
+      {
+        "type": "List<SaleTransRequestDto>?",
+        "name": "trans"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/GetSymptoms",
+    "group": "examinations",
+    "action": "GetSymptoms",
+    "entity": "VetSymptoms",
+    "table": "vetsymptoms",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Patient/DeleteExamination",
+    "group": "examinations",
+    "action": "DeleteExamination",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/UpdateExamination",
+    "group": "examinations",
+    "action": "UpdateExamination",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "string",
+        "name": "status"
+      },
+      {
+        "type": "string",
+        "name": "customerId"
+      },
+      {
+        "type": "string",
+        "name": "patientId"
+      },
+      {
+        "type": "double",
+        "name": "bodyTemperature"
+      },
+      {
+        "type": "int",
+        "name": "pulse"
+      },
+      {
+        "type": "int",
+        "name": "respiratoryRate"
+      },
+      {
+        "type": "double",
+        "name": "weight"
+      },
+      {
+        "type": "string",
+        "name": "complaintStory"
+      },
+      {
+        "type": "string",
+        "name": "treatmentDescription"
+      },
+      {
+        "type": "string",
+        "name": "symptoms"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/UpdateExaminationStatus",
+    "group": "examinations",
+    "action": "UpdateExaminationStatus",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "status"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/getExaminationlistByPatientId",
+    "group": "examinations",
+    "action": "getExaminationlistByPatientId",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Patient/GetExaminationsBySaleList",
+    "group": "examinations",
+    "action": "GetExaminationsBySaleList",
+    "entity": "VetExamination",
+    "table": "vetexamination",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "examinationId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/ProductDescriptionList",
+    "group": "productdescription",
+    "action": "ProductDescriptionList",
+    "entity": "VetProducts",
+    "table": "vetproducts",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateProductDescription",
+    "group": "productdescription",
+    "action": "CreateProductDescription",
+    "entity": "VetProducts",
+    "table": "vetproducts",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "Guid",
+        "name": "unitId"
+      },
+      {
+        "type": "Guid?",
+        "name": "categoryId"
+      },
+      {
+        "type": "int?",
+        "name": "productTypeId"
+      },
+      {
+        "type": "Guid?",
+        "name": "supplierId"
+      },
+      {
+        "type": "string",
+        "name": "productBarcode"
+      },
+      {
+        "type": "string",
+        "name": "productCode"
+      },
+      {
+        "type": "decimal",
+        "name": "ratio"
+      },
+      {
+        "type": "decimal",
+        "name": "buyingPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "sellingPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "criticalAmount"
+      },
+      {
+        "type": "bool?",
+        "name": "active"
+      },
+      {
+        "type": "bool?",
+        "name": "sellingIncludeKDV"
+      },
+      {
+        "type": "bool?",
+        "name": "buyingIncludeKDV"
+      },
+      {
+        "type": "bool?",
+        "name": "fixPrice"
+      },
+      {
+        "type": "bool?",
+        "name": "isExpirationDate"
+      },
+      {
+        "type": "int?",
+        "name": "animalType"
+      },
+      {
+        "type": "int?",
+        "name": "numberRepetitions"
+      },
+      {
+        "type": "Guid",
+        "name": "storeId"
+      },
+      {
+        "type": "Guid",
+        "name": "taxisId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateProductDescription",
+    "group": "productdescription",
+    "action": "UpdateProductDescription",
+    "entity": "VetProducts",
+    "table": "vetproducts",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "Guid",
+        "name": "unitId"
+      },
+      {
+        "type": "Guid?",
+        "name": "categoryId"
+      },
+      {
+        "type": "int?",
+        "name": "productTypeId"
+      },
+      {
+        "type": "Guid?",
+        "name": "supplierId"
+      },
+      {
+        "type": "string",
+        "name": "productBarcode"
+      },
+      {
+        "type": "string",
+        "name": "productCode"
+      },
+      {
+        "type": "decimal",
+        "name": "ratio"
+      },
+      {
+        "type": "decimal",
+        "name": "buyingPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "sellingPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "criticalAmount"
+      },
+      {
+        "type": "bool?",
+        "name": "active"
+      },
+      {
+        "type": "bool?",
+        "name": "sellingIncludeKDV"
+      },
+      {
+        "type": "bool?",
+        "name": "buyingIncludeKDV"
+      },
+      {
+        "type": "bool?",
+        "name": "fixPrice"
+      },
+      {
+        "type": "bool?",
+        "name": "isExpirationDate"
+      },
+      {
+        "type": "int?",
+        "name": "numberRepetitions"
+      },
+      {
+        "type": "int?",
+        "name": "animalType"
+      },
+      {
+        "type": "Guid",
+        "name": "storeId"
+      },
+      {
+        "type": "Guid",
+        "name": "taxisId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteProductDescription",
+    "group": "productdescription",
+    "action": "DeleteProductDescription",
+    "entity": "VetProducts",
+    "table": "vetproducts",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/ProductDescriptionFilters",
+    "group": "productdescription",
+    "action": "ProductDescriptionFilters",
+    "entity": "VetProducts",
+    "table": "vetproducts",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "productType"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/ProductMovementList",
+    "group": "productdescription",
+    "action": "ProductMovementList",
+    "entity": "VetProductMovements",
+    "table": "vetproductmovements",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "productId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateProductActive",
+    "group": "productdescription",
+    "action": "UpdateProductActive",
+    "entity": "VetProducts",
+    "table": "vetproducts",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool?",
+        "name": "active"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/ProductCategoryList",
+    "group": "productcategory",
+    "action": "ProductCategoryList",
+    "entity": "VetProductCategories",
+    "table": "vetproductcategories",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateProductCategories",
+    "group": "productcategory",
+    "action": "CreateProductCategories",
+    "entity": "VetProductCategories",
+    "table": "vetproductcategories",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "categoryCode"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateProductCategories",
+    "group": "productcategory",
+    "action": "UpdateProductCategories",
+    "entity": "VetProductCategories",
+    "table": "vetproductcategories",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "categoryCode"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteProductCategories",
+    "group": "productcategory",
+    "action": "DeleteProductCategories",
+    "entity": "VetProductCategories",
+    "table": "vetproductcategories",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UnitsList",
+    "group": "units",
+    "action": "UnitsList",
+    "entity": "VetUnits",
+    "table": "vetunits",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateUnits",
+    "group": "units",
+    "action": "CreateUnits",
+    "entity": "VetUnits",
+    "table": "vetunits",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "unitCode"
+      },
+      {
+        "type": "string",
+        "name": "unitName"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateUnits",
+    "group": "units",
+    "action": "UpdateUnits",
+    "entity": "VetUnits",
+    "table": "vetunits",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "unitCode"
+      },
+      {
+        "type": "string",
+        "name": "unitName"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteUnits",
+    "group": "units",
+    "action": "DeleteUnits",
+    "entity": "VetUnits",
+    "table": "vetunits",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/CasingDefinitionList",
+    "group": "casedefinition",
+    "action": "CasingDefinitionList",
+    "entity": "VetCasingDefinition",
+    "table": "vetcasingdefinition",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateCasingDefinition",
+    "group": "casedefinition",
+    "action": "CreateCasingDefinition",
+    "entity": "VetCasingDefinition",
+    "table": "vetcasingdefinition",
+    "scope": "finance",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "caseName"
+      },
+      {
+        "type": "bool",
+        "name": "active"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateCasingDefinition",
+    "group": "casedefinition",
+    "action": "UpdateCasingDefinition",
+    "entity": "VetCasingDefinition",
+    "table": "vetcasingdefinition",
+    "scope": "finance",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "caseName"
+      },
+      {
+        "type": "bool",
+        "name": "durumu"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteCasingDefinition",
+    "group": "casedefinition",
+    "action": "DeleteCasingDefinition",
+    "entity": "VetCasingDefinition",
+    "table": "vetcasingdefinition",
+    "scope": "finance",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/CustomerGroupList",
+    "group": "customergroup",
+    "action": "CustomerGroupList",
+    "entity": "VetCustomerGroupDef",
+    "table": "vetcustomergroupdef",
+    "scope": "customers",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateCustomerGroupDef",
+    "group": "customergroup",
+    "action": "CreateCustomerGroupDef",
+    "entity": "VetCustomerGroupDef",
+    "table": "vetcustomergroupdef",
+    "scope": "customers",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "code"
+      },
+      {
+        "type": "string",
+        "name": "name"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateCustomerGroupDef",
+    "group": "customergroup",
+    "action": "UpdateCustomerGroupDef",
+    "entity": "VetCustomerGroupDef",
+    "table": "vetcustomergroupdef",
+    "scope": "customers",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "code"
+      },
+      {
+        "type": "string",
+        "name": "name"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteCustomerGroupDef",
+    "group": "customergroup",
+    "action": "DeleteCustomerGroupDef",
+    "entity": "VetCustomerGroupDef",
+    "table": "vetcustomergroupdef",
+    "scope": "customers",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Store/StoreList",
+    "group": "store",
+    "action": "StoreList",
+    "entity": "VetStores",
+    "table": "vetstores",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Store/CreateStore",
+    "group": "store",
+    "action": "CreateStore",
+    "entity": "VetStores",
+    "table": "vetstores",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "depotCode"
+      },
+      {
+        "type": "string",
+        "name": "depotName"
+      }
+    ]
+  },
+  {
+    "path": "vet/Store/UpdateStore",
+    "group": "store",
+    "action": "UpdateStore",
+    "entity": "VetStores",
+    "table": "vetstores",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "depotCode"
+      },
+      {
+        "type": "string",
+        "name": "depotName"
+      }
+    ]
+  },
+  {
+    "path": "vet/Store/DeleteStore",
+    "group": "store",
+    "action": "DeleteStore",
+    "entity": "VetStores",
+    "table": "vetstores",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Suppliers/SuppliersList",
+    "group": "suppliers",
+    "action": "SuppliersList",
+    "entity": "VetSuppliers",
+    "table": "vetsuppliers",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Suppliers/CreateSuppliers",
+    "group": "suppliers",
+    "action": "CreateSuppliers",
+    "entity": "VetSuppliers",
+    "table": "vetsuppliers",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "supplierName"
+      },
+      {
+        "type": "string",
+        "name": "email"
+      },
+      {
+        "type": "string",
+        "name": "phone"
+      },
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "adress"
+      },
+      {
+        "type": "InvoiceTpe",
+        "name": "invoiceType"
+      },
+      {
+        "type": "string",
+        "name": "companyName"
+      },
+      {
+        "type": "string",
+        "name": "webSite"
+      },
+      {
+        "type": "string",
+        "name": "taxOffice"
+      },
+      {
+        "type": "string",
+        "name": "taxNumber"
+      }
+    ]
+  },
+  {
+    "path": "vet/Suppliers/UpdateSuppliers",
+    "group": "suppliers",
+    "action": "UpdateSuppliers",
+    "entity": "VetSuppliers",
+    "table": "vetsuppliers",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "supplierName"
+      },
+      {
+        "type": "string",
+        "name": "email"
+      },
+      {
+        "type": "string",
+        "name": "phone"
+      },
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "adress"
+      },
+      {
+        "type": "InvoiceTpe",
+        "name": "invoiceType"
+      },
+      {
+        "type": "string",
+        "name": "companyName"
+      },
+      {
+        "type": "string",
+        "name": "webSite"
+      },
+      {
+        "type": "string",
+        "name": "taxOffice"
+      },
+      {
+        "type": "string",
+        "name": "taxNumber"
+      }
+    ]
+  },
+  {
+    "path": "vet/Suppliers/DeleteSuppliers",
+    "group": "suppliers",
+    "action": "DeleteSuppliers",
+    "entity": "VetSuppliers",
+    "table": "vetsuppliers",
+    "scope": "inventory",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/AnimalColorsDefList",
+    "group": "animalColorsDef",
+    "action": "AnimalColorsDefList",
+    "entity": "VetAnimalColorsDef",
+    "table": "vetanimalcolorsdef",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateAnimalColorsDef",
+    "group": "animalColorsDef",
+    "action": "CreateAnimalColorsDef",
+    "entity": "VetAnimalColorsDef",
+    "table": "vetanimalcolorsdef",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "name"
+      }
+    ]
+  },
+  {
+    "path": "vet/SaleBuy/CreateSaleBuy",
+    "group": "saleBuy",
+    "action": "CreateSaleBuy",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "type"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      },
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "Guid?",
+        "name": "productId"
+      },
+      {
+        "type": "Guid?",
+        "name": "supplierId"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "string",
+        "name": "invoiceNo"
+      },
+      {
+        "type": "int",
+        "name": "paymentType"
+      },
+      {
+        "type": "decimal",
+        "name": "amount"
+      },
+      {
+        "type": "Guid?",
+        "name": "demandsGuidId"
+      }
+    ]
+  },
+  {
+    "path": "vet/SaleBuy/SaleBuyList",
+    "group": "saleBuy",
+    "action": "SaleBuyList",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "type"
+      }
+    ]
+  },
+  {
+    "path": "vet/SaleBuy/SaleBuyListFilter",
+    "group": "saleBuy",
+    "action": "SaleBuyListFilter",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "paymentType"
+      },
+      {
+        "type": "DateTime",
+        "name": "beginDate"
+      },
+      {
+        "type": "DateTime",
+        "name": "endDate"
+      }
+    ]
+  },
+  {
+    "path": "vet/SaleBuy/DeleteSaleBuy",
+    "group": "saleBuy",
+    "action": "DeleteSaleBuy",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "Guid",
+        "name": "ownerId"
+      },
+      {
+        "type": "bool?",
+        "name": "allSaleDeleted"
+      }
+    ]
+  },
+  {
+    "path": "vet/SaleBuy/UpdateSaleBuy",
+    "group": "saleBuy",
+    "action": "UpdateSaleBuy",
+    "entity": "VetSaleBuyOwner",
+    "table": "vetsalebuyowner",
+    "scope": "finance",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "Guid",
+        "name": "ownerId"
+      },
+      {
+        "type": "int",
+        "name": "type"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      },
+      {
+        "type": "DateTime",
+        "name": "date"
+      },
+      {
+        "type": "Guid?",
+        "name": "productId"
+      },
+      {
+        "type": "Guid?",
+        "name": "supplierId"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "string",
+        "name": "invoiceNo"
+      },
+      {
+        "type": "int",
+        "name": "paymentType"
+      },
+      {
+        "type": "decimal",
+        "name": "amount"
+      },
+      {
+        "type": "Guid?",
+        "name": "demandsGuidId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/PaymentMethodList",
+    "group": "paymentmethods",
+    "action": "PaymentMethodList",
+    "entity": "VetPaymentMethods",
+    "table": "vetpaymentmethods",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreatePaymentMethods",
+    "group": "paymentmethods",
+    "action": "CreatePaymentMethods",
+    "entity": "VetPaymentMethods",
+    "table": "vetpaymentmethods",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdatePaymentMethods",
+    "group": "paymentmethods",
+    "action": "UpdatePaymentMethods",
+    "entity": "VetPaymentMethods",
+    "table": "vetpaymentmethods",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeletePaymentMethods",
+    "group": "paymentmethods",
+    "action": "DeletePaymentMethods",
+    "entity": "VetPaymentMethods",
+    "table": "vetpaymentmethods",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "recId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Agenda/AgendaList",
+    "group": "agenda",
+    "action": "AgendaList",
+    "entity": "VetAgenda",
+    "table": "vetagenda",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Agenda/AgendaListById",
+    "group": "agenda",
+    "action": "AgendaListById",
+    "entity": "VetAgenda",
+    "table": "vetagenda",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Agenda/CreateAgenda",
+    "group": "agenda",
+    "action": "CreateAgenda",
+    "entity": "VetAgenda",
+    "table": "vetagenda",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "int?",
+        "name": "agendaNo"
+      },
+      {
+        "type": "int?",
+        "name": "agendaType"
+      },
+      {
+        "type": "int?",
+        "name": "isActive"
+      },
+      {
+        "type": "string",
+        "name": "agendaTitle"
+      },
+      {
+        "type": "int?",
+        "name": "priority"
+      },
+      {
+        "type": "DateTime?",
+        "name": "dueDate"
+      },
+      {
+        "type": "string",
+        "name": "notes"
+      }
+    ]
+  },
+  {
+    "path": "vet/Agenda/UpdateAgenda",
+    "group": "agenda",
+    "action": "UpdateAgenda",
+    "entity": "VetAgenda",
+    "table": "vetagenda",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "int?",
+        "name": "agendaNo"
+      },
+      {
+        "type": "int?",
+        "name": "agendaType"
+      },
+      {
+        "type": "int?",
+        "name": "isActive"
+      },
+      {
+        "type": "string",
+        "name": "agendaTitle"
+      },
+      {
+        "type": "int?",
+        "name": "priority"
+      },
+      {
+        "type": "DateTime?",
+        "name": "dueDate"
+      },
+      {
+        "type": "string",
+        "name": "notes"
+      }
+    ]
+  },
+  {
+    "path": "vet/Agenda/DeleteAgenda",
+    "group": "agenda",
+    "action": "DeleteAgenda",
+    "entity": "VetAgenda",
+    "table": "vetagenda",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/DemandProductsList",
+    "group": "demandproducts",
+    "action": "DemandProductsList",
+    "entity": "VetDemandProducts",
+    "table": "vetdemandproducts",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Demands/CreateDemandProducts",
+    "group": "demandproducts",
+    "action": "CreateDemandProducts",
+    "entity": "VetDemandProducts",
+    "table": "vetdemandproducts",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "Guid?",
+        "name": "ownerId"
+      },
+      {
+        "type": "Guid",
+        "name": "productId"
+      },
+      {
+        "type": "decimal?",
+        "name": "quantity"
+      },
+      {
+        "type": "decimal?",
+        "name": "unitPrice"
+      },
+      {
+        "type": "decimal?",
+        "name": "amount"
+      },
+      {
+        "type": "decimal?",
+        "name": "stockState"
+      },
+      {
+        "type": "int?",
+        "name": "isActive"
+      },
+      {
+        "type": "decimal?",
+        "name": "reserved"
+      },
+      {
+        "type": "string",
+        "name": "barcode"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/UpdateDemandProducts",
+    "group": "demandproducts",
+    "action": "UpdateDemandProducts",
+    "entity": "VetDemandProducts",
+    "table": "vetdemandproducts",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "Guid?",
+        "name": "ownerId"
+      },
+      {
+        "type": "Guid",
+        "name": "productId"
+      },
+      {
+        "type": "decimal?",
+        "name": "quantity"
+      },
+      {
+        "type": "decimal?",
+        "name": "unitPrice"
+      },
+      {
+        "type": "decimal?",
+        "name": "amount"
+      },
+      {
+        "type": "decimal?",
+        "name": "stockState"
+      },
+      {
+        "type": "int?",
+        "name": "isActive"
+      },
+      {
+        "type": "decimal?",
+        "name": "reserved"
+      },
+      {
+        "type": "string",
+        "name": "barcode"
+      },
+      {
+        "type": "Guid?",
+        "name": "taxisId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/DeleteDemandProducts",
+    "group": "demandproducts",
+    "action": "DeleteDemandProducts",
+    "entity": "VetDemandProducts",
+    "table": "vetdemandproducts",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/DemandList",
+    "group": "demands",
+    "action": "DemandList",
+    "entity": "VetDemands",
+    "table": "vetdemands",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Demands/CreateDemand",
+    "group": "demands",
+    "action": "CreateDemand",
+    "entity": "VetDemands",
+    "table": "vetdemands",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "Guid?",
+        "name": "id"
+      },
+      {
+        "type": "DateTime?",
+        "name": "date"
+      },
+      {
+        "type": "string",
+        "name": "documentno"
+      },
+      {
+        "type": "Guid?",
+        "name": "suppliers"
+      },
+      {
+        "type": "DateTime?",
+        "name": "deliverydate"
+      },
+      {
+        "type": "string",
+        "name": "note"
+      },
+      {
+        "type": "int?",
+        "name": "state"
+      },
+      {
+        "type": "bool?",
+        "name": "iscomplated"
+      },
+      {
+        "type": "List<DemandProductsDto>",
+        "name": "demandProductList"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/UpdateDemand",
+    "group": "demands",
+    "action": "UpdateDemand",
+    "entity": "VetDemands",
+    "table": "vetdemands",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "DateTime?",
+        "name": "date"
+      },
+      {
+        "type": "string",
+        "name": "documentno"
+      },
+      {
+        "type": "Guid?",
+        "name": "suppliers"
+      },
+      {
+        "type": "DateTime?",
+        "name": "deliverydate"
+      },
+      {
+        "type": "string",
+        "name": "note"
+      },
+      {
+        "type": "int?",
+        "name": "state"
+      },
+      {
+        "type": "bool?",
+        "name": "iscomplated"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/DeleteDemand",
+    "group": "demands",
+    "action": "DeleteDemand",
+    "entity": "VetDemands",
+    "table": "vetdemands",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/UpdateDemandIsBuying",
+    "group": "demands",
+    "action": "UpdateDemandIsBuying",
+    "entity": "VetDemands",
+    "table": "vetdemands",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool?",
+        "name": "iscomplated"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/DemandTransList",
+    "group": "demandTrans",
+    "action": "DemandTransList",
+    "entity": "VetDemandTrans",
+    "table": "vetdemandtrans",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "Guid?",
+        "name": "ownerId"
+      },
+      {
+        "type": "Guid",
+        "name": "productId"
+      },
+      {
+        "type": "decimal?",
+        "name": "quantity"
+      },
+      {
+        "type": "decimal?",
+        "name": "unitPrice"
+      },
+      {
+        "type": "decimal?",
+        "name": "amount"
+      },
+      {
+        "type": "decimal?",
+        "name": "stockState"
+      },
+      {
+        "type": "int?",
+        "name": "isActive"
+      },
+      {
+        "type": "decimal?",
+        "name": "reserved"
+      },
+      {
+        "type": "string",
+        "name": "barcode"
+      }
+    ]
+  },
+  {
+    "path": "vet/Demands/DemandComplatedList",
+    "group": "demandComplate",
+    "action": "DemandComplatedList",
+    "entity": "VetDemands",
+    "table": "vetdemands",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/lab/CustomersLabList",
+    "group": "lab",
+    "action": "CustomersLabList",
+    "entity": "VetLabDocument",
+    "table": "vetlabdocument",
+    "scope": "files",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/lab/GetLabDocumentById",
+    "group": "lab",
+    "action": "GetLabDocumentById",
+    "entity": "VetLabDocument",
+    "table": "vetlabdocument",
+    "scope": "files",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "patientId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Settings/ParametersList",
+    "group": "parameters",
+    "action": "ParametersList",
+    "entity": "VetParameters",
+    "table": "vetparameters",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid?",
+        "name": "id"
+      },
+      {
+        "type": "int?",
+        "name": "appointmentReminderDuration"
+      },
+      {
+        "type": "int?",
+        "name": "agendaNoteReminder"
+      },
+      {
+        "type": "string",
+        "name": "days"
+      },
+      {
+        "type": "Guid?",
+        "name": "smsCompany"
+      },
+      {
+        "type": "Guid?",
+        "name": "cashAccount"
+      },
+      {
+        "type": "Guid?",
+        "name": "creditCardCashAccount"
+      },
+      {
+        "type": "Guid?",
+        "name": "bankTransferCashAccount"
+      },
+      {
+        "type": "Guid?",
+        "name": "whatsappTemplate"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerWelcomeTemplate"
+      },
+      {
+        "type": "Guid?",
+        "name": "automaticAppointmentReminderMessageTemplate"
+      },
+      {
+        "type": "bool?",
+        "name": "isOtoCustomerWelcomeMessage"
+      },
+      {
+        "type": "bool?",
+        "name": "displayVetNo"
+      },
+      {
+        "type": "bool?",
+        "name": "autoSms"
+      },
+      {
+        "type": "bool?",
+        "name": "isAnimalsBreeds"
+      },
+      {
+        "type": "string",
+        "name": "appointmentBeginDate"
+      },
+      {
+        "type": "string",
+        "name": "appointmentEndDate"
+      },
+      {
+        "type": "bool?",
+        "name": "isExaminationAmuntZero"
+      }
+    ]
+  },
+  {
+    "path": "vet/Settings/UpdateParameters",
+    "group": "parameters",
+    "action": "UpdateParameters",
+    "entity": "VetParameters",
+    "table": "vetparameters",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "int?",
+        "name": "appointmentReminderDuration"
+      },
+      {
+        "type": "int?",
+        "name": "agendaNoteReminder"
+      },
+      {
+        "type": "string",
+        "name": "days"
+      },
+      {
+        "type": "Guid?",
+        "name": "smsCompany"
+      },
+      {
+        "type": "Guid?",
+        "name": "cashAccount"
+      },
+      {
+        "type": "Guid?",
+        "name": "creditCardCashAccount"
+      },
+      {
+        "type": "Guid?",
+        "name": "bankTransferCashAccount"
+      },
+      {
+        "type": "Guid?",
+        "name": "whatsappTemplate"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerWelcomeTemplate"
+      },
+      {
+        "type": "Guid?",
+        "name": "automaticAppointmentReminderMessageTemplate"
+      },
+      {
+        "type": "bool?",
+        "name": "isOtoCustomerWelcomeMessage"
+      },
+      {
+        "type": "bool?",
+        "name": "displayVetNo"
+      },
+      {
+        "type": "bool?",
+        "name": "autoSms"
+      },
+      {
+        "type": "bool?",
+        "name": "isAnimalsBreeds"
+      },
+      {
+        "type": "bool?",
+        "name": "isFirstInspection"
+      },
+      {
+        "type": "string",
+        "name": "appointmentBeginDate"
+      },
+      {
+        "type": "string",
+        "name": "appointmentEndDate"
+      },
+      {
+        "type": "bool?",
+        "name": "isExaminationAmuntZero"
+      },
+      {
+        "type": "int?",
+        "name": "datetimestatus"
+      },
+      {
+        "type": "int?",
+        "name": "appointmentinterval"
+      },
+      {
+        "type": "int?",
+        "name": "appointmentSeansDuration"
+      },
+      {
+        "type": "int?",
+        "name": "petHotelsDateTimeFormat"
+      }
+    ]
+  },
+  {
+    "path": "vet/Settings/CreateSmsParameters",
+    "group": "parameters",
+    "action": "CreateSmsParameters",
+    "entity": "VetSmsParameters",
+    "table": "vetsmsparameters",
+    "scope": "definitions",
+    "mode": "secret",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "SmsParameterType",
+        "name": "smsIntegrationType"
+      },
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "userName"
+      },
+      {
+        "type": "string",
+        "name": "password"
+      }
+    ]
+  },
+  {
+    "path": "vet/Settings/UpdateSmsParameters",
+    "group": "parameters",
+    "action": "UpdateSmsParameters",
+    "entity": "VetSmsParameters",
+    "table": "vetsmsparameters",
+    "scope": "definitions",
+    "mode": "secret",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "SmsParameterType",
+        "name": "smsIntegrationType"
+      },
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "userName"
+      },
+      {
+        "type": "string",
+        "name": "password"
+      }
+    ]
+  },
+  {
+    "path": "vet/Settings/GetSmsParametersIdBy",
+    "group": "parameters",
+    "action": "GetSmsParametersIdBy",
+    "entity": "VetSmsParameters",
+    "table": "vetsmsparameters",
+    "scope": "definitions",
+    "mode": "secret",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "smsIntegrationType"
+      }
+    ]
+  },
+  {
+    "path": "vet/Settings/GetLogs",
+    "group": "parameters",
+    "action": "GetLogs",
+    "entity": "VetLogs",
+    "table": "vetlogs",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "masterId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Settings/GetSmsParametersList",
+    "group": "parameters",
+    "action": "GetSmsParametersList",
+    "entity": "VetSmsParameters",
+    "table": "vetsmsparameters",
+    "scope": "definitions",
+    "mode": "secret",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "chat/Account/GetAllUsers",
+    "group": "chat",
+    "action": "GetAllUsers",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Appointment/AppointmentsList",
+    "group": "appointments",
+    "action": "AppointmentsList",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "appointmentType"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/CreateAppointment",
+    "group": "appointments",
+    "action": "CreateAppointment",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "DateTime",
+        "name": "beginDate"
+      },
+      {
+        "type": "string",
+        "name": "note"
+      },
+      {
+        "type": "string?",
+        "name": "doctorId"
+      },
+      {
+        "type": "string?",
+        "name": "customerId"
+      },
+      {
+        "type": "int",
+        "name": "appointmentType"
+      },
+      {
+        "type": "int",
+        "name": "status"
+      },
+      {
+        "type": "string",
+        "name": "patientId"
+      },
+      {
+        "type": "List<VaccineListDto>?",
+        "name": "vaccineItems"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/DeleteAppointment",
+    "group": "appointments",
+    "action": "DeleteAppointment",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/UpdateAppointment",
+    "group": "appointments",
+    "action": "UpdateAppointment",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "DateTime",
+        "name": "beginDate"
+      },
+      {
+        "type": "string",
+        "name": "note"
+      },
+      {
+        "type": "Guid?",
+        "name": "doctorId"
+      },
+      {
+        "type": "Guid?",
+        "name": "vaccineId"
+      },
+      {
+        "type": "int",
+        "name": "appointmentType"
+      },
+      {
+        "type": "string?",
+        "name": "customerId"
+      },
+      {
+        "type": "int?",
+        "name": "status"
+      },
+      {
+        "type": "string",
+        "name": "patientId"
+      },
+      {
+        "type": "List<VaccineListDto>?",
+        "name": "vaccineItems"
+      }
+    ]
+  },
+  {
+    "path": "vet/GeneralSettings/GetVetUsersList",
+    "group": "appointments",
+    "action": "GetVetUsersList",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Appointment/AppointmentFindByIdList",
+    "group": "appointments",
+    "action": "AppointmentFindByIdList",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "customerId"
+      },
+      {
+        "type": "Guid?",
+        "name": "patientId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/UpdatePaymentReceivedAppointment",
+    "group": "appointments",
+    "action": "UpdatePaymentReceivedAppointment",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool",
+        "name": "isPaymentReceived"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/UpdateCompletedAppointment",
+    "group": "appointments",
+    "action": "UpdateCompletedAppointment",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool",
+        "name": "isCompleted"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/GetAppointmentDailyList",
+    "group": "appointments",
+    "action": "GetAppointmentDailyList",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Appointment/UpdateAppointmentStatus",
+    "group": "appointments",
+    "action": "UpdateAppointmentStatus",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "int",
+        "name": "status"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/GetAppointmentListByPatientId",
+    "group": "appointments",
+    "action": "GetAppointmentListByPatientId",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid?",
+        "name": "patientId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Appointment/AppointmentDateCheckControl",
+    "group": "appointments",
+    "action": "AppointmentDateCheckControl",
+    "entity": "VetAppoointments",
+    "table": "vetappoointments",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "DateTime",
+        "name": "date"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/GetTitleDefination",
+    "group": "title",
+    "action": "GetTitleDefination",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "account/settings/CreateTitleDefination",
+    "group": "title",
+    "action": "CreateTitleDefination",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "bool?",
+        "name": "isAppointmentShow"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/UpdateTitleDefination",
+    "group": "title",
+    "action": "UpdateTitleDefination",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "bool?",
+        "name": "isAppointmentShow"
+      }
+    ]
+  },
+  {
+    "path": "account/settings/DeleteTileDefination",
+    "group": "title",
+    "action": "DeleteTileDefination",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "mail/Mailing/GetSmtpSettings",
+    "group": "mailing",
+    "action": "GetSmtpSettings",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "mail/Mailing/CreateSmtpSetting",
+    "group": "mailing",
+    "action": "CreateSmtpSetting",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "bool",
+        "name": "defaults"
+      },
+      {
+        "type": "string",
+        "name": "displayName"
+      },
+      {
+        "type": "string",
+        "name": "emailId"
+      },
+      {
+        "type": "string",
+        "name": "password"
+      },
+      {
+        "type": "string",
+        "name": "host"
+      },
+      {
+        "type": "int",
+        "name": "port"
+      },
+      {
+        "type": "bool",
+        "name": "useSSL"
+      }
+    ]
+  },
+  {
+    "path": "mail/Mailing/DeleteSmtpSetting",
+    "group": "mailing",
+    "action": "DeleteSmtpSetting",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "mail/Mailing/UpdateSmtpSetting",
+    "group": "mailing",
+    "action": "UpdateSmtpSetting",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool",
+        "name": "defaults"
+      },
+      {
+        "type": "string",
+        "name": "displayName"
+      },
+      {
+        "type": "string",
+        "name": "emailId"
+      },
+      {
+        "type": "string",
+        "name": "password"
+      },
+      {
+        "type": "string",
+        "name": "host"
+      },
+      {
+        "type": "int",
+        "name": "port"
+      },
+      {
+        "type": "bool",
+        "name": "useSSL"
+      }
+    ]
+  },
+  {
+    "path": "mail/Mailing/SendMail",
+    "group": "mailing",
+    "action": "SendMail",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "emailToId"
+      },
+      {
+        "type": "string",
+        "name": "emailToName"
+      },
+      {
+        "type": "string",
+        "name": "emailSubject"
+      },
+      {
+        "type": "string",
+        "name": "emailBody"
+      },
+      {
+        "type": "string",
+        "name": "connectionString"
+      },
+      {
+        "type": "Guid",
+        "name": "recId"
+      },
+      {
+        "type": "int",
+        "name": "mailType"
+      }
+    ]
+  },
+  {
+    "path": "vet/Dashboard/GetDashBoard",
+    "group": "dashboards",
+    "action": "GetDashBoard",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Clinicalstatistics/GetClinicalstatisticsList",
+    "group": "clinicalstatistics",
+    "action": "GetClinicalstatisticsList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Clinicalstatistics/GetGraphicList",
+    "group": "clinicalstatistics",
+    "action": "GetGraphicList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Clinicalstatistics/WeekVisitList",
+    "group": "clinicalstatistics",
+    "action": "WeekVisitList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int?",
+        "name": "thisAndLastType"
+      }
+    ]
+  },
+  {
+    "path": "vet/Clinicalstatistics/BagelSliceGraphList",
+    "group": "clinicalstatistics",
+    "action": "BagelSliceGraphList",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/GetAppointmentTypesList",
+    "group": "appointmenttypes",
+    "action": "GetAppointmentTypesList",
+    "entity": "VetAppointmentTypes",
+    "table": "vetappointmenttypes",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateAppointmentTypes",
+    "group": "appointmenttypes",
+    "action": "CreateAppointmentTypes",
+    "entity": "VetAppointmentTypes",
+    "table": "vetappointmenttypes",
+    "scope": "appointments",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "bool",
+        "name": "isDefaultPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "price"
+      },
+      {
+        "type": "Guid",
+        "name": "taxisId"
+      },
+      {
+        "type": "string",
+        "name": "colors"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteAppointmentTypes",
+    "group": "appointmenttypes",
+    "action": "DeleteAppointmentTypes",
+    "entity": "VetAppointmentTypes",
+    "table": "vetappointmenttypes",
+    "scope": "appointments",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateAppointmentTypes",
+    "group": "appointmenttypes",
+    "action": "UpdateAppointmentTypes",
+    "entity": "VetAppointmentTypes",
+    "table": "vetappointmenttypes",
+    "scope": "appointments",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      },
+      {
+        "type": "bool",
+        "name": "isDefaultPrice"
+      },
+      {
+        "type": "decimal",
+        "name": "price"
+      },
+      {
+        "type": "Guid",
+        "name": "taxisId"
+      },
+      {
+        "type": "string",
+        "name": "colors"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/GetTaxisList",
+    "group": "taxis",
+    "action": "GetTaxisList",
+    "entity": "VetTaxis",
+    "table": "vettaxis",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateTaxis",
+    "group": "taxis",
+    "action": "CreateTaxis",
+    "entity": "VetTaxis",
+    "table": "vettaxis",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "taxName"
+      },
+      {
+        "type": "int",
+        "name": "taxRatio"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteTaxis",
+    "group": "taxis",
+    "action": "DeleteTaxis",
+    "entity": "VetTaxis",
+    "table": "vettaxis",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateTaxis",
+    "group": "taxis",
+    "action": "UpdateTaxis",
+    "entity": "VetTaxis",
+    "table": "vettaxis",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "taxName"
+      },
+      {
+        "type": "int",
+        "name": "taxRatio"
+      }
+    ]
+  },
+  {
+    "path": "vet/Reports/CreateReportFilter",
+    "group": "reports",
+    "action": "CreateReportFilter",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "name"
+      },
+      {
+        "type": "string",
+        "name": "filterJson"
+      }
+    ]
+  },
+  {
+    "path": "vet/Reports/GetAppointmentDashboard",
+    "group": "reports",
+    "action": "GetAppointmentDashboard",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Vaccine/VaccineList",
+    "group": "vaccine",
+    "action": "VaccineList",
+    "entity": "VetVaccine",
+    "table": "vetvaccine",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int?",
+        "name": "animalType"
+      },
+      {
+        "type": "Guid?",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Vaccine/CreateVaccine",
+    "group": "vaccine",
+    "action": "CreateVaccine",
+    "entity": "VetVaccine",
+    "table": "vetvaccine",
+    "scope": "definitions",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "animalType"
+      },
+      {
+        "type": "string",
+        "name": "vaccineName"
+      },
+      {
+        "type": "int",
+        "name": "timeDone"
+      },
+      {
+        "type": "int",
+        "name": "renewalOption"
+      },
+      {
+        "type": "int",
+        "name": "obligation"
+      },
+      {
+        "type": "List<VetVaccineMedicineListDto>",
+        "name": "vaccineMedicine"
+      }
+    ]
+  },
+  {
+    "path": "vet/Vaccine/DeteleVaccine",
+    "group": "vaccine",
+    "action": "DeteleVaccine",
+    "entity": "VetVaccine",
+    "table": "vetvaccine",
+    "scope": "definitions",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Vaccine/UpdateVaccine",
+    "group": "vaccine",
+    "action": "UpdateVaccine",
+    "entity": "VetVaccine",
+    "table": "vetvaccine",
+    "scope": "definitions",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "int",
+        "name": "animalType"
+      },
+      {
+        "type": "string",
+        "name": "vaccineName"
+      },
+      {
+        "type": "int",
+        "name": "timeDone"
+      },
+      {
+        "type": "int",
+        "name": "renewalOption"
+      },
+      {
+        "type": "int",
+        "name": "obligation"
+      },
+      {
+        "type": "List<VetVaccineMedicineListDto>",
+        "name": "vaccineMedicine"
+      }
+    ]
+  },
+  {
+    "path": "vet/VaccineCalendar/PatientVaccineList",
+    "group": "vaccineCalendar",
+    "action": "PatientVaccineList",
+    "entity": "VetVaccineCalendar",
+    "table": "vetvaccinecalendar",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid?",
+        "name": "id"
+      },
+      {
+        "type": "Guid?",
+        "name": "patientId"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/VaccineCalendar/CreateVaccineExamination",
+    "group": "vaccineCalendar",
+    "action": "CreateVaccineExamination",
+    "entity": "VetVaccineCalendar",
+    "table": "vetvaccinecalendar",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "List<VetVaccineCalendar>",
+        "name": "vaccineCalendars"
+      }
+    ]
+  },
+  {
+    "path": "vet/VaccineCalendar/DeteleVaccineAppointment",
+    "group": "vaccineCalendar",
+    "action": "DeteleVaccineAppointment",
+    "entity": "VetVaccineCalendar",
+    "table": "vetvaccinecalendar",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/VaccineCalendar/UpdateVaccineExamination",
+    "group": "vaccineCalendar",
+    "action": "UpdateVaccineExamination",
+    "entity": "VetVaccineCalendar",
+    "table": "vetvaccinecalendar",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "DateTime",
+        "name": "vaccinationDate"
+      },
+      {
+        "type": "DateTime?",
+        "name": "nextVaccinationDate"
+      },
+      {
+        "type": "bool",
+        "name": "createNextAppointment"
+      }
+    ]
+  },
+  {
+    "path": "vet/VaccineCalendar/AllVaccineAppointmentsList",
+    "group": "vaccineCalendar",
+    "action": "AllVaccineAppointmentsList",
+    "entity": "VetVaccineCalendar",
+    "table": "vetvaccinecalendar",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/PetHotels/getRoomList",
+    "group": "pethotels",
+    "action": "getRoomList",
+    "entity": "VetRooms",
+    "table": "vetrooms",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/PetHotels/CreateRoom",
+    "group": "pethotels",
+    "action": "CreateRoom",
+    "entity": "VetRooms",
+    "table": "vetrooms",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "roomName"
+      },
+      {
+        "type": "decimal",
+        "name": "price"
+      },
+      {
+        "type": "RoomRriceType",
+        "name": "pricingType"
+      }
+    ]
+  },
+  {
+    "path": "vet/PetHotels/UpdateRoom",
+    "group": "pethotels",
+    "action": "UpdateRoom",
+    "entity": "VetRooms",
+    "table": "vetrooms",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "roomName"
+      },
+      {
+        "type": "decimal",
+        "name": "price"
+      },
+      {
+        "type": "RoomRriceType",
+        "name": "pricingType"
+      }
+    ]
+  },
+  {
+    "path": "vet/PetHotels/DeleteRoom",
+    "group": "pethotels",
+    "action": "DeleteRoom",
+    "entity": "VetRooms",
+    "table": "vetrooms",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/PetHotels/GetAccomodationList",
+    "group": "pethotels",
+    "action": "GetAccomodationList",
+    "entity": "VetAccomodation",
+    "table": "vetaccomodation",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/PetHotels/CreateAccomodation",
+    "group": "pethotels",
+    "action": "CreateAccomodation",
+    "entity": "VetAccomodation",
+    "table": "vetaccomodation",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "type"
+      },
+      {
+        "type": "Guid",
+        "name": "roomId"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      },
+      {
+        "type": "Guid?",
+        "name": "patientsId"
+      },
+      {
+        "type": "DateTime",
+        "name": "checkinDate"
+      },
+      {
+        "type": "DateTime",
+        "name": "checkOutDate"
+      },
+      {
+        "type": "int",
+        "name": "accomodation"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      }
+    ]
+  },
+  {
+    "path": "vet/PetHotels/UpdateAccomodation",
+    "group": "pethotels",
+    "action": "UpdateAccomodation",
+    "entity": "VetAccomodation",
+    "table": "vetaccomodation",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "Guid",
+        "name": "roomId"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      },
+      {
+        "type": "Guid?",
+        "name": "patientsId"
+      },
+      {
+        "type": "DateTime",
+        "name": "checkinDate"
+      },
+      {
+        "type": "DateTime",
+        "name": "checkOutDate"
+      },
+      {
+        "type": "int",
+        "name": "accomodation"
+      },
+      {
+        "type": "string",
+        "name": "remark"
+      }
+    ]
+  },
+  {
+    "path": "vet/PetHotels/DeleteAccomodation",
+    "group": "pethotels",
+    "action": "DeleteAccomodation",
+    "entity": "VetAccomodation",
+    "table": "vetaccomodation",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/PetHotels/UpdateCheckOut",
+    "group": "pethotels",
+    "action": "UpdateCheckOut",
+    "entity": "VetAccomodation",
+    "table": "vetaccomodation",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "accomodationId"
+      },
+      {
+        "type": "Guid?",
+        "name": "customerId"
+      },
+      {
+        "type": "Guid?",
+        "name": "patientsId"
+      },
+      {
+        "type": "Guid",
+        "name": "roomId"
+      },
+      {
+        "type": "DateTime",
+        "name": "checkinDate"
+      },
+      {
+        "type": "DateTime",
+        "name": "checkOutDate"
+      },
+      {
+        "type": "decimal",
+        "name": "accomodationAmount"
+      },
+      {
+        "type": "decimal",
+        "name": "collectionAmount"
+      },
+      {
+        "type": "int",
+        "name": "paymentId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/GetPatientList",
+    "group": "patient",
+    "action": "GetPatientList",
+    "entity": "VetPatients",
+    "table": "vetpatients",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Patient/GetPatientById",
+    "group": "patient",
+    "action": "GetPatientById",
+    "entity": "VetPatients",
+    "table": "vetpatients",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/GetWeightControls",
+    "group": "patient",
+    "action": "GetWeightControls",
+    "entity": "VetWeightControl",
+    "table": "vetweightcontrol",
+    "scope": "clinical",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "patientId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Patient/UpdatePatientsWeight",
+    "group": "patient",
+    "action": "UpdatePatientsWeight",
+    "entity": "VetWeightControl",
+    "table": "vetweightcontrol",
+    "scope": "clinical",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "patientId"
+      },
+      {
+        "type": "double",
+        "name": "weight"
+      }
+    ]
+  },
+  {
+    "path": "vet/GeneralSettings/GetShortCuts",
+    "group": "shortCuts",
+    "action": "GetShortCuts",
+    "entity": "VetShortCuts",
+    "table": "vetshortcuts",
+    "scope": "appointments",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/GeneralSettings/CreateShortCuts",
+    "group": "shortCuts",
+    "action": "CreateShortCuts",
+    "entity": "VetShortCuts",
+    "table": "vetshortcuts",
+    "scope": "appointments",
+    "mode": "unsupported",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "VetShortcut",
+        "name": "shortcut"
+      }
+    ]
+  },
+  {
+    "path": "vet/GeneralSettings/UpdateShortCuts",
+    "group": "shortCuts",
+    "action": "UpdateShortCuts",
+    "entity": "VetShortCuts",
+    "table": "vetshortcuts",
+    "scope": "appointments",
+    "mode": "unsupported",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "VetShortcut",
+        "name": "shortcut"
+      }
+    ]
+  },
+  {
+    "path": "vet/GeneralSettings/DeleteShortCuts",
+    "group": "shortCuts",
+    "action": "DeleteShortCuts",
+    "entity": "VetShortCuts",
+    "table": "vetshortcuts",
+    "scope": "appointments",
+    "mode": "unsupported",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/StockTrackingProductFilter",
+    "group": "stocktracking",
+    "action": "StockTrackingProductFilter",
+    "entity": "VetStockTracking",
+    "table": "vetstocktracking",
+    "scope": "inventory",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "productId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/CreateStockTracking",
+    "group": "stocktracking",
+    "action": "CreateStockTracking",
+    "entity": "VetStockTracking",
+    "table": "vetstocktracking",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "productId"
+      },
+      {
+        "type": "bool",
+        "name": "status"
+      },
+      {
+        "type": "ProcessTypes",
+        "name": "processType"
+      },
+      {
+        "type": "StockTrackingType",
+        "name": "type"
+      },
+      {
+        "type": "decimal",
+        "name": "piece"
+      },
+      {
+        "type": "Guid?",
+        "name": "supplierId"
+      },
+      {
+        "type": "DateTime?",
+        "name": "expirationDate"
+      },
+      {
+        "type": "decimal",
+        "name": "purchasePrice"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateStockTracking",
+    "group": "stocktracking",
+    "action": "UpdateStockTracking",
+    "entity": "VetStockTracking",
+    "table": "vetstocktracking",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool",
+        "name": "status"
+      },
+      {
+        "type": "ProcessTypes",
+        "name": "processType"
+      },
+      {
+        "type": "StockTrackingType",
+        "name": "type"
+      },
+      {
+        "type": "decimal",
+        "name": "piece"
+      },
+      {
+        "type": "Guid?",
+        "name": "supplierId"
+      },
+      {
+        "type": "DateTime?",
+        "name": "expirationDate"
+      },
+      {
+        "type": "decimal",
+        "name": "purchasePrice"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteStockTracking",
+    "group": "stocktracking",
+    "action": "DeleteStockTracking",
+    "entity": "VetStockTracking",
+    "table": "vetstocktracking",
+    "scope": "inventory",
+    "mode": "composite",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/GetSmsTemplateList",
+    "group": "smstemplate",
+    "action": "GetSmsTemplateList",
+    "entity": "VetSmsTemplate",
+    "table": "vetsmstemplate",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreateSmsTemplate",
+    "group": "smstemplate",
+    "action": "CreateSmsTemplate",
+    "entity": "VetSmsTemplate",
+    "table": "vetsmstemplate",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "string",
+        "name": "templateName"
+      },
+      {
+        "type": "string",
+        "name": "templateContent"
+      },
+      {
+        "type": "SmsType",
+        "name": "type"
+      },
+      {
+        "type": "bool?",
+        "name": "enableSMS"
+      },
+      {
+        "type": "bool?",
+        "name": "enableAppNotification"
+      },
+      {
+        "type": "bool?",
+        "name": "enableEmail"
+      },
+      {
+        "type": "bool?",
+        "name": "enableWhatsapp"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdateSmsTemplate",
+    "group": "smstemplate",
+    "action": "UpdateSmsTemplate",
+    "entity": "VetSmsTemplate",
+    "table": "vetsmstemplate",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "bool",
+        "name": "active"
+      },
+      {
+        "type": "SmsType",
+        "name": "type"
+      },
+      {
+        "type": "string",
+        "name": "templateName"
+      },
+      {
+        "type": "string",
+        "name": "templateContent"
+      },
+      {
+        "type": "bool?",
+        "name": "enableSMS"
+      },
+      {
+        "type": "bool?",
+        "name": "enableAppNotification"
+      },
+      {
+        "type": "bool?",
+        "name": "enableEmail"
+      },
+      {
+        "type": "bool?",
+        "name": "enableWhatsapp"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeleteSmsTemplate",
+    "group": "smstemplate",
+    "action": "DeleteSmsTemplate",
+    "entity": "VetSmsTemplate",
+    "table": "vetsmstemplate",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/GetSmsTemplateIdBy",
+    "group": "smstemplate",
+    "action": "GetSmsTemplateIdBy",
+    "entity": "VetSmsTemplate",
+    "table": "vetsmstemplate",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "int",
+        "name": "type"
+      }
+    ]
+  },
+  {
+    "path": "vet/FileManager/GetFileManagerList",
+    "group": "filemanager",
+    "action": "GetFileManagerList",
+    "entity": "VetDocuments",
+    "table": "vetdocuments",
+    "scope": "files",
+    "mode": "special",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/FileManager/CreateFileManager",
+    "group": "filemanager",
+    "action": "CreateFileManager",
+    "entity": "VetDocuments",
+    "table": "vetdocuments",
+    "scope": "files",
+    "mode": "special",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "IFormFile",
+        "name": "file"
+      },
+      {
+        "type": "string",
+        "name": "fileName"
+      },
+      {
+        "type": "string",
+        "name": "size"
+      }
+    ]
+  },
+  {
+    "path": "vet/FileManager/DeleteFileManager",
+    "group": "filemanager",
+    "action": "DeleteFileManager",
+    "entity": "VetDocuments",
+    "table": "vetdocuments",
+    "scope": "files",
+    "mode": "special",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/FileManager/GetFileManagerForById",
+    "group": "filemanager",
+    "action": "GetFileManagerForById",
+    "entity": "VetDocuments",
+    "table": "vetdocuments",
+    "scope": "files",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/FileManager/DownloadFileManager",
+    "group": "filemanager",
+    "action": "DownloadFileManager",
+    "entity": "VetDocuments",
+    "table": "vetdocuments",
+    "scope": "files",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/GetPrintTemplateList",
+    "group": "printtemplate",
+    "action": "GetPrintTemplateList",
+    "entity": "VetPrintTemplate",
+    "table": "vetprinttemplate",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": []
+  },
+  {
+    "path": "vet/Definition/CreatePrintTemplate",
+    "group": "printtemplate",
+    "action": "CreatePrintTemplate",
+    "entity": "VetPrintTemplate",
+    "table": "vetprinttemplate",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "create",
+    "parameters": [
+      {
+        "type": "string",
+        "name": "templateName"
+      },
+      {
+        "type": "PrintType",
+        "name": "type"
+      },
+      {
+        "type": "string",
+        "name": "htmlContent"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/GetPrintTemplateFilterByType",
+    "group": "printtemplate",
+    "action": "GetPrintTemplateFilterByType",
+    "entity": "VetPrintTemplate",
+    "table": "vetprinttemplate",
+    "scope": "definitions",
+    "mode": "read",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "PrintType",
+        "name": "type"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/DeletePrintTemplate",
+    "group": "printtemplate",
+    "action": "DeletePrintTemplate",
+    "entity": "VetPrintTemplate",
+    "table": "vetprinttemplate",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "delete",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      }
+    ]
+  },
+  {
+    "path": "vet/Definition/UpdatePrintTemplate",
+    "group": "printtemplate",
+    "action": "UpdatePrintTemplate",
+    "entity": "VetPrintTemplate",
+    "table": "vetprinttemplate",
+    "scope": "definitions",
+    "mode": "crud",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "Guid",
+        "name": "id"
+      },
+      {
+        "type": "string",
+        "name": "templateName"
+      },
+      {
+        "type": "PrintType",
+        "name": "type"
+      },
+      {
+        "type": "string",
+        "name": "htmlContent"
+      }
+    ]
+  },
+  {
+    "path": "vet/Message/MultiAutoSendMessage",
+    "group": "message",
+    "action": "MultiAutoSendMessage",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "special",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "List<MessageType>",
+        "name": "type"
+      },
+      {
+        "type": "string",
+        "name": "content"
+      },
+      {
+        "type": "Guid",
+        "name": "customerId"
+      }
+    ]
+  },
+  {
+    "path": "vet/Accounting/IsSaleProductControl",
+    "group": "accounting",
+    "action": "IsSaleProductControl",
+    "entity": null,
+    "table": "",
+    "scope": "settings",
+    "mode": "unsupported",
+    "verb": "update",
+    "parameters": [
+      {
+        "type": "List<Guid>?",
+        "name": "productIds"
+      }
+    ]
+  }
+]

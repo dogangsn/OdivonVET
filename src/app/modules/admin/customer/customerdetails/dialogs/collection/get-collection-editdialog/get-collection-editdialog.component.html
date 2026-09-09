@@ -1,0 +1,118 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+<div class="modalForm">
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="selectedgetcollection">Tahsilat Al Güncelle</span>
+                <span *ngIf="!selectedgetcollection">Tahsilat Al Ekle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-store">
+            <div class="qm-pr-content">
+                <div class="container-fluid" [formGroup]="getcollection">
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <mat-label>Ödemesi Yapılacak İşlem</mat-label>
+                            <mat-select
+                                [formControlName]="'collectionId'"
+                                (selectionChange)="onSelectionChange($event)">
+                                <mat-option
+                                    *ngFor="let item of paymentTransaction"
+                                    [value]="item.id"
+                                    >{{ item.textValue }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <mat-label>Ödeme Tipi</mat-label>
+                            <mat-select
+                                [value]="'all'"
+                                [formControlName]="'paymenttype'">
+                                <ng-container *ngFor="let category of payments">
+                                    <mat-option [value]="category.recId">{{
+                                        category.name
+                                    }}</mat-option>
+                                </ng-container>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <mat-label class="boldFont">Tutar</mat-label>
+                            <input
+                                matInput
+                                class="disableCustomCss"
+                                [value]="selectedItemSellingPrice"
+                                [formControlName]="'amount'"
+                            />
+                            <mat-icon
+                                class="icon-size-5"
+                                matSuffix
+                                [svgIcon]="'heroicons_solid:receipt-tax'"
+                            ></mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex float : left gt-xs:flex-row" *ngIf="ratioVisible">
+                        <mat-form-field class="flex-auto gt-xs:pl-3">
+                            <mat-label>KDV (%)</mat-label>
+                            <mat-select [formControlName]="'taxisId'"  [(ngModel)]="selectedtaxisid" [placeholder]="'KDV (%)'"
+                                name="taxisList">
+                                <mat-option *ngFor="let item of taxisList"
+                                    [value]="item.id">{{item.taxRatio}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-checkbox
+                            class="mb-2"
+                            [color]="'primary'"
+                            [formControlName]="'enterAmount'"
+                            (change)="toggleAmountInput($event.checked)"
+                        >
+                            Tutar Ve KDV Değiştir
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </div>
+ 
+            <div
+                class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6"
+            >
+                <div class="-ml-2"></div>
+
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button
+                        class="ml-auto sm:ml-0"
+                        mat-stroked-button
+                        (click)="closeDialog()"
+                    >
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button
+                        class="order-first sm:order-last"
+                        mat-flat-button
+                        [color]="'primary'"
+                        [disabled]="buttonDisabled"
+                        (click)="addOrUpdateCollection()"
+                    >
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>

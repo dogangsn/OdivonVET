@@ -1,0 +1,116 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1" >
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+<div class="modalForm">
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="selectedsmsparameters">SMS Bilgileri Güncelle</span>
+                <span *ngIf="!selectedsmsparameters">SMS Bilgileri Ekle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-smsparameters">
+            <div class="qm-pr-content">
+                <div class="container-fluid" [formGroup]="smsparameters">
+                    
+                    <div class="row">
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-checkbox class="mb-2" [checked]="true" [color]="'primary'" [formControlName]="'active'">
+                                Aktif
+                            </mat-checkbox>
+                        </div>
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Kullanıcı Adı</mat-label>
+                                <input matInput [formControlName]="'username'" >
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field class="w-full">
+                                <mat-label>Parola</mat-label>
+                                <input
+                                    id="password"
+                                    matInput
+                                    type="password"
+                                    [formControlName]="'password'"
+                                    #passwordField>
+                                <button
+                                    mat-icon-button
+                                    type="button"
+                                    (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                                    matSuffix>
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        *ngIf="passwordField.type === 'password'"
+                                        [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        *ngIf="passwordField.type === 'text'"
+                                        [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                                </button>
+                                <mat-error>
+                                    Password is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+                    <!-- Attach file -->
+                    <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:paper-clip'"></mat-icon>
+                    </button>
+                    <!-- Insert link -->
+                    <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                    </button>
+                    <!-- Insert emoji -->
+                    <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:emoji-happy'"></mat-icon>
+                    </button>
+                    <!-- Insert image -->
+                    <button mat-icon-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:photograph'"></mat-icon>
+                    </button>
+                </div>
+    
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button
+                        class="ml-auto sm:ml-0"
+                        mat-stroked-button
+                        (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button
+                        class="order-first sm:order-last"
+                        mat-flat-button
+                        [color]="'primary'"
+                        (click)="addOrUpdateSmsParameter()"  [disabled]="buttonDisabled" >
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+          
+    </mat-dialog-content>
+</div>

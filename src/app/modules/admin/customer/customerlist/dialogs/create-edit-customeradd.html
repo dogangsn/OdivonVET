@@ -1,0 +1,221 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+<div class="modalForm">
+    <mat-dialog-content>
+
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="selectedcustomeradd">Müşteri Güncelle</span>
+                <span *ngIf="!selectedcustomeradd">Müşteri Ekle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-customeradd">
+            <div class="qm-pr-content">
+                <div class="container-fluid" [formGroup]="customeradd">
+
+                    <div class="float : left flex  gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <mat-label>Hasta Sahibi Adı</mat-label>
+                            <input matInput [formControlName]="'firstName'">
+                            <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Hasta Sahibi Soyadı</mat-label>
+                            <input matInput [formControlName]="'lastName'">
+                            <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <mat-label>Telefon Numarası</mat-label>
+                            <input placeholder="(555) 555-5555" matInput [formControlName]="'phoneNumber'" (input)="formatPhoneNumber($event.target.value, 'phoneNumber')">
+                            <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Telefon Numarası 2</mat-label>
+                            <input placeholder="(555) 555-5555" matInput [formControlName]="'phoneNumber2'" (input)="formatPhoneNumber($event.target.value, 'phoneNumber2')">
+                            <mat-icon class="icon-size-5" matSuffix
+                            [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>E-Mail</mat-label>
+                            <input matInput [formControlName]="'eMail'">
+                            <mat-icon class="icon-size-5" matSuffix
+                            [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <mat-label>Not</mat-label>
+                            <input matInput [formControlName]="'note'">
+                            <!-- <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>VN/T.C Numarası</mat-label>
+                            <input matInput [formControlName]="'vKNTCNo'">
+                            <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:identification'"></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Vergi Dairesi</mat-label>
+                            <input matInput [formControlName]="'taxOffice'">
+                            <!-- <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex float : left gt-md:flex-row">
+                        <mat-form-field class="flex-auto gt-md:pr-3">
+                            <mat-label>İl</mat-label>
+                            <input matInput [formControlName]="'province'">
+                            <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-md:pl-3">
+                            <mat-label>İlçe</mat-label>
+                            <input matInput [formControlName]="'district'">
+                            <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex">
+                        <mat-form-field class="flex-auto">
+                            <mat-label>Addres</mat-label>
+                            <textarea matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"
+                                [formControlName]="'longAdress'"></textarea>
+                            <mat-icon class="icon-size-5" matSuffix
+                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-form-field class="flex-auto gt-xs:pr-3">
+                            <mat-label>Müşteri Grubu</mat-label>
+                            <mat-select [placeholder]="'Müşteri Grubu'" [(ngModel)]="selectedValue"
+                                name="customergroup">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let customergroup of customergroupList"
+                                    [value]="customergroup.name">{{customergroup.name}}</mat-option>
+                            </mat-select>
+                            <!-- <mat-icon class="icon-size-5" matPrefix
+                                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Müşteri İndirim Kodu</mat-label>
+                            <input matInput [formControlName]="'discountRate'">
+                            <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex float : left gt-xs:flex-row">
+                        <mat-checkbox class="ml-5 flex-auto gt-xs:pl-3" [checked]="true" [color]="'primary'"
+                            [formControlName]="'isPhone'">
+                            SMS Bildirimi
+                        </mat-checkbox>
+                        <mat-checkbox class="ml-5 flex-auto gt-xs:pl-3" [color]="'primary'"
+                            [formControlName]="'isEmail'">
+                            E-Posta Bildirimi
+                        </mat-checkbox>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-10 border-t"></div>
+            <div class="flex">
+                <button class="ml-3 mr-6" mat-flat-button [color]="'primary'" (click)="addPanelOpen()">
+                    <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:plus'"></mat-icon>
+                    Hasta Ekle
+                </button>
+                <div class="ml-3 mr-6" [formGroup]="patientsAdd">
+                    <mat-form-field>
+                        <input class="wide-input"  [formControlName]="'count'" placeholder="Hasta Sayısı (1)" matInput type="number"
+                            id="myNumber" />
+                    </mat-form-field>
+                </div>
+            </div>
+            <br>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource">
+
+                    <!-- Define columns for the table -->
+                    <!-- <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+                        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+                        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+                    </ng-container> -->
+              
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef> Hasta İsmi</th>
+                        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="chipNumber">
+                        <th mat-header-cell *matHeaderCellDef> Çip Numarası</th>
+                        <td mat-cell *matCellDef="let element"> {{element.chipNumber}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="birthDate">
+                        <th mat-header-cell *matHeaderCellDef> Doğum Tarihi</th>
+                        <td mat-cell *matCellDef="let element"> {{element.birthDate | date:'dd.MM.yyyy'}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="delete">
+                        <th mat-header-cell *matHeaderCellDef>İşlemler</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                                <mat-icon class="mat-18">delete</mat-icon>
+                              </button>
+                        </td>
+                    </ng-container>
+                        
+
+                        
+                  
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+
+            </div>
+            <br>
+            <br>
+
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+            <div class="-ml-2">
+                <!-- Attach file -->
+                <button mat-icon-button>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:paper-clip'"></mat-icon>
+                </button>
+                <!-- Insert link -->
+                <button mat-icon-button>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                </button>
+                <!-- Insert emoji -->
+                <button mat-icon-button>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:emoji-happy'"></mat-icon>
+                </button>
+                <!-- Insert image -->
+                <button mat-icon-button>
+                    <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:photograph'"></mat-icon>
+                </button>
+            </div>
+
+            <div class="flex items-center mt-4 sm:mt-0">
+                <!-- Discard -->
+                <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+                    Vazgeç
+                </button>
+                <!-- Save as draft -->
+                <!-- Send -->
+                <button class="order-first sm:order-last" mat-flat-button [color]="'primary'"
+                    (click)="addOrUpdateCustomer()">
+                    Kaydet
+                </button>
+            </div>
+        </div>
+
+    </mat-dialog-content>
+</div>

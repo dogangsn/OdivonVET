@@ -1,0 +1,94 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+      <div class="flex-1 min-w-0">
+          <!-- Breadcrumbs -->
+          <div>
+              <div class="flex sm:hidden">
+                  <a
+                      class="inline-flex items-center -ml-1.5 text-secondary font-medium"
+                      [routerLink]="'./..'">
+                      <mat-icon
+                          class="icon-size-5 text-secondary"
+                          [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                      <span class="ml-1">Back</span>
+                  </a>
+              </div>
+          </div>
+          <!-- Title -->
+          <div class="mt-2">
+              <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                  Hizmetler
+              </h2>
+          </div>
+          <div class="font-medium tracking-tight text-secondary">Hastaya Uygulanacak Hizmet Tanımalarının Yapılması</div>
+      </div>
+      <!-- Actions -->
+      <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+          <!-- <button mat-stroked-button>
+              <mat-icon
+                  class="icon-size-5 mr-2"
+                  [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+              Yeni Tedarikçiden Alış
+          </button> -->
+          <button
+              class="ml-3"
+              mat-flat-button
+              [color]="'primary'" (click)="addPanelOpen()">
+              <mat-icon
+                  class="icon-size-5 mr-2"
+                  [svgIcon]="'heroicons_solid:plus'"></mat-icon>
+              Yeni Hizmet Ekle
+          </button>
+      </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+      <!-- CONTENT GOES HERE -->
+      <div class="mat-elevation-z8">
+
+        <table mat-table [dataSource]="dataSource">
+
+          <ng-container matColumnDef="warning">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <mat-icon *ngIf="element.criticalAmount != 0 && element.stockCount <= element.criticalAmount" color="warn" matTooltip="Kritik stoğa ulaşıld">warning</mat-icon>
+            </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Hizmet Adı </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="sellingPrice">
+            <th mat-header-cell *matHeaderCellDef> Satış Fiyatı </th>
+            <td mat-cell *matCellDef="let element"> {{element.sellingPrice}} </td>
+          </ng-container>
+  
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                    <mat-icon aria-label="Edit">edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                    <mat-icon class="mat-18">delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons #paginator
+        aria-label="Select page of periodic elements">
+    </mat-paginator>
+      </div>
+
+  </div>
+
+</div>

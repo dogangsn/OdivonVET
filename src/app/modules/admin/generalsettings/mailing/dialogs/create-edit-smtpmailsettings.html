@@ -1,0 +1,110 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1" >
+        <span class="material-icons"> highlight_off </span>
+    </button>
+  </h1>
+  
+  <div class="modalForm">
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="selectedsmtpsetting">Mail SMTP Güncelle</span>
+                <span *ngIf="!selectedsmtpsetting">MAİL SMTP Ekle</span>
+            </h5>
+        </div>
+  
+        <div class="modal-body mbody-title">
+            <div class="qm-pr-content">
+  
+                <div class="container-fluid" [formGroup]="smtpsetting">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mt-2 common-width">
+                                    <mat-checkbox class="mb-2" [checked]="true" [color]="'primary'" [formControlName]="'defaults'">
+                                        Varsayılan
+                                    </mat-checkbox>
+                                </div>
+                                <div class="mt-2 common-width">
+                                    <mat-form-field style="width:100%">
+                                        <mat-label>Adı</mat-label>
+                                        <input matInput [formControlName]="'displayName'">
+                                    </mat-form-field>
+                                </div>
+                                <div class="mt-2 common-width">
+                                    <mat-form-field style="width:100%">
+                                        <mat-label>E-Mail</mat-label>
+                                        <input matInput [formControlName]="'emailId'">
+                                    </mat-form-field>
+                                </div>
+                                <div class="mt-2 common-width">
+                                    <mat-form-field style="width:100%">
+                                        <mat-label>Parola</mat-label>
+                                        <input matInput [formControlName]="'password'" type="password">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mt-2 common-width">
+                                    <mat-form-field style="width:100%">
+                                        <mat-label>Host</mat-label>
+                                        <input matInput [formControlName]="'host'">
+                                    </mat-form-field>
+                                </div>
+                                <div class="mt-2 common-width">
+                                    <mat-form-field style="width:100%">
+                                        <mat-label>Port</mat-label>
+                                        <input matInput [formControlName]="'port'" type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div class="mt-2 common-width">
+                                    <mat-checkbox class="mb-2" [checked]="true" [color]="'primary'" [formControlName]="'useSSL'">
+                                        SSL
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+  
+                </div>
+            </div>
+  
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+                    <!-- Attach file -->
+                    <!-- <button  class="order-first sm:order-last" mat-flat-button (click)="mailTest()">
+                       
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:paper-clip'"></mat-icon>
+                            TEST
+                    </button>
+                     -->
+                </div>
+    
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button
+                        class="ml-auto sm:ml-0"
+                        mat-stroked-button
+                        (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button
+                        class="order-first sm:order-last"
+                        mat-flat-button
+                        [color]="'primary'"
+                        (click)="addOrUpdateSmtpSetting()"  [disabled]="buttonDisabled" >
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+  
+
+    </mat-dialog-content>
+  </div>

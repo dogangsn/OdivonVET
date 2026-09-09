@@ -1,0 +1,290 @@
+<div class="flex flex-col flex-auto w-full">
+
+    <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+
+        <div role="status" class="animate-pulse grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0"
+            *ngIf="loader">
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+            <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded-2xl dark:bg-gray-700">
+            </div>
+
+        </div>
+
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0" *ngIf="!loader">
+            <!-- Summary -->
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-center justify-center">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Günlük Eklenen Randevu</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+
+
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500"> {{
+                        dashboards.totalCount.dailyAddAppointmentCount }}</div>
+                    <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Randevu</div>
+                    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+                        <div class="text-md font-medium truncate">Tamamlanan:</div>
+                        <div class="ml-1.5 text-lg font-semibold">{{
+                            dashboards.totalCount.dailyAddAppointmentCompletedCount }}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Overdue -->
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-center">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Günlük Yeni Müşteri</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+
+
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">{{
+                        dashboards.totalCount.dailyAddCustomerCount }}</div>
+                    <div class="text-lg font-medium text-red-600 dark:text-red-500">Müşteri</div>
+                    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+                        <div class="text-md font-medium truncate">Bir Önceki Gün:</div>
+                        <div class="ml-1.5 text-lg font-semibold">0</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Issues -->
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-center">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Günlük Ciro</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500"> {{
+                        dashboards.totalCount.dailyTurnoverAmount | number:'1.2-2' }}</div>
+                    <div class="text-lg font-medium text-amber-600 dark:text-amber-500">₺</div>
+                    <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
+
+                        <div class="ml-1.5 text-lg font-semibold">0.00 ₺</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Features -->
+            <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                <div class="flex items-start justify-center">
+                    <div class="text-lg font-medium tracking-tight leading-6 truncate">Toplam Stok Değeri</div>
+                    <div class="ml-2 -mt-2 -mr-3">
+
+
+                    </div>
+                </div>
+                <div class="flex flex-col items-center mt-2">
+                    <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-green-500">0.00</div>
+                    <div class="text-lg font-medium text-green-600 dark:text-green-500">₺</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div>
+        <div role="status" class="animate-pulse w-full max-w-screen-xl mx-auto p-6 md:p-8" *ngIf="loader">
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+        </div>
+
+        <div role="status" class="animate-pulse w-full max-w-screen-xl mx-auto p-6 md:p-8" *ngIf="loader">
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+            <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+        </div>
+
+        <div *ngIf="!loader">
+
+            <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+                <div class="grid grid-cols-1 sm:grid-cols-6 gap-6 w-full min-w-0">
+
+                    <div class="sm:col-span-6 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="text-lg font-medium tracking-tight leading-6 truncate ml-3 text-slate-500">Yaklaşan
+                            Randevular</div>
+                        <div class="flex flex-col flex-auto mt-2 overflow-x-auto">
+
+                            <div class="mat-elevation-z8 border">
+                                <table mat-table [dataSource]="upcomingdataSource">
+
+                                    <ng-container matColumnDef="date">
+                                        <th mat-header-cell *matHeaderCellDef> Tarih </th>
+                                        <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+                                      </ng-container>
+
+                                    <ng-container matColumnDef="customerPatientName">
+                                        <th mat-header-cell *matHeaderCellDef> Hasta Sahibi Adı Soyadı </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.customerPatientName}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="services">
+                                        <th mat-header-cell *matHeaderCellDef> Randevu Tipi </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.services}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="statusName">
+                                        <th mat-header-cell *matHeaderCellDef> Randevu Durumu </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.statusName}} </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                                        [ngClass]="getStatusClass(row.status)"></tr>
+
+                                    <ng-container matColumnDef="actions">
+                                        <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+                                        <td mat-cell *matCellDef="let element">
+                                          <!-- <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                                            <mat-icon aria-label="Edit">edit</mat-icon>
+                                          </button>
+                                          <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                                            <mat-icon class="mat-18">delete</mat-icon>
+                                          </button> -->
+                                          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                          </button>
+                                    
+                                          <mat-menu #menu="matMenu">
+                                            <button mat-menu-item (click)="upcomingsendMessage(element.id)">
+                                              <mat-icon>send</mat-icon>
+                                              <span>Hatırlatma Gönder</span>
+                                            </button>
+                                            <button mat-menu-item [matMenuTriggerFor]="vertebrates">
+                                              <mat-icon>refresh</mat-icon>
+                                              <span>Randevu Durumu Değiştir</span>
+                                            </button>
+                                            <button mat-menu-item (click)="logView(element.id)">
+                                              <mat-icon>history</mat-icon>
+                                              <span>İşlem Geçmişi</span>
+                                            </button>
+                                          </mat-menu>
+                                          <mat-menu #vertebrates="matMenu">
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 1)">Bekliyor</button>
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 2)">İptal Edildi</button>
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 3)">Görüşüldü</button>
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 4)">Gelmedi</button>
+                                          </mat-menu>
+                                        </td>
+                                      </ng-container>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons #paginator
+                                    aria-label="Select page of periodic elements">
+                                </mat-paginator>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap w-full max-w-screen-xl mx-auto p-6 md:p-8">
+                <div class="grid grid-cols-1 sm:grid-cols-6 gap-6 w-full min-w-0">
+                    <div class="sm:col-span-6 flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
+                        <div class="text-lg font-medium tracking-tight leading-6 truncate ml-3 text-slate-500">Geçmiş
+                            Randevular</div>
+                        <div class="flex flex-col flex-auto mt-2 overflow-x-auto">
+
+
+                            <div class="mat-elevation-z8 border">
+                                <table mat-table [dataSource]="pastdataSource">
+
+                                    <ng-container matColumnDef="date">
+                                        <th mat-header-cell *matHeaderCellDef> Tarih </th>
+                                        <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+                                      </ng-container>
+
+                                    <ng-container matColumnDef="customerPatientName">
+                                        <th mat-header-cell *matHeaderCellDef> Hasta Sahibi Adı Soyadı </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.customerPatientName}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="services">
+                                        <th mat-header-cell *matHeaderCellDef> Randevu Tipi </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.services}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="statusName">
+                                        <th mat-header-cell *matHeaderCellDef> Randevu Durumu </th>
+                                        <td mat-cell *matCellDef="let element"> {{element.statusName}} </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                    <ng-container matColumnDef="actions">
+                                        <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+                                        <td mat-cell *matCellDef="let element">
+                                          <!-- <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                                            <mat-icon aria-label="Edit">edit</mat-icon>
+                                          </button>
+                                          <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                                            <mat-icon class="mat-18">delete</mat-icon>
+                                          </button> -->
+                                          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                                            <mat-icon>more_vert</mat-icon>
+                                          </button>
+                                    
+                                          <mat-menu #menu="matMenu">
+                                            <button mat-menu-item >
+                                              <mat-icon>send</mat-icon>
+                                              <span>Hatırlatma Gönder</span>
+                                            </button>
+                                            <button mat-menu-item [matMenuTriggerFor]="vertebrates">
+                                              <mat-icon>refresh</mat-icon>
+                                              <span>Randevu Durumu Değiştir</span>
+                                            </button>
+                                            <button mat-menu-item (click)="logView(element.id)">
+                                              <mat-icon>history</mat-icon>
+                                              <span>İşlem Geçmişi</span>
+                                            </button>
+                                          </mat-menu>
+                                          <mat-menu #vertebrates="matMenu">
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 1)">Bekliyor</button>
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 2)">İptal Edildi</button>
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 3)">Görüşüldü</button>
+                                            <button mat-menu-item (click)="redirectStatusUpdate(element.id, 4)">Gelmedi</button>
+                                          </mat-menu>
+                                        </td>
+                                      </ng-container>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons #paginator
+                                    aria-label="Select page of periodic elements">
+                                </mat-paginator>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

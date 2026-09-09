@@ -1,0 +1,187 @@
+<h1 mat-dialog-title class="mat-dialog-title" mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragHandle>
+  <button class="dialog-close-button">
+    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+      </path>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+    </svg>
+  </button>
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+
+<div class="modalForm">
+    <mat-dialog-content>
+
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="selectedProductdescription">Ürün Güncelle</span>
+                <span *ngIf="!selectedProductdescription">Ürün Ekle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-productdescription">
+
+            <div class="qm-pr-content">
+                <div class="container-fluid" [formGroup]="productdescription">
+                    <div class="row">
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Ürün Adı</mat-label>
+                                <input matInput [formControlName]="'name'">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div *ngIf="producttype!=3" class="float : left flex  gt-xs:flex-row">
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Birim</mat-label>
+                            <mat-select [formControlName]="'unitId'" [placeholder]="'Birim'" name="units">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let unit of units" [value]="unit.id">{{unit.unitName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Ürün Kategori</mat-label>
+                            <mat-select [formControlName]="'categoryId'" [placeholder]="'Ürün Kategori'"
+                                name="productcategori">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let productcategori of productcategories"
+                                    [value]="productcategori.id">{{productcategori.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="float : left flex  gt-xs:flex-row">
+
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Ürün Tipi</mat-label>
+                            <mat-select [formControlName]="'productTypeId'" [placeholder]="'Ürün Tipi'"
+                                name="mapproducttype" [disabled]="true">
+                                <mat-option *ngFor="let item of mapproducttype"
+                                    [value]="item.id">{{item.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-form-field *ngIf="producttype!=3" class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Tedarikçi</mat-label>
+                            <mat-select [formControlName]="'supplierId'" [placeholder]="'Tedarikçi'"
+                                name="supplierscard">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let supplierscard of supplierscards"
+                                    [value]="supplierscard.id">{{supplierscard.suppliername}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+                    <div *ngIf="producttype!=3" class="float : left flex  gt-xs:flex-row">
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Ürün Barkod</mat-label>
+                            <input [formControlName]="'productBarcode'" matInput>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Ürün Kodu</mat-label>
+                            <input [formControlName]="'productCode'" matInput>
+                        </mat-form-field>
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+
+                            <mat-label>KDV (%)</mat-label>
+                            <mat-select [formControlName]="'taxisId'" [placeholder]="'KDV (%)'" name="taxisList">
+                                <mat-option *ngFor="let item of taxisList"
+                                    [value]="item.id">{{item.taxRatio}}</mat-option>
+                            </mat-select>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="float : left flex  gt-xs:flex-row">
+                        <mat-form-field *ngIf="producttype!=3" class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Alış Fiyatı</mat-label>
+                            <input [formControlName]="'buyingPrice'" matInput (input)="formatPrice($event)" type="number">
+                        </mat-form-field>
+                        <mat-form-field  class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Satış Fiyatı</mat-label>
+                            <input [formControlName]="'sellingPrice'" matInput type="number">
+                        </mat-form-field>
+                        <mat-form-field *ngIf="producttype!=3" class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Kritik Stok Miktarı</mat-label>
+                            <input [formControlName]="'criticalAmount'" matInput type="number">
+                        </mat-form-field>
+                    </div>
+                    <div *ngIf="producttype!=3" class="float : left flex  gt-xs:flex-row">
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Depo</mat-label>
+                            <mat-select [formControlName]="'storeid'" [placeholder]="'Depo'" name="storename">
+                                <mat-option>None</mat-option>
+                                <mat-option *ngFor="let store of storeList"
+                                    [value]="store.id">{{store.depotName}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+
+
+                    <div  class="float : left flex  gt-xs:flex-row" *ngIf="visibleProductType && producttype!=3">
+                        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Tür</mat-label>
+                            <mat-select [formControlName]="'animalType'" name="animalType">
+                                <mat-option *ngFor="let anmimaltype of animalTypesList" [value]="anmimaltype.type">
+                                    {{anmimaltype.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <!-- <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                            <mat-label>Tekrar Sayısı</mat-label>
+                            <input [formControlName]="'numberRepetitions'" matInput>
+                        </mat-form-field> -->
+                    </div>
+
+
+
+
+                    <div class="flex flex-col gt-sm:flex-row">
+                        <div class="flex flex-col">
+                            <mat-checkbox class="mb-2" [checked]="true" [color]="'primary'"
+                                [formControlName]="'active'">
+                                Aktif
+                            </mat-checkbox>
+                            <mat-checkbox class="mb-2" [color]="'primary'" [formControlName]="'sellingIncludeKDV'">
+                                Ürün Satış Fiyatına KDV Dahil
+                            </mat-checkbox>
+                            <mat-checkbox class="mb-2" [color]="'primary'" [formControlName]="'buyingIncludeKDV'">
+                                Ürün Alış Fiyatına KDV Dahil
+                            </mat-checkbox>
+                            <mat-checkbox class="mb-2" [color]="'primary'" [formControlName]="'fixPrice'">
+                                Miktarlı Satışlarda Fiyat Sabitlensin
+                            </mat-checkbox>
+                            <mat-checkbox class="mb-2" [color]="'primary'" [formControlName]="'productBarcode'">
+                                Seri Numaralı ve Son Kullanma Tarihli Ürün Takip Et
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+                   
+                </div>
+
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'"
+                        (click)="addOrUpdateProductDef()" [disabled]="buttonDisabled">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+</div>

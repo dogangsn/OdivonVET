@@ -1,0 +1,309 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div>
+                <div class="flex sm:hidden">
+                    <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+                        <mat-icon class="icon-size-5 text-secondary"
+                            [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                        <span class="ml-1">Back</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Parametreler
+                </h2>
+            </div>
+            <div class="font-medium tracking-tight text-secondary">Sistem Yöneticisi tarafından işleniş parametreleri
+            </div>
+        </div>
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <button class="ml-3" mat-flat-button [color]="'primary'" (click)="saveParameter()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                Kaydet
+            </button>
+        </div>
+    </div>
+
+    <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+
+        <mat-tab-group class="sm:px-2" mat-stretch-tabs="false" [animationDuration]="'0'">
+            <form [formGroup]="parameters">
+                <mat-tab label="Genel">
+
+                    <div role="status" class="animate-pulse" *ngIf="loader">
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 w-full mt-8" *ngIf="!loader">
+
+
+
+                        <div class="flex-auto items-center justify-between cursor-pointer">
+                            <div class="leading-6 font-medium">SMS Şirketi</div>
+                            <mat-form-field class="w-full">
+                                <mat-select [formControlName]="'smsCompany'" [placeholder]="''" #securityToggle name=""
+                                    (selectionChange)="onSmsCompanySelectionChange($event)">
+                                    <mat-option *ngFor="let item of smsparameters" [value]="item.id">{{
+                                        getEnumStringValue(item.smsIntegrationType) }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <div class="flex-auto items-center justify-between cursor-pointer">
+                            <div class="leading-6 font-medium">Çalışma Günleri</div>
+                            <mat-form-field>
+                                <mat-select class="ml-2" [formControl]="selectedDays" multiple>
+                                    <mat-option (click)="selectAllDays($event)"
+                                        [value]="allselectcheck">{{allselectcheck}}</mat-option>
+                                    <mat-option *ngFor="let day of days" [value]="day">{{ day }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+
+                        <!-- <div class="flex-auto items-center justify-between cursor-pointer">
+                            <div class="leading-6 font-medium">Whatsapp Şablonu</div>
+                            <mat-form-field class="w-full">
+                                <mat-select [formControlName]="'whatsappTemplate'" [placeholder]="''" #whatsappTemplateToggle
+                                    name="" (selectionChange)="onwhatsappTemplateSelectionChange($event)">
+                                    <mat-option>None</mat-option> 
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex-auto items-center justify-between cursor-pointer">
+                            <div class="leading-6 font-medium">Müşteri Hoşgeldin Şablonu</div>
+                            <mat-form-field class="w-full">
+                                <mat-select [formControlName]="'customerWelcomeTemplate'" [placeholder]="''"
+                                    #customerWelcomeTemplateToggle name=""
+                                    (selectionChange)="oncustomerWelcomeTemplateSelectionChange($event)">
+                                    <mat-option>None</mat-option> 
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex-auto items-center justify-between cursor-pointer">
+                            <div class="leading-6 font-medium">Otomatik Randevu Hatırlatma Mesajı Şablonu</div>
+                            <mat-form-field class="w-full">
+                                <mat-select [formControlName]="'automaticAppointmentReminderMessageTemplate'" [placeholder]="''"
+                                    #customerWelcomeTemplateToggle name=""
+                                    (selectionChange)="onautomaticAppointmentReminderMessageTemplateSelectionChange($event)">
+                                    <mat-option>None</mat-option> 
+                                </mat-select>
+                            </mat-form-field>
+                        </div> -->
+                        <div class="flex items-center justify-between cursor-pointer"
+                            (click)="displayVetNoToggle.toggle()">
+                            <div class="leading-6 font-medium">Veteriner Numarası Gözüksün(SMS)</div>
+                            <mat-slide-toggle class="ml-2" [color]="'primary'" (click)="displayVetNoToggle.toggle()"
+                                [formControlName]="'displayVetNo'" #displayVetNoToggle>
+                            </mat-slide-toggle>
+                        </div>
+
+                        <div class="flex items-center justify-between cursor-pointer"
+                            (click)="isOtoCustomerWelcomeMessageToggle.toggle()">
+                            <div class="leading-6 font-medium">Otomatik Müşteri Hoşgeldin Mesajı Gönderilsin mi?</div>
+                            <mat-slide-toggle class="ml-2" [color]="'primary'"
+                                (click)="isOtoCustomerWelcomeMessageToggle.toggle()"
+                                [formControlName]="'isOtoCustomerWelcomeMessage'" #isOtoCustomerWelcomeMessageToggle>
+                            </mat-slide-toggle>
+                        </div>
+
+                        <div class="flex items-center justify-between cursor-pointer" (click)="autoSmsToggle.toggle()">
+                            <div class="leading-6 font-medium">Otomatik Sms</div>
+                            <mat-slide-toggle class="ml-2" [color]="'primary'" (click)="autoSmsToggle.toggle()"
+                                [formControlName]="'autoSms'" #autoSmsToggle>
+                            </mat-slide-toggle>
+                        </div>
+
+                        <div class="flex items-center justify-between cursor-pointer"
+                            (click)="isAnimalsBreedsToggle.toggle()">
+                            <div class="leading-6 font-medium">Hasta Ekleme işleminde Irkı Zorunlu Olsun</div>
+                            <mat-slide-toggle class="ml-2" [color]="'primary'" (click)="isAnimalsBreedsToggle.toggle()"
+                                [formControlName]="'isAnimalsBreeds'" #isAnimalsBreedsToggle>
+                            </mat-slide-toggle>
+                        </div>
+
+                        <div class="flex items-center justify-between cursor-pointer"
+                            (click)="isfirstInspectionToggle.toggle()">
+                            <div class="leading-6 font-medium">İşlemlerde "İlk Muayene" Gözüksün</div>
+                            <mat-slide-toggle class="ml-2" [color]="'primary'"
+                                (click)="isfirstInspectionToggle.toggle()" [formControlName]="'isFirstInspection'"
+                                #isfirstInspectionToggle>
+                            </mat-slide-toggle>
+                        </div>
+
+                        <div class="flex items-center justify-between cursor-pointer"
+                            (click)="isfirstInspectionToggle.toggle()">
+                            <div class="leading-6 font-medium">Muayane Girişlerinde Satış Kaydı Üretilsin (Tutar 0 ise)
+                            </div>
+                            <mat-slide-toggle class="ml-2" [color]="'primary'"
+                                (click)="isfirstInspectionToggle.toggle()" [formControlName]="'isExaminationAmuntZero'"
+                                #isfirstInspectionToggle>
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+
+                </mat-tab>
+
+                <mat-tab label="Kasa">
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Nakit Kasa Hesabı</div>
+                        <mat-form-field style="width:100%">
+                            <mat-select [formControlName]="'cashAccount'" [placeholder]="'Nakit Kasa Hesabı'">
+                                <mat-select-filter [ngModelOptions]="{standalone: true}" [ngModel]="selectedCasingId"
+                                    (ngModelChange)="filterCustomerId($event)">
+                                </mat-select-filter>
+                                <mat-option *ngFor="let item of casingcards"
+                                    [value]="item.id">{{item.casename}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Kredi Kartı Kasa Hesabı</div>
+                        <mat-form-field style="width:100%">
+                            <mat-select [formControlName]="'creditCardCashAccount'"
+                                [placeholder]="'Kredi Kartı Kasa Hesabı'">
+                                <mat-select-filter [ngModelOptions]="{standalone: true}" [ngModel]="selectedCasingId"
+                                    (ngModelChange)="filterCustomerId($event)">
+                                </mat-select-filter>
+                                <mat-option *ngFor="let item of casingcards"
+                                    [value]="item.id">{{item.casename}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Banka Havale Kasa Hesabı</div>
+                        <mat-form-field style="width:100%">
+                            <mat-select [formControlName]="'bankTransferCashAccount'"
+                                [placeholder]="'Banka Havale Kasa Hesabı'">
+                                <mat-select-filter [ngModelOptions]="{standalone: true}" [ngModel]="selectedCasingId"
+                                    (ngModelChange)="filterCustomerId($event)">
+                                </mat-select-filter>
+                                <mat-option *ngFor="let item of casingcards"
+                                    [value]="item.id">{{item.casename}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </div>
+
+
+                </mat-tab>
+
+                <mat-tab label="Takvim/Randevu">
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Ajanda Notu Hatırlatma(Gün)</div>
+                        <mat-form-field>
+                            <input class="ml-2" type="number" matInput [formControlName]="'agendaNoteReminder'">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Online Randevu Başlangıç</div>
+                        <mat-form-field>
+                            <mat-select [formControlName]="'appointmentBeginDate'" placeholder="Select Time">
+                                <mat-option *ngFor="let time of times" [value]="time"
+                                    [disabled]="isEndDateDisabled(time)">
+                                    {{time}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Online Randevu Bitiş</div>
+                        <mat-form-field>
+                            <mat-select [formControlName]="'appointmentEndDate'" placeholder="Select Time">
+                                <mat-option *ngFor="let time of times" [value]="time"
+                                    [disabled]="isBeginDateDisabled(time)">
+                                    {{time}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Randevu Hatırlatma Süresi(Gün)</div>
+                        <mat-form-field>
+                            <input class="ml-2" type="number" matInput
+                                [formControlName]="'appointmentReminderDuration'">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Randevu Seans Süresi</div>
+                        <mat-form-field>
+                            <input class="ml-2" type="number" matInput [formControlName]="'appointmentSeansDuration'">
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <label class="font-semibold text-gray-700 mb-1">Sistem Tarih Girişleri</label>
+                        <div>
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="flex flex-wrap"
+                                [formControlName]="'datetimestatus'">
+                                <mat-radio-button class="mr-2" [value]="0">
+                                    Analog
+                                </mat-radio-button>
+                                <mat-radio-button class="mr-2" [value]="1">
+                                    Dijital (Dakika Tanımlaması Yapılması)
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+
+                    <div *ngIf="shouldShowAppointmentInterval"
+                        class="flex-auto items-center justify-between cursor-pointer">
+                        <div class="leading-6 font-medium">Randevu Saat Aralıkları</div>
+                        <mat-form-field>
+                            <input class="ml-2" type="number" matInput [formControlName]="'appointmentinterval'">
+                        </mat-form-field>
+                    </div>
+
+                </mat-tab>
+
+                <mat-tab label="Pet Otel">
+
+                    <div class="flex-auto items-center justify-between cursor-pointer">
+                        <label class="font-semibold text-gray-700 mb-1">Tarih Girişleri</label>
+                        <div>
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="flex flex-wrap"
+                                [formControlName]="'petHotelsDateTimeFormat'">
+                                <mat-radio-button class="mr-2" [value]="0">
+                                    Tarih
+                                </mat-radio-button>
+                                <mat-radio-button class="mr-2" [value]="1">
+                                    Tarih / Saat
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </div>
+
+                </mat-tab>
+
+            </form>
+        </mat-tab-group>
+
+
+    </div>
+
+
+</div>

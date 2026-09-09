@@ -1,0 +1,81 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span>Randevu Geçmişi</span>
+      </h5>
+    </div>
+    <div class="modal-body mbody-customeradd">
+
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+
+          <ng-container matColumnDef="complated">
+            <th mat-header-cell *matHeaderCellDef> Yapıldı </th>
+            <td mat-cell *matCellDef="let element">
+              <button class="mr-2 -ml-2.5 leading-none" (click)="toggleCompleted(element)" mat-icon-button>
+                <ng-container *ngIf="element.isComplated">
+                  <mat-icon class="text-primary" [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                </ng-container>
+                <ng-container *ngIf="!element.isComplated">
+                  <mat-icon class="text-hint" [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                </ng-container>
+              </button>
+            </td>
+          </ng-container>
+<!-- 
+          <ng-container matColumnDef="beginDate">
+            <th mat-header-cell *matHeaderCellDef> Tarih </th>
+            <td mat-cell *matCellDef="let element"> {{ formatDate(element.beginDate) }} </td>
+          </ng-container> -->
+          <ng-container matColumnDef="beginDate">
+            <th mat-header-cell *matHeaderCellDef> Tarih </th>
+            <td mat-cell *matCellDef="let element" [ngClass]="{'expired-date': shouldMarkExpired(element)}"> {{ formatDate(element.beginDate) }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="text">
+            <th mat-header-cell *matHeaderCellDef> Randevu Tipi </th>
+            <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+                <mat-icon aria-label="Edit">edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                <mat-icon class="mat-18">delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons #paginator
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+
+      </div>
+
+
+    </div>
+
+  </mat-dialog-content>
+</div>
+
+<div class="flex items-center mt-4 sm:mt-0 justify-end mr-7">
+  <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+    Kapat
+  </button>
+
+</div>

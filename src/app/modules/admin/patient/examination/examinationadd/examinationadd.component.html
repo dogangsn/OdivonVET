@@ -1,0 +1,314 @@
+<div class="flex flex-col flex-auto min-w-0">
+  <div
+    class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+    <div class="flex-1 min-w-0">
+      <div>
+        <div class="flex sm:hidden">
+          <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+            <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+            <span class="ml-1">Back</span>
+          </a>
+        </div>
+      </div>
+      <div class="mt-2">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+          Yeni Muayene Ekle
+        </h2>
+      </div>
+    </div>
+
+    <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+      <button class="ml-3" mat-flat-button [color]="'primary'" (click)="examinationadd()">
+        <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+        Kaydet
+      </button>
+      <button class="ml-3" mat-flat-button (click)="addToShortCuts()">
+        <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_outline:bookmark'"
+          aria-label="Example icon button with a bookmark icon"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+
+    <div role="status" class="animate-pulse mb-15" *ngIf="loader">
+      <div class="w-full">
+        <div class="h-13 w-2/5 bg-gray-200 rounded-sm dark:bg-gray-700 mb-11"></div>
+        <div class="flex gap-2 mb-11">
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+        </div>
+        <div class="flex gap-2 mb-11">
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+        </div>
+        <div class="flex items-center mb-11 mt-3 gap-2">
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+        </div>
+        <div class="flex items-center mb-4 mt-3 gap-2">
+          <div class="h-18 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          <div class="h-18 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+        </div>
+      </div>
+    </div>
+    <div [formGroup]="examinationForm" *ngIf="!loader">
+      <div class="flex flex-col sm:flex-row mb-2">
+        <div class="flex flex-col mb-4 sm:mb-0">
+          <label class="font-semibold text-gray-700 mb-1">Muayene Tarihi</label>
+          <div>
+            <dx-date-box [value]="now" type="datetime" [min]="now" [inputAttr]="{ 'aria-label': 'Date And Time' }"
+              (onValueChanged)="handleValueChange($event)">
+            </dx-date-box>
+          </div>
+        </div>
+
+        <div class="flex-auto sm:ml-3">
+          <label class="font-semibold text-gray-700 mb-1">Muayene Durumu</label>
+          <div>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="flex flex-wrap"
+              [formControlName]="'selectedState'">
+              <mat-radio-button class="mr-2" *ngFor="let state of states" [value]="state">
+                {{ state }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex float : left gt-md:flex-row">
+        <mat-form-field class="flex-auto gt-xs:pl-3">
+          <mat-label>Müşteri</mat-label>
+          <mat-select [placeholder]="'Müşteri'" [formControlName]="'customerId'" name="customerId"
+            (selectionChange)="handleCustomerChange($event)">
+            <mat-select-filter [ngModelOptions]="{ standalone: true }" [ngModel]="selectedCustomerId">
+            </mat-select-filter>
+            <mat-option *ngFor="let item of customers" [value]="item.id">{{ item.firstName }}
+              {{ item.lastName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Hasta</mat-label>
+          <mat-select name="patientId" [formControlName]="'patientId'" [placeholder]="'Hasta'">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of patientList" [value]="item.id">{{ item.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="flex float : left gt-md:flex-row">
+        <mat-form-field class="flex-auto gt-xs:pl-3">
+          <mat-label>Vücut Isısı (Derece)</mat-label>
+          <input type="number" matInput [formControlName]="'bodyTemperature'" name="bodyTemperature" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Nabız</mat-label>
+          <input type="number" matInput [formControlName]="'pulse'" name="pulse" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Solunum Hızı</mat-label>
+          <input type="number" matInput [formControlName]="'respiratoryRate'" name="respiratoryRate" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Ağırlık</mat-label>
+          <input type="number" matInput [formControlName]="'weight'" name="weight" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+      </div>
+
+      <mat-label class="font-semibold text-gray-700">Semptomlar</mat-label>
+      <mat-form-field class="example-chip-list flex-wrap mt-1" appearance="fill">
+        <div class="flex-wrap my-2 w-full">
+          <mat-chip-grid class="ml-2" #chipGrid aria-label="Fruit selection">
+            <mat-chip-row *ngFor="let fruit of symptoms" (removed)="remove(fruit)">
+              {{ fruit }}
+              <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input class="mt-1 w-full border rounded-md border-dashed" placeholder="   Semptom giriniz.." #fruitInput
+            [formControl]="symptomCtrl" [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" />
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredSymptoms | async" [value]="fruit">
+              {{ fruit }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </mat-form-field>
+
+      <div class="flex float : left gt-xs:flex-row">
+        <mat-form-field class="w-1/6 pr-2">
+          <mat-label>Şikayet & Hikaye</mat-label>
+          <textarea matInput [formControlName]="'complaintAndHistory'" name="complaintAndHistory"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 w-1/6 pr-2">
+          <mat-label>Tedavi Açıklaması</mat-label>
+          <textarea matInput [formControlName]="'treatmentDescription'" name="treatmentDescription"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="flex flex-col gt-sm:flex-row">
+        <div class="flex flex-col">
+          <mat-checkbox class="mb-2" [checked]="false" [color]="'primary'" (change)="togglePriceInput($event.checked)"
+            [formControlName]="'isPrice'">
+            Muayene Ücreti İşlensin
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <div *ngIf="isPrice" class="flex float : left gt-md:flex-row">
+        <mat-form-field class="flex-auto gt-xs:pl-3">
+          <mat-label>Fiyat</mat-label>
+          <input matInput [formControlName]="'price'" placeholder="Fiyat girin" type="number">
+        </mat-form-field>
+      </div>
+
+
+
+
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel #myPanel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Yapılan İşlemler & Kullanılan
+            Malzemeler</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div>
+          <table mat-table [dataSource]="dataSource" class="shadow-none z-0 border">
+            <!-- Ürün/Hizmet Kolonu -->
+            <ng-container matColumnDef="product">
+              <th mat-header-cell *matHeaderCellDef> Ürün/Hizmet seçiniz </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                  <mat-select class="text-center" [(value)]="element.product"
+                    (selectionChange)="onProductSelectionChange(element)">
+                    <mat-option *ngFor="let product of products" [value]="product.id">{{product.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </ng-container>
+
+            <!-- Miktar/Birim Kolonu -->
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef> Miktar/Birimi </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="quantity-container">
+                  <mat-form-field appearance="fill" class="quantity-field">
+                    <input matInput [(ngModel)]="element.quantity" type="number">
+                  </mat-form-field>
+                </div>
+              </td>
+            </ng-container>
+
+            <!-- Birim Fiyat Kolonu -->
+            <ng-container matColumnDef="unitPrice">
+              <th mat-header-cell *matHeaderCellDef> Birim Fiyat </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                  <input matInput [(ngModel)]="element.unitPrice" type="number">
+                </mat-form-field>
+              </td>
+            </ng-container>
+
+            <!-- İskonto Kolonu -->
+            <ng-container matColumnDef="discount">
+              <th mat-header-cell *matHeaderCellDef> İskonto(TL) </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                  <input matInput [(ngModel)]="element.discount" type="number">
+                </mat-form-field>
+              </td>
+            </ng-container>
+
+            <!-- KDV Kolonu -->
+            <ng-container matColumnDef="vat">
+              <th mat-header-cell *matHeaderCellDef> KDV </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="fill">
+                  <mat-select [(value)]="element.vat" [placeholder]="'KDV (%)'">
+                    <mat-option *ngFor="let item of taxisList" [value]="item.id">{{item.taxRatio}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+            </ng-container>
+
+            <!-- Toplam Tutar Kolonu -->
+            <ng-container matColumnDef="total">
+              <th mat-header-cell *matHeaderCellDef> Birim Fiyat </th>
+              <td mat-cell *matCellDef="let element" [(ngModel)]="element.netprice" class="mt-0">
+                {{calculateTotal(element) | currency:'TRY' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="taxTotal">
+              <th mat-header-cell *matHeaderCellDef> Kdv Tutar </th>
+              <td mat-cell *matCellDef="let element" [(ngModel)]="element.netVat" class="mt-0">
+                {{calculateVatRow(element) | currency:'TRY' }} </td>
+            </ng-container>
+
+            <!-- Silme Kolonu -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef> </th>
+              <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="removeRow(element)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+        <div class="w-full flex justify-center items-center">
+          <button mat-flat-button class="my-3 bg-slate-300 w-2/3" (click)="addRow()">Satır Ekle</button>
+        </div>
+
+        <!-- <div class="w-full flex justify-end mt-2"> -->
+
+
+        <!-- </div> -->
+
+        <div class="bottom-section flex w-full justify-between">
+          <div class="sales-notes w-full">
+            <h3>Satış Notları</h3>
+            <mat-form-field appearance="fill" class="full-width">
+              <textarea matInput placeholder="Satış notları" [formControlName]="'remark'"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="w-full items-end mt-3 justify-end">
+            <div class=" justify-end">
+              <div>
+                <p class="text-end">Ara toplam: {{calculateSubtotal() | currency:'TRY'}}</p>
+                <p class="text-end">KDV: {{calculateVat() | currency:'TRY'}}</p>
+                <p class="text-end">Toplam: {{calculateTotalAmount() - discountedTotalAmount | currency:'TRY'}}</p>
+              </div>
+              <div class="w-full flex justify-end mt-2">
+                <button mat-button color="primary" class="" (click)="applyDiscount()">
+                  + Sokak hayvanı indirimi (%25)
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+
+
+
+  </div>
+</div>

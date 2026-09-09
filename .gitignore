@@ -1,0 +1,11 @@
+/node_modules
+/backups
+/dist
+/.angular
+/coverage
+/.local
+/.env*
+!/.env.example
+/supabase/**/.temp
+/src/assets/odivon-config.json
+*.log

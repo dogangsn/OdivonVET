@@ -1,0 +1,89 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+      <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+
+<div class="modalForm">
+  <mat-dialog-content>
+      <div class="modal-header">
+          <h5 class="modal-title">
+              <span *ngIf="selectedcustomersale">Satış Güncelle</span>
+              <span *ngIf="!selectedcustomersale">Satış Ekle</span>
+          </h5>
+      </div>
+
+      <div class="modal-body mbody-store">
+          <div class="qm-pr-content">
+
+              <div class="container-fluid" [formGroup]="salebuy">
+                  <div class="row">
+                 
+          
+                      <div class="float : left flex  gt-xs:flex-row">
+                          <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                              <mat-label>Tarihi</mat-label>
+                              <input matInput [matDatepicker]="picker" [formControlName]="'date'">
+                              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                              <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                      </div>
+                      <div class="float : left flex  gt-xs:flex-row">
+                          <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                              <mat-label>Ürünler</mat-label>
+                              <mat-select [formControlName]="'productId'" [placeholder]="'Ürünler'" name="productId">
+                                  <mat-select-filter [ngModelOptions]="{standalone: true}"
+                                      [ngModel]="selectedProductId" (ngModelChange)="filterProductId($event)">
+                                  </mat-select-filter>
+                                  <mat-option *ngFor="let item of productdescription"
+                                      [value]="item.id">{{item.name}}</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="float : left flex  gt-xs:flex-row">
+                          <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                              <mat-label>Ödeme İşlemi</mat-label>
+                              <mat-select [formControlName]="'paymentType'" [placeholder]="'Ödeme Tipi'"
+                                  name="paymentType">
+                                  <mat-option *ngFor="let item of payments"
+                                      [value]="item.recId">{{item.name}}</mat-option>
+                              </mat-select>
+                          </mat-form-field>
+                      </div>
+                      <div class="float : left flex  gt-xs:flex-row">
+                          <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                              <mat-label>Miktar</mat-label>
+                              <input type="number" matInput [formControlName]="'amount'">
+                          </mat-form-field>
+                      </div>
+
+                      <div class="float : left flex  gt-xs:flex-row">
+                          <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                              <mat-label>Açıklama</mat-label>
+                              <textarea matInput [formControlName]="'remark'"
+                                  placeholder="Lütfen Notunuzu Yazınız..."></textarea>
+                          </mat-form-field>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+              <div class="flex items-center mt-4 sm:mt-0">
+                  <!-- Discard -->
+                  <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+                      Vazgeç
+                  </button>
+                  <!-- Save as draft -->
+                  <!-- Send -->
+                  <button class="order-first sm:order-last" mat-flat-button [color]="'primary'"
+                      [disabled]="buttonDisabled" (click)="addOrUpdateCustomerSale()">
+                      Kaydet
+                  </button>
+              </div>
+          </div>
+      </div>
+  </mat-dialog-content>
+</div>

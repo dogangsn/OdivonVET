@@ -1,0 +1,545 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+    <!-- Header -->
+    <div
+        class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+        <div class="flex-1 min-w-0">
+            <!-- Breadcrumbs -->
+            <div>
+                <div class="flex sm:hidden">
+                    <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+                        <mat-icon class="icon-size-5 text-secondary"
+                            [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+                        <span class="ml-1">Back</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Title -->
+            <div class="mt-2">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+                    Müşteri Ekle
+                </h2>
+            </div>
+        </div>
+        <!-- Actions -->
+        <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+            <!-- <button mat-stroked-button>
+                <mat-icon   
+                    class="icon-size-5 mr-2"
+                    [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                Yeni Tedarikçiden Alış
+            </button> -->
+            <button class="ml-3" mat-flat-button class="bg-white" (click)="addCustomersWithVaccine()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"> </mat-icon>
+                Kaydet & Aşı Takvimi Oluştur
+            </button>
+            <button class="ml-3" mat-flat-button [color]="'primary'" (click)="addCustomers()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+                Kaydet
+            </button>
+            <button class="ml-3" mat-flat-button (click)="addToShortCuts()">
+                <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_outline:bookmark'" aria-label="Example icon button with a bookmark icon"></mat-icon>
+              </button>
+        </div>
+    </div>
+
+    <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+        <div [formGroup]="accountForm" class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+            <div class="float : left flex  gt-xs:flex-row">
+                <mat-form-field class="flex-auto gt-xs:pr-3">
+                    <mat-label>Hasta Sahibi Adı</mat-label>
+                    <input matInput [formControlName]="'firstName'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                </mat-form-field>
+                <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                    <mat-label>Hasta Sahibi Soyadı</mat-label>
+                    <input matInput [formControlName]="'lastName'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                </mat-form-field>
+                <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                    <mat-label>VKN/T.C Numarası</mat-label>
+                    <input type="number" matInput [formControlName]="'vKNTCNo'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:identification'"></mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="flex float : left gt-xs:flex-row">
+                <mat-form-field class="flex-auto gt-xs:pr-3">
+                    <mat-label>E-Mail</mat-label>
+                    <input matInput [formControlName]="'eMail'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                </mat-form-field>
+                <mat-form-field class="ml-5 flex-auto gt-xs:pr-3">
+                    <mat-label>Telefon Numarası</mat-label>
+                    <input placeholder="(555) 555-5555" (input)="formatPhoneNumber($event.target.value, 'phoneNumber')"
+                        matInput [formControlName]="'phoneNumber'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                </mat-form-field>
+                <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                    <mat-label>Telefon Numarası 2</mat-label>
+                    <input placeholder="(555) 555-5555" (input)="formatPhoneNumber($event.target.value, 'phoneNumber2')"
+                        matInput [formControlName]="'phoneNumber2'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                </mat-form-field>
+            </div>
+
+            <div class="flex float : left gt-md:flex-row">
+                <mat-form-field class="flex-auto gt-md:pr-3">
+                    <mat-label>İl</mat-label>
+                    <!-- <input matInput [formControlName]="'province'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                    <mat-select [formControlName]="'province'" [placeholder]="'İl'"  name="province" (selectionChange)="handleCityChange($event)">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let item of cities" 
+                            [value]="item.name">{{item.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="ml-5 flex-auto gt-md:pl-3">
+                    <mat-label>İlçe</mat-label>
+                    <!-- <input matInput [formControlName]="'district'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                    <mat-select [formControlName]="'district'" [placeholder]="'İlçe'"  name="district">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let item of district"
+                            [value]="item">{{item}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                    <mat-label>Vergi Dairesi</mat-label>
+                    <input matInput [formControlName]="'taxOffice'">
+                    <!-- <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:user-circle'"></mat-icon> -->
+                </mat-form-field>
+            </div>
+            <div class="flex">
+                <mat-form-field class="flex-auto">
+                    <mat-label>Adres</mat-label>
+                    <textarea matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"
+                        [formControlName]="'longAdress'"></textarea>
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="flex float : left gt-xs:flex-row">
+                <mat-form-field class="flex-auto gt-xs:pr-3">
+                    <mat-label>Müşteri Grubu</mat-label>
+                    <mat-select [placeholder]="'Müşteri Grubu'" [(ngModel)]="selectedValue" [formControlName]="'customergroup'" name="customergroup">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let customergroup of customergroupList"
+                            [value]="customergroup.id">{{customergroup.name}}</mat-option>
+                    </mat-select>
+                    <!-- <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:location-marker'"></mat-icon> -->
+                </mat-form-field>
+                <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                    <mat-label>Müşteri İndirim Kodu</mat-label>
+                    <input type="number" matInput [formControlName]="'discountRate'">
+                    <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+                </mat-form-field>
+            </div>
+
+            <div class="flex float : left gt-xs:flex-row">
+                <mat-form-field class="flex-auto gt-xs:pr-3">
+                    <mat-label>Not</mat-label>
+                    <input matInput [formControlName]="'note'">
+                    <!-- <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_outline:menu-alt-2"></mat-icon> -->
+                </mat-form-field>
+            </div>
+
+            <div class="flex flex-col gt-sm:flex-row">
+                <div class="flex flex-col">
+                    <mat-checkbox class="mb-2" [checked]="true" [color]="'primary'" [formControlName]="'isPhone'">
+                        SMS Bildirimi
+                    </mat-checkbox>
+                    <mat-checkbox class="mb-2" [color]="'primary'" [formControlName]="'isEmail'">
+                        E-Posta Bildirimi
+                    </mat-checkbox>
+                </div>
+            </div>
+            <br>
+
+            <div
+                class="relative flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between py-8 px-6 md:px-8 border-b">
+                <div class="absolute inset-x-0 bottom-0" *ngIf="isLoading">
+                    <mat-progress-bar [mode]="'indeterminate'"></mat-progress-bar>
+                </div>
+                <div class="text-3xl font-extrabold tracking-tight">Hasta Bilgileri</div>
+                <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+                    <mat-form-field class="fuse-mat-dense fuse-mat-rounded min-w-64" [subscriptSizing]="'dynamic'">
+                        <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                        <input matInput [formControl]="searchInputControl" [autocomplete]="'off'"
+                            [placeholder]="'Hasta Ara'">
+                    </mat-form-field>
+                    <button class="ml-4" mat-flat-button [color]="'primary'" (click)="createPatient()">
+                        <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                        <span class="ml-2 mr-1">Yeni Hasta</span>
+                    </button>
+                </div>
+            </div>
+
+            <ng-container>
+                <ng-container *ngIf="patients.length > 0; else noProducts">
+                    <div class="grid">
+                        <!-- Header -->
+                        <div class="inventory-grid z-10 sticky top-0 grid gap-4 py-4 px-6 md:px-8 shadow text-md font-semibold text-secondary bg-gray-50 dark:bg-black dark:bg-opacity-5"
+                            matSort matSortDisableClear>
+                            <div></div>
+                            <div class="hidden md:block" [mat-sort-header]="'sku'">
+                                Çip Num.
+                            </div>
+                            <div [mat-sort-header]="'name'">Hasta Adı</div>
+                            <!-- <div class="hidden sm:block" [mat-sort-header]="'price'">
+                                Price
+                            </div>
+                            <div class="hidden lg:block" [mat-sort-header]="'stock'">
+                                Stock
+                            </div> -->
+                            <div class="hidden lg:block" [mat-sort-header]="'active'">
+                                Aktif
+                            </div>
+                            <div class="hidden sm:block">Detay</div>
+                        </div>
+                        <!-- Rows -->
+                        <ng-container>
+                            <ng-container *ngFor="let patients of patients; trackBy: trackByFn">
+                                <div class="inventory-grid grid items-center gap-4 py-3 px-6 md:px-8 border-b">
+
+                                    <!-- Image -->
+                                    <div class="flex items-center">
+                                        <div
+                                            class="relative flex flex-0 items-center justify-center w-12 h-12 mr-6 rounded overflow-hidden border">
+                                            <img class="w-8" *ngIf="patients.thumbnail"
+                                                [alt]="'Product thumbnail image'" [src]="patients.thumbnail">
+                                            <div class="flex items-center justify-center w-full h-full text-xs font-semibold leading-none text-center uppercase"
+                                                *ngIf="!patients.thumbnail">
+                                                NO THUMB
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- SKU -->
+                                    <div class="hidden md:block truncate">
+                                        {{patients.chipNumber}}
+                                    </div>
+
+                                    <!-- Name -->
+                                    <div class="truncate">
+                                        {{patients.name}}
+                                    </div>
+
+                                    <!-- Price -->
+                                    <!-- <div class="hidden sm:block">
+                                        {{product.price | currency:'USD':'symbol':'1.2-2'}}
+                                    </div> -->
+
+                                    <!-- Stock -->
+                                    <!-- <div class="hidden lg:flex items-center">
+                                        <div class="min-w-4">{{product.stock}}</div>
+                                        <div class="flex items-end ml-2 w-1 h-4 bg-red-200 rounded overflow-hidden"
+                                            *ngIf="product.stock < 20">
+                                            <div class="flex w-full h-1/3 bg-red-600"></div>
+                                        </div>
+                                        <div class="flex items-end ml-2 w-1 h-4 bg-orange-200 rounded overflow-hidden"
+                                            *ngIf="product.stock >= 20 && product.stock < 30">
+                                            <div class="flex w-full h-2/4 bg-orange-400"></div>
+                                        </div>
+                                        <div class="flex items-end ml-2 w-1 h-4 bg-green-100 rounded overflow-hidden"
+                                            *ngIf="product.stock >= 30">
+                                            <div class="flex w-full h-full bg-green-400"></div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- Active -->
+                                    <div class="hidden lg:block">
+                                        <ng-container *ngIf="patients.active">
+                                            <mat-icon class="text-green-400 icon-size-5"
+                                                [svgIcon]="'heroicons_solid:check'"></mat-icon>
+                                        </ng-container>
+                                        <ng-container *ngIf="!patients.active">
+                                            <mat-icon class="text-gray-400 icon-size-5"
+                                                [svgIcon]="'heroicons_solid:x'"></mat-icon>
+                                        </ng-container>
+                                    </div>
+
+                                    <!-- Details button -->
+                                    <div>
+                                        <button class="min-w-10 min-h-7 h-7 px-2 leading-6" mat-stroked-button
+                                            (click)="toggleDetails(patients.id)">
+                                            <mat-icon class="icon-size-5"
+                                                [svgIcon]="selectedPatients?.id === patients.id ? 'heroicons_solid:chevron-up' : 'heroicons_solid:chevron-down'"></mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="grid">
+                                    <ng-container *ngIf="selectedPatients?.id === patients.id">
+                                        <ng-container
+                                            *ngTemplateOutlet="rowDetailsTemplate; context: {$implicit: patients}"></ng-container>
+                                    </ng-container>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+
+                    <!-- <mat-paginator
+                    class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
+                    [ngClass]="{'pointer-events-none': isLoading}" [length]="pagination.length"
+                    [pageIndex]="pagination.page" [pageSize]="pagination.size" [pageSizeOptions]="[5, 10, 25, 100]"
+                    [showFirstLastButtons]="true"></mat-paginator> -->
+
+                </ng-container>
+            </ng-container>
+
+            <ng-template #rowDetailsTemplate let-patients>
+                <div class="shadow-lg overflow-hidden">
+                    <div class="flex border-b">
+                        <!-- Selected product form -->
+                        <form class="flex flex-col w-full" [formGroup]="selectedPatientDetailsForm">
+
+                            <div class="flex flex-col sm:flex-row p-8">
+
+                                <!-- Product images and status -->
+                                <div class="flex flex-col items-center sm:items-start mb-8 sm:mb-0">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-32 h-44 border rounded overflow-hidden">
+                                            <ng-container
+                                                *ngIf="selectedPatientDetailsForm?.get('images')?.value?.length; else noImage">
+                                                <img class="w-full h-full object-cover"
+                                                    [src]="selectedPatientDetailsForm?.get('images')?.value[selectedPatientDetailsForm?.get('currentImageIndex')?.value]">
+                                            </ng-container>
+                                            <ng-template #noImage>
+                                                <span class="flex items-center min-h-20 text-lg font-semibold">NO
+                                                    IMAGE</span>
+                                            </ng-template>
+                                        </div>
+                                        <div class="flex items-center mt-2 whitespace-nowrap"
+                                            *ngIf="selectedPatientDetailsForm?.get('images')?.value?.length">
+                                            <button mat-icon-button (click)="cycleImages(false)">
+                                                <mat-icon class="icon-size-5"
+                                                    [svgIcon]="'heroicons_solid:arrow-narrow-left'"></mat-icon>
+                                            </button>
+                                            <span class="font-sm mx-2">
+                                                {{selectedPatientDetailsForm?.get('currentImageIndex')?.value + 1}} of
+                                                {{selectedPatientDetailsForm?.get('images')?.value?.length}}
+                                            </span>
+                                            <button mat-icon-button (click)="cycleImages(true)">
+                                                <mat-icon class="icon-size-5"
+                                                    [svgIcon]="'heroicons_solid:arrow-narrow-right'"></mat-icon>
+                                            </button>
+                                        </div>
+                                    </div>
+                                   <div class="flex flex-col mt-8">
+                                        <span class="font-semibold mb-2">Kısırlaştırılmış</span>
+                                        <mat-slide-toggle [formControlName]="'sterilization'" [color]="'primary'">
+                                            {{selectedPatientDetailsForm?.get('sterilization')?.value === true ? 'Evet'
+                                            :
+                                            'Hayır'}}
+                                        </mat-slide-toggle>
+                                    </div> 
+                                </div>
+
+                                <div class="flex flex-auto flex-wrap">
+                                    <!-- Name, SKU & etc. -->
+                                    <div class="flex flex-col w-full lg:w-2/4 sm:pl-8">
+
+                                        <!-- Name -->
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Hasta Adı</mat-label>
+                                            <input matInput [formControlName]="'name'">
+                                        </mat-form-field>
+
+                                        <!-- SKU and Barcode -->
+                                        <div class="flex">
+                                            <mat-form-field class="w-1/3 pr-2">
+                                                <mat-label>Çip Numarası</mat-label>
+                                                <input matInput [formControlName]="'chipNumber'">
+                                            </mat-form-field>
+                                            <mat-form-field class="w-2/3 pl-2">
+                                                <mat-label>Karne/Küpe Numarası</mat-label>
+                                                <input matInput [formControlName]="'reportNumber'">
+                                            </mat-form-field>
+                                        </div>
+
+                                        <!-- Category, Brand & Vendor -->
+                                        <div class="flex">
+                                            <mat-form-field class="w-1/2 pr-2">
+                                                <mat-label>Doğum Tarihi</mat-label>
+                                                <input matInput [matDatepicker]="picker"
+                                                    [formControlName]="'birthDate'">
+                                                <mat-datepicker-toggle matIconSuffix
+                                                    [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                            </mat-form-field>
+
+
+                                            <mat-form-field class="w-1/2 pl-2">
+                                                <mat-label>Rengi</mat-label>
+                                                <mat-select [formControlName]="'animalColor'">
+                                                    <ng-container *ngFor="let color of animalcolorDefList">
+                                                        <mat-option [value]="color.recId">
+                                                            {{color.name}}
+                                                        </mat-option>
+                                                    </ng-container>
+                                                </mat-select>
+                                            </mat-form-field>
+
+                                            <div class="flex align-items-center">
+                                                <button class="ml-4" mat-flat-button [color]="'primary'"
+                                                    (click)="addPanelOpen()">
+                                                    <mat-icon [svgIcon]="'heroicons_outline:plus'"></mat-icon>
+                                                    <span class="ml-2 mr-1">Renk</span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Stock and Reserved -->
+                                        <div class="flex">
+                                            <!-- <mat-form-field class="w-1/3 pr-2">
+                                                <mat-label>Stock</mat-label>
+                                                <input type="number" matInput [formControlName]="'stock'">
+                                            </mat-form-field>
+                                            <mat-form-field class="w-1/3 pl-2">
+                                                <mat-label>Reserved</mat-label>
+                                                <input type="number" matInput [formControlName]="'reserved'">
+                                            </mat-form-field> -->
+
+                                            <mat-form-field class="w-1/6 pr-2">
+                                                <mat-label>Hasta Özel Durumu</mat-label>
+                                                <textarea matInput [formControlName]="'specialNote'"></textarea>
+                                            </mat-form-field>
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Cost, Base price, Tax & Price -->
+                                    <div class="flex flex-col w-full lg:w-1/4 sm:pl-8">
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Cinsiyeti</mat-label>
+                                            <mat-select [formControlName]="'sex'">
+                                                <ng-container *ngFor="let sextype of sextype">
+                                                    <mat-option [value]="sextype.id">
+                                                        {{sextype.name}}
+                                                    </mat-option>
+                                                </ng-container>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <!-- Weight & Tags -->
+                                    <div class="flex flex-col w-full lg:w-1/4 sm:pl-8">
+                                        <!-- <mat-form-field class="w-full">
+                                            <mat-label>Weight</mat-label>
+                                            <span matSuffix>lbs.</span>
+                                            <input matInput [formControlName]="'weight'">
+                                        </mat-form-field> -->
+
+                                        <!-- Tags -->
+                                        <mat-form-field class="w-full">
+                                            <mat-label>Tür</mat-label>
+                                            <mat-select [formControlName]="'animalType'"
+                                                (selectionChange)="filterTagsByVendor($event)">
+                                                <ng-container *ngFor="let anmimaltype of animalTypesList">
+                                                    <mat-option [value]="anmimaltype.type">
+                                                        {{anmimaltype.name}}
+                                                    </mat-option>
+                                                </ng-container>
+                                            </mat-select>
+                                        </mat-form-field>
+
+
+                                        <span class="mb-px font-medium leading-tight">Irkı</span>
+                                        <div
+                                            class="mt-1.5 rounded-md border border-gray-300 dark:border-gray-500 shadow-sm overflow-hidden">
+                                            <!-- Header -->
+                                            <div class="flex items-center -my-px py-2 px-3">
+                                                <div class="flex items-center flex-auto min-w-0">
+                                                    <mat-icon class="icon-size-5"
+                                                        [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                                                    <input class="min-w-0 ml-2 py-1 border-0" type="text"
+                                                        placeholder="Enter tag name" (input)="filterTags($event)"
+                                                        (keydown)="filterTagsInputKeyDown($event)" [maxLength]="50"
+                                                        #newTagInput>
+                                                </div>
+                                                <!-- <button class="ml-3 w-8 h-8 min-h-8" mat-icon-button
+                                                    (click)="toggleTagsEditMode()">
+                                                    <mat-icon *ngIf="!tagsEditMode" class="icon-size-5"
+                                                        [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                                                    <mat-icon *ngIf="tagsEditMode" class="icon-size-5"
+                                                        [svgIcon]="'heroicons_solid:check'"></mat-icon>
+                                                </button> -->
+                                            </div>
+                                            <!-- Available tags -->
+                                            <div
+                                                class="h-56 leading-none overflow-y-auto border-t border-gray-300 dark:border-gray-500">
+
+                                                <!-- Tags (  [checked]="selectedPatients.tags.includes(tag.recId)")-->
+                                                <ng-container *ngIf="!tagsEditMode">
+                                                    <ng-container *ngFor="let tag of filteredTags; trackBy: trackByFn">
+                                                        <mat-checkbox class="flex items-center h-10 min-h-10 pl-1 pr-4"
+                                                            [color]="'primary'" [checked]="tag.isSelected"
+                                                            (change)="toggleProductTag(tag, $event)">
+                                                            {{ tag.breedName }}
+                                                        </mat-checkbox>
+                                                    </ng-container>
+                                                </ng-container>
+                                                <!-- Tags editing -->
+                                                <ng-container *ngIf="tagsEditMode">
+                                                    <div class="p-4 space-y-2">
+                                                        <ng-container
+                                                            *ngFor="let tag of filteredTags; trackBy: trackByFn">
+                                                            <mat-form-field class="fuse-mat-dense w-full"
+                                                                [subscriptSizing]="'dynamic'">
+                                                                <input matInput [value]="tag.breedName"
+                                                                    (input)="updateTagTitle(tag, $event)">
+                                                                <button mat-icon-button (click)="deleteTag(tag)"
+                                                                    matSuffix>
+                                                                    <mat-icon class="icon-size-5"
+                                                                        [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+                                                                </button>
+                                                            </mat-form-field>
+                                                        </ng-container>
+                                                    </div>
+                                                </ng-container>
+                                                <!-- <div class="flex items-center h-10 min-h-10 -ml-0.5 pl-4 pr-3 leading-none cursor-pointer border-t hover:bg-gray-50 dark:hover:bg-hover"
+                                                    *ngIf="shouldShowCreateTagButton(newTagInput.value)"
+                                                    (click)="createTag(newTagInput.value); newTagInput.value = ''"
+                                                    matRipple>
+                                                    <mat-icon class="mr-2 icon-size-5"
+                                                        [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+                                                    <div class="break-all">Create "<b>{{newTagInput.value}}</b>"</div>
+                                                </div> -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-center justify-between w-full border-t px-8 py-4">
+                                <button class="-ml-4" mat-button [color]="'warn'"
+                                    (click)="deleteSelectedProduct(selectedPatients?.id)">
+                                    Delete
+                                </button>
+                                <div class="flex items-center">
+                                    <div class="flex items-center mr-4" *ngIf="flashMessage">
+                                        <ng-container *ngIf="flashMessage === 'success'">
+                                            <mat-icon class="text-green-500"
+                                                [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                                            <span class="ml-2">Product updated</span>
+                                        </ng-container>
+                                        <ng-container *ngIf="flashMessage === 'error'">
+                                            <!-- <mat-icon class="text-red-500" [svgIcon]="'heroicons_outline:x'"></mat-icon> -->
+                                            <span class="ml-2">An error occurred, try again!</span>
+                                        </ng-container>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </ng-template>
+
+            <ng-template #noProducts>
+                <div class="p-8 sm:p-16 border-t text-4xl font-semibold tracking-tight text-center">Hasta Kaydı
+                    Bulunamadı
+                </div>
+            </ng-template>
+        </div>

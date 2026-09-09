@@ -1,0 +1,147 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+<div >
+  <mat-dialog-content class=""
+ 
+  >
+  <div class="modal-header">
+    <h5 class="modal-title">
+      <!-- <span *ngIf="selectedcustomeradd">Muayne Güncelle</span> -->
+      <span>Muayne Ekle</span>
+    </h5>
+  </div>
+
+  <div class="flex-auto mt-8 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+    <div [formGroup]="examinationForm">
+      <div class="float : left flex gt-xs:flex-row mb-2">
+        <div class="dx-field flex flex-col mb-4 sm:mb-0">
+          <mat-label class="font-semibold text-gray-700">Muayene Tarihi</mat-label>
+          <div class="dx-field mt-1">
+            <dx-date-box [value]="examinationDate" type="datetime" [min]="now" [inputAttr]="{ 'aria-label': 'Date And Time' }"
+              (onValueChanged)="handleValueChange($event)">
+            </dx-date-box>
+          </div>
+        </div>
+
+        <div class="flex-auto ml-3">
+          <div class="ml-3">
+            <mat-label class="font-semibold text-gray-700">Muayne Durumu</mat-label>
+          </div>
+          <div>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+              [formControlName]="'selectedState'">
+              <mat-radio-button class="example-radio-button" *ngFor="let state of states" [value]="state">
+                {{ state }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex float : left gt-md:flex-row">
+        <mat-form-field class="flex-auto gt-xs:pl-3">
+          <mat-label>Müşteri</mat-label>
+          <mat-select [placeholder]="'Müşteri'" [formControlName]="'customerId'" name="customerId"
+            (selectionChange)="handleCustomerChange($event)">
+            <mat-select-filter [ngModelOptions]="{ standalone: true }" [ngModel]="selectedCustomerId">
+            </mat-select-filter>
+            <mat-option *ngFor="let item of customers" [value]="item.id">{{ item.firstName }}
+              {{ item.lastName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Hasta</mat-label>
+          <mat-select name="patientId" [formControlName]="'patientId'" [placeholder]="'Hasta'">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let item of patientList" [value]="item.id">{{ item.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="flex float : left gt-md:flex-row">
+        <mat-form-field class="flex-auto gt-xs:pl-3">
+          <mat-label>Vücut Isısı (Derece)</mat-label>
+          <input type="number" matInput [formControlName]="'bodyTemperature'" name="bodyTemperature" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Nabız</mat-label>
+          <input type="number" matInput [formControlName]="'pulse'" name="pulse" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Solunum Hızı</mat-label>
+          <input type="number" matInput [formControlName]="'respiratoryRate'" name="respiratoryRate" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+          <mat-label>Ağırlık</mat-label>
+          <input type="number" matInput [formControlName]="'weight'" name="weight" />
+          <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:receipt-tax'"></mat-icon>
+        </mat-form-field>
+      </div>
+
+      <mat-label class="font-semibold text-gray-700">Semptomlar</mat-label>
+      <mat-form-field class="example-chip-list flex-wrap mt-1" appearance="fill">
+        <div class="flex-wrap my-2 w-full">
+          <mat-chip-grid class="ml-2" #chipGrid aria-label="Fruit selection">
+            <mat-chip-row *ngFor="let fruit of symptoms" (removed)="remove(fruit)">
+              {{ fruit }}
+              <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip-row>
+          </mat-chip-grid>
+          <input class="mt-1 w-full border rounded-md border-dashed" placeholder="   New Fruit..." #fruitInput
+            [formControl]="symptomCtrl" [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" />
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of filteredSymptoms | async" [value]="fruit">
+              {{ fruit }}
+            </mat-option>
+          </mat-autocomplete>
+        </div>
+      </mat-form-field>
+
+      <div class="flex float : left gt-xs:flex-row">
+        <mat-form-field class="w-1/6 pr-2">
+          <mat-label>Şikayet & Hikaye</mat-label>
+          <textarea matInput [formControlName]="'complaintAndHistory'" name="complaintAndHistory"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="ml-5 w-1/6 pr-2">
+          <mat-label>Tedavi Açıklaması</mat-label>
+          <textarea matInput [formControlName]="'treatmentDescription'" name="treatmentDescription"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Yapılan İşlemler & Kullanılan
+            Malzemeler</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</mat-dialog-content>
+<div class="flex items-center mt-4 sm:mt-0 justify-end ">
+  <button class="ml-auto sm:ml-0 mx-2" mat-stroked-button (click)="closeDialog()">
+      Vazgeç
+  </button>
+  <button class="order-first sm:order-last" mat-flat-button [color]="'primary'"
+      (click)="addOrUpdateExamination()">
+      Kaydet
+  </button>
+</div>
+</div>

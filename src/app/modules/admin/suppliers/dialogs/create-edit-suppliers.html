@@ -1,0 +1,127 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+    <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+        <span class="material-icons"> highlight_off </span>
+    </button>
+</h1>
+
+
+<div class="modalForm">
+    <mat-dialog-content>
+        <div class="modal-header">
+            <h5 class="modal-title">
+                <span *ngIf="!selectedsuppliers">Tedarikçi Ekle</span>
+                <span *ngIf="selectedsuppliers">Tedarikçi Güncelle</span>
+            </h5>
+        </div>
+
+        <div class="modal-body mbody-productcategory">
+            <div class="qm-pr-content">
+
+                <div class="container-fluid" [formGroup]="suppliers">
+                    <div class="row">
+                        <div class="flex flex-col gt-sm:flex-row">
+                            <div class="flex flex-col">
+                                <mat-checkbox class="mb-2" [checked]="false" [formControlName]="'active'"
+                                    [color]="'primary'">
+                                    Durum
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                        <div class="float : left flex  gt-xs:flex-row">
+                            <mat-form-field class="flex-auto gt-xs:pl-3">
+                                <mat-label>Tedarikçi Adı</mat-label>
+                                <input matInput [formControlName]="'suppliername'">
+                                <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                <mat-label>Website</mat-label>
+                                <input matInput [formControlName]="'webSite'">
+                                <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="float : left flex  gt-xs:flex-row">
+                            <mat-form-field class="flex-auto gt-xs:pl-3">
+                                <mat-label>E-Mail</mat-label>
+                                <input matInput [formControlName]="'email'">
+                                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:mail'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                <mat-label>Telefon</mat-label>
+                                <input placeholder="(555) 555-5555" (input)="formatPhoneNumber($event.target.value)"
+                                    matInput [formControlName]="'phone'">
+                                <mat-icon class="icon-size-5" matSuffix [svgIcon]="'heroicons_solid:phone'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+               
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field class="flex-auto">
+                                <mat-label>Adres</mat-label>
+                                <textarea matInput cdkTextareaAutosize [cdkAutosizeMinRows]="3"
+                                    [formControlName]="'address'"></textarea>
+                                <mat-icon class="icon-size-5" matSuffix
+                                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="float : left flex  gt-xs:flex-row">
+                            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                              [formControlName]="'selectedState'">
+                              <mat-radio-button class="example-radio-button" *ngFor="let state of states" [value]="state">
+                                {{ state }}
+                              </mat-radio-button>
+                            </mat-radio-group>
+                          </div>
+                     
+                          <div class="float : left flex  gt-xs:flex-row">
+                            <mat-form-field class="flex-auto gt-xs:pl-3">
+                                <mat-label>Vergi numarası / TC Kimlik No</mat-label>
+                                <input matInput [formControlName]="'taxNumber'">
+                
+                            </mat-form-field>
+                            <mat-form-field class="ml-5 flex-auto gt-xs:pl-3">
+                                <mat-label>Firma Adı / Adı Soyadı</mat-label>
+                                <input matInput [formControlName]="'companyName'">
+       
+                            </mat-form-field>
+                        </div>
+            
+
+                        <div class="col-sm-12 mt-2 common-width">
+                            <mat-form-field style="width:100%">
+                                <mat-label>Vergi Dairesi</mat-label>
+                                <input matInput [formControlName]="'taxOffice'">
+                        
+                            </mat-form-field>
+                        </div>
+
+                    
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+                <div class="-ml-2">
+
+                </div>
+
+                <div class="flex items-center mt-4 sm:mt-0">
+                    <!-- Discard -->
+                    <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+                        Vazgeç
+                    </button>
+                    <!-- Save as draft -->
+                    <!-- Send -->
+                    <button class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'"
+                        (click)="addOrUpdateStore()" [disabled]="buttonDisabled">
+                        Kaydet
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+    </mat-dialog-content>
+</div>

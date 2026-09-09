@@ -1,0 +1,92 @@
+
+.shadow{
+    box-shadow: 0 .1rem .1rem rgba(0,0,0,.15)!important;
+}
+
+.fuse-mat-rounded .mat-tab-group
+.mat-tab-header .mat-tab-label-container
+.mat-tab-list .mat-tab-labels
+.mat-tab-label.mat-tab-label-active{
+color: white !important;
+background-color: #0a7fc2!important;
+border-radius: 5px!important;
+}
+
+.mat-tab-body-wrapper{
+    overflow-y: inherit!important;
+}
+
+.mat-tab-body.mat-tab-body-active{
+    overflow-y: inherit!important;
+}
+.mat-tab-body-content{
+    overflow-y: inherit!important;
+}
+
+.mat-tab-labels{
+    margin-left:40px;
+}
+
+.dashboard-price{
+    padding:10px 0px;
+    border:1px solid #e2e2e2;
+    text-align: center;
+    font-size:.8rem!important;
+}
+
+.dashboard-price span{
+    font-weight: 700;
+}
+
+.mat-checkbox{
+    padding:8px 0 8px 18px!important;
+}
+
+
+@media (max-width:600px){
+    .mat-tab-labels{
+        margin-left:25px!important;
+    }
+}
+
+.dx-designer-viewport .dxd-icon-fill{
+    fill:#0a7fc2!important;
+}
+.dx-designer-viewport .dxd-back-contrast{
+    background-color: #e2e2e2!important;
+}
+
+.dxrd-preview.dxrd-designer-wrapper .dxrd-preview-wrapper .dxrd-preview-surface .dxrd-report-preview-holder
+{
+    width:99%!important;
+    height:99%!important;
+    border:1px solid #d4d4d4;
+}
+@media (max-width:576px){
+
+    ::ng-deep .btn-filters-report{
+        margin-top:0!important;
+    }
+
+    ::ng-deep .ngx-charts-outer{
+        width:100%!important;
+        transform:scale(85%)!important;
+    }
+
+    ::ng-deep .ngx-charts{
+        width:100%!important;
+    }
+
+    ::ng-deep .pie-chart{
+        transform: translate(200px,140px)!important;
+    }
+
+    .btn-filters-report{
+        margin-top:0!important;
+    }
+
+    .mat-form-field.mat-form-field-appearance-fill.mat-form-field-has-label .mat-form-field-wrapper{
+        margin-top:0!important;
+    }
+}
+

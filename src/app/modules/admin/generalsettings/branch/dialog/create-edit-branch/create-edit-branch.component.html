@@ -1,0 +1,70 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span *ngIf="!isUpdate">Şube Ekle</span>
+        <span *ngIf="isUpdate">Şube Güncelle</span>
+      </h5>
+    </div>
+
+    <div class="modal-body mbody-users">
+      <div class="" [formGroup]="branchForm">
+        <div class="row">
+          <div class="float : left flex  gt-xs:flex-row">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Şube Adi</mat-label>
+              <input matInput [formControlName]="'name'">
+            </mat-form-field>
+          </div>
+          <div class="float : left flex  gt-xs:flex-row">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Semt</mat-label>
+              <input matInput [formControlName]="'district'">
+            </mat-form-field>
+          </div>
+          <div class="float : left flex  gt-xs:flex-row">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Adres</mat-label>
+              <input matInput [formControlName]="'address'">
+            </mat-form-field>
+          </div>
+          <div class="float : left flex  gt-xs:flex-row">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Telefon Numarası</mat-label>
+              <input placeholder="(555) 555-5555" (input)="formatPhoneNumber($event.target.value, 'phone')" matInput
+                [formControlName]="'phone'">
+            </mat-form-field>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6" id="common-dialog-buttons">
+        <div class="-ml-2">
+          <button mat-icon-button>
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:id'"></mat-icon>
+          </button>
+        </div>
+
+        <div class="flex items-center mt-4 sm:mt-0">
+          <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+            Vazgeç
+          </button>
+          <button class="order-first sm:order-last" mat-flat-button [color]="'primary'" (click)="addOrUpdateBranch()">
+            Kaydet
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+
+  </mat-dialog-content>
+</div>

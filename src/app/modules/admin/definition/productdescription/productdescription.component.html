@@ -1,0 +1,156 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+  <!-- Header -->
+  <div
+    class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+    <div class="flex-1 min-w-0">
+      <!-- Breadcrumbs -->
+      <div>
+        <div class="flex sm:hidden">
+          <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+            <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+            <span class="ml-1">Back</span>
+          </a>
+        </div>
+      </div>
+      <!-- Title -->
+      <div class="mt-2">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+          Ürün
+        </h2>
+      </div>
+      <div class="font-medium tracking-tight text-secondary">Malzeme Listesi/ Satışa sunulacak ürünlerin tanımlamasının
+        yapılması</div>
+    </div>
+    <!-- Actions -->
+    <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+      <!-- <button mat-stroked-button>
+              <mat-icon
+                  class="icon-size-5 mr-2"
+                  [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+              Yeni Tedarikçiden Alış
+          </button>-->
+          <button mat-stroked-button (click)="getProductList()">
+            <mat-icon class="icon-size-5 mr-2" [svgIcon]="'refresh'"></mat-icon>
+            Yenile
+          </button>
+      <button class="ml-3" mat-flat-button [color]="'primary'" (click)="addPanelOpen()">
+        <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+        Yeni Ürün Ekle
+      </button>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+    <!-- CONTENT GOES HERE -->
+
+    
+    <mat-chip-listbox aria-label="Fish selection" class="mb-2" (change)="onChipsSelectionChange($event)" *ngIf="!loader">
+      <mat-chip-option *ngFor="let option of options" [value]="option.type" [selected]="option.selected">{{option.name}}</mat-chip-option>
+    </mat-chip-listbox>
+    
+    <div role="status" class="animate-pulse" *ngIf="loader">
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4" *ngFor="let _ of items"></div>
+    </div>
+    <div class="mat-elevation-z8"  *ngIf="!loader">
+
+      <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="warning">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <mat-icon *ngIf="element.criticalAmount != 0 && element.stockCount <= element.criticalAmount" color="warn" matTooltip="Kritik stoğa ulaşıldı">warning</mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="active">
+          <th mat-header-cell *matHeaderCellDef> Durum </th>
+          <td mat-cell *matCellDef="let element" >
+            <!-- Önceki İşlemler Butonları -->
+            <mat-slide-toggle [(ngModel)]="element.active" (change)="toggleActive(element.id, element.active)"  color="{{ element.criticalAmount === 0 ? 'warn' : 'green-toggle' }}"></mat-slide-toggle>
+          </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Ürün Adı </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="productCode">
+          <th mat-header-cell *matHeaderCellDef> Ürün Kodu </th>
+          <td mat-cell *matCellDef="let element"> {{element.productCode}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="productBarcode">
+          <th mat-header-cell *matHeaderCellDef> Ürün Barkodu </th>
+          <td mat-cell *matCellDef="let element"> {{element.productBarcode}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="buyingPrice">
+          <th mat-header-cell *matHeaderCellDef> Alış Fiyatı </th>
+          <td mat-cell *matCellDef="let element"> {{element.buyingPrice | number:'1.2-2'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sellingPrice">
+          <th mat-header-cell *matHeaderCellDef> Satış Fiyatı </th>
+          <td mat-cell *matCellDef="let element"> {{element.sellingPrice | number:'1.2-2'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="stockCount">
+          <th mat-header-cell *matHeaderCellDef> Stok </th>
+          <td mat-cell *matCellDef="let element"> {{ element.stockCount }}  {{ element.unitName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button (click)="redirectToMovement(element.id)">
+              <mat-icon aria-label="view_list">view_list</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+              <mat-icon class="mat-18">delete</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openStockTrackingEntry(element.id, 1)">
+                <mat-icon>trending_up</mat-icon>
+                <span>Stok Ekle</span>
+              </button>
+              <button mat-menu-item (click)="openStockTrackingEntry(element.id, 2)">
+                <mat-icon>trending_down</mat-icon>
+                <span>Stok Düş</span>
+              </button>
+              <button mat-menu-item (click)="openStockTrackingList(element.id)">
+                <mat-icon>view_list</mat-icon>
+                <span>Stoklar</span>
+              </button>
+              <button mat-menu-item (click)="logView(element.id)">
+                <mat-icon>history</mat-icon>
+                <span>İşlem Geçmişi</span>
+              </button>
+            </mat-menu> 
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons #paginator
+        aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+
+  </div>
+
+</div>

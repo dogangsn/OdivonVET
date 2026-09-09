@@ -1,0 +1,13 @@
+.mat-footer-cell {
+    background-color: #e0e0e0;
+  }
+   
+  .footer-bold {
+    font-weight: bold;
+  }
+
+  .footer-background .mat-footer-cell {
+    background-color: #727070; 
+    color: #000;
+    border-top: 2px solid #000;
+  }

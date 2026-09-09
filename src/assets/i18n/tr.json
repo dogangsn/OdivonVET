@@ -1,0 +1,27 @@
+{
+    "welcome-back": "Hoşgeldin",
+    "Project": "Proje",
+    "Analytics": "Analitik",
+    "sweetalert": {
+        "success": "Başarılı !",
+        "error": "Hata !",
+        "warning": "Uyarı !",
+        "transactionSuccessful": "İşlem Başarılı",
+        "transactionFailed": "İşlem Başarısız",
+        "areYouSure": "Emin misiniz ?",
+        "areYouSureDelete": "Silmek istediğinize emin misiniz ?",
+        "pleaseSelectLanguage": "Lütfen çevri yapılacak dilleri ve varsayılan dili seçiniz !",
+        "nothingChanged": "Hiçbir değişiklik yapılmadı.",
+        "showThePayrollErrorList": "Listeyi görmek için tıklayınız.",
+        "information": "Bilgilendirme",
+        "areYouSureClose": "Yaptığınız değişiklikler kaydedilmeyecek, devam etmek istediğinize emin misiniz ?",
+        "CurrandAmountError": "Zorunlu alanları tekrar kontrol ediniz.",
+        "cancel": "İptal Et",
+        "undoCancel": "İptali Geri Al",
+        "approve": "Seçili talebi onaylamak istediğinize emin misiniz?",
+        "apponitnmentAreSure" : "Randevu kayıt edilecektir. Onaylıyor musunuz?",
+        "examinationAreSure" : "Muayene kayıt edilecektir. Onaylıyor musunuz?",
+        "farmAddAreSure" : "Çiftlik kayıt edilecektir. Onaylıyor musunuz?",
+        "areYouSureChange": "Değiştirilecektir emin misiniz ?"
+    }
+}

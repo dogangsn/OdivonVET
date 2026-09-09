@@ -1,0 +1,363 @@
+<div class="flex flex-auto">
+
+    <form
+        class="flex flex-col flex-auto p-6 pt-10 sm:p-8 sm:pt-10 overflow-y-auto"
+        [formGroup]="AgendaForm">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between -mt-3 -ml-4">
+
+            <!-- Mark as ... button -->
+            <button 
+                class="pr-4 pl-3.5"
+                mat-button
+                (click)="toggleCompleted()" [disabled]="!visibleCheck">
+
+                <!-- Mark as complete -->
+                <ng-container *ngIf="!AgendaForm.get('isActive').value"> 
+                    <div class="flex items-center justify-center">
+                        <mat-icon [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                        <span  class="ml-2 font-semibold">MARK AS COMPLETE</span>
+                    </div>
+                </ng-container>
+
+                <!-- Mark as incomplete -->
+                <ng-container *ngIf="AgendaForm.get('isActive').value">
+                    <div class="flex items-center justify-center">
+                        <mat-icon
+                            class="text-primary"
+                            [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                        <span   class="ml-2 font-semibold">MARK AS INCOMPLETE</span>
+                    </div>
+                </ng-container>
+            </button>
+
+            <div class="flex items-center">
+                <!-- More menu -->
+                <button *ngIf="!visible"
+                    mat-icon-button
+                    [matMenuTriggerFor]="moreMenu">
+                    <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
+                </button>
+                <mat-menu #moreMenu="matMenu">
+                    <button  
+                        mat-menu-item
+                        (click)="deleteAgenda()" >
+                        <mat-icon [color]="'warn'" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                        <span class = "text-red-500">{{agenda.agendaType === 0 ? 'Ajandayı' : 'Bölümü'}} Sil</span>
+                    </button>
+                </mat-menu>
+
+                <!-- Close button -->
+                <!-- <a
+                    mat-icon-button
+                    [routerLink]="['../']">
+                    <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                </a> -->
+                <button
+                mat-menu-item
+                (click)="closePage()">
+                <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+            </button>
+            </div>
+
+        </div>
+
+        <mat-divider class="mt-6 mb-8"></mat-divider>
+
+        <!-- Title -->
+        <div>
+            <mat-form-field
+                class="w-full"
+                [subscriptSizing]="'dynamic'">
+                <mat-label>{{agenda.agendaType === 0 ? 'Ajanda Başlığı' : 'Bölüm Başlığı'}}</mat-label>
+                <textarea
+                    matInput
+                    [formControlName]="'agendaTitle'"
+                    [spellcheck]="false"
+                    cdkTextareaAutosize
+                    #titleField></textarea>
+            </mat-form-field>
+        </div>
+
+        <!-- <div class="mt-8">
+            <div class="font-medium mb-1.5">Etiketler</div>
+            <div class="flex flex-wrap items-center -m-1.5">
+                <ng-container *ngIf="agenda.agendaTags.length">
+                    <ng-container *ngFor="let tag of (agenda.agendaTags | fuseFindByKey:'id':agendaTags); trackBy: trackByFn">
+                        <div class="flex items-center justify-center px-4 m-1.5 rounded-full leading-9 text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700">
+                            <span   class="text-md font-medium whitespace-nowrap">{{tag.title}}</span>
+                        </div>
+                    </ng-container>
+                </ng-container>
+                <div
+                    class="flex items-center justify-center px-4 m-1.5 rounded-full leading-9 cursor-pointer text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700"
+                    (click)="openTagsPanel()"
+                    #tagsPanelOrigin>
+
+                    <ng-container *ngIf="agenda.agendaTags.length">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                        <span class="ml-1.5 text-md font-medium whitespace-nowrap">Edit</span>
+                    </ng-container>
+
+                    <ng-container *ngIf="!agenda.agendaTags.length">
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+                        <span class="ml-1.5 text-md font-medium whitespace-nowrap">Add</span>
+                    </ng-container>
+
+                    <ng-template #tagsPanel>
+                        <div class="w-60 rounded border shadow-md bg-card">
+                            <div class="flex items-center m-3 mr-2">
+                                <div class="flex items-center">
+                                    <mat-icon
+                                        class="icon-size-5"
+                                        [svgIcon]="'heroicons_solid:search'"></mat-icon>
+                                    <div class="ml-2">
+                                        <input
+                                            class="w-full min-w-0 py-1 border-0"
+                                            type="text"
+                                            placeholder="Enter tag name"
+                                            (input)="filterTags($event)"
+                                            (keydown)="filterTagsInputKeyDown($event)"
+                                            [maxLength]="30"
+                                            #newTagInput>
+                                    </div>
+                                </div>
+                                <button
+                                    class="ml-1"
+                                    mat-icon-button
+                                    (click)="toggleTagsEditMode()">
+                                    <mat-icon
+                                        *ngIf="!tagsEditMode"
+                                        class="icon-size-5"
+                                        [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                                    <mat-icon
+                                        *ngIf="tagsEditMode"
+                                        class="icon-size-5"
+                                        [svgIcon]="'heroicons_solid:check'"></mat-icon>
+                                </button>
+                            </div>
+                            <div
+                                class="flex flex-col max-h-64 py-2 border-t overflow-y-auto">
+                                <ng-container *ngIf="!tagsEditMode">
+                                    <ng-container *ngFor="let tag of filteredTags; trackBy: trackByFn">
+                                        <div
+                                            class="flex items-center h-10 min-h-10 pl-1 pr-4 cursor-pointer hover:bg-hover"
+                                            (click)="toggleAgendaTag(tag)"
+                                            matRipple>
+                                            <mat-checkbox
+                                                class="flex items-center h-10 min-h-10 pointer-events-none"
+                                                [checked]="agenda.agendaTags.includes(tag.id)"
+                                                [color]="'primary'"
+                                                [disableRipple]="true">
+                                            </mat-checkbox>
+                                            <div class="ml-1">{{tag.title}}</div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                                <ng-container *ngIf="tagsEditMode">
+                                    <div class="py-2 space-y-2">
+                                        <ng-container *ngFor="let tag of filteredTags; trackBy: trackByFn">
+                                            <div class="flex items-center">
+                                                <mat-form-field
+                                                    class="fuse-mat-dense w-full mx-4"
+                                                    [subscriptSizing]="'dynamic'">
+                                                    <input
+                                                        matInput
+                                                        [value]="tag.title"
+                                                        (input)="updateTagTitle(tag, $event)">
+                                                    <button
+                                                        mat-icon-button
+                                                        (click)="deleteTag(tag)"
+                                                        matSuffix>
+                                                        <mat-icon
+                                                            class="icon-size-5 ml-2"
+                                                            [svgIcon]="'heroicons_solid:trash'"></mat-icon>
+                                                    </button>
+                                                </mat-form-field>
+                                            </div>
+                                        </ng-container>
+                                    </div>
+                                </ng-container>
+                                <div
+                                    class="flex items-center h-10 min-h-10 -ml-0.5 pl-4 pr-3 leading-none cursor-pointer hover:bg-hover"
+                                    *ngIf="shouldShowCreateTagButton(newTagInput.value)"
+                                    (click)="createTag(newTagInput.value); newTagInput.value = ''"
+                                    matRipple>
+                                    <mat-icon
+                                        class="mr-2 icon-size-5"
+                                        [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+                                    <div class="break-all">Create "<b>{{newTagInput.value}}</b>"</div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Priority and Due date -->
+        <div class="flex flex-wrap items-center mt-8">
+
+            <!-- Priority -->
+            <div>
+                <div class="font-medium">Öncelik</div>
+                <div
+                    class="flex items-center mt-1.5 px-4 leading-9 rounded-full cursor-pointer"
+                    [ngClass]="{'text-green-800 bg-green-200 dark:text-green-100 dark:bg-green-500': agenda.priority === 0,
+                                'text-gray-800 bg-gray-200 dark:text-gray-100 dark:bg-gray-500': agenda.priority === 1,
+                                'text-red-800 bg-red-200 dark:text-red-100 dark:bg-red-500': agenda.priority === 2}"
+                    [matMenuTriggerFor]="priorityMenu">
+
+                    <!-- Low -->
+                    <ng-container *ngIf="agenda.priority === 0">
+                        <mat-icon
+                            class="icon-size-5 text-current"
+                            [svgIcon]="'heroicons_solid:arrow-narrow-down'"></mat-icon>
+                        <span  class="ml-2 mr-1 text-md font-medium">Planlı</span>
+                    </ng-container>
+
+                    <!-- Normal -->
+                    <ng-container *ngIf="agenda.priority === 1">
+                        <mat-icon
+                            class="icon-size-4 text-current"
+                            [svgIcon]="'heroicons_solid:minus'"></mat-icon>
+                        <span   class="ml-2 mr-1 text-md font-medium">Normal</span>
+                    </ng-container>
+
+                    <!-- High -->
+                    <ng-container *ngIf="agenda.priority === 2">
+                        <mat-icon
+                            class="icon-size-4 text-current"
+                            [svgIcon]="'heroicons_solid:arrow-narrow-up'"></mat-icon>
+                        <span  class="ml-2 mr-1 text-md font-medium">Acil</span>
+                    </ng-container>
+                </div>
+                <mat-menu #priorityMenu="matMenu">
+                    <!-- Low -->
+                    <button
+                        [ngClass]="{'bg-hover': agenda.priority === 0}"
+                        mat-menu-item
+                        (click)="setAgendaPriority(0)">
+                        <span class="inline-flex items-center justify-between w-full min-w-30 leading-5">
+                            <span class="font-medium">Planlı</span>
+                            <mat-icon
+                                class="mr-0 icon-size-4 text-green-600 dark:text-green-500"
+                                [svgIcon]="'heroicons_solid:arrow-narrow-down'"></mat-icon>
+                        </span>
+                    </button>
+
+                    <!-- Normal -->
+                    <button
+                        [ngClass]="{'bg-hover': agenda.priority === 1}"
+                        mat-menu-item
+                        (click)="setAgendaPriority(1)">
+                        <span class="inline-flex items-center justify-between w-full min-w-30 leading-5">
+                            <span class="font-medium">Normal</span>
+                            <mat-icon
+                                class="mr-0 icon-size-4 text-gray-600 dark:text-gray-500"
+                                [svgIcon]="'heroicons_solid:minus'"></mat-icon>
+                        </span>
+                    </button>
+
+                    <!-- High -->
+                    <button
+                        [ngClass]="{'bg-hover': agenda.priority === 2}"
+                        mat-menu-item
+                        (click)="setAgendaPriority(2)">
+                        <span class="inline-flex items-center justify-between w-full min-w-30 leading-5">
+                            <span class="font-medium">Acil</span>
+                            <mat-icon
+                                class="mr-0 icon-size-4 text-red-600 dark:text-red-500"
+                                [svgIcon]="'heroicons_solid:arrow-narrow-up'"></mat-icon>
+                        </span>
+                    </button>
+                </mat-menu>
+            </div>
+
+            <!-- Due date -->
+            <div class="ml-6">
+                <div class="font-medium">Bitiş Tarihi</div>
+                <div
+                    class="relative flex items-center mt-1.5 px-4 leading-9 rounded-full cursor-pointer"
+                    [ngClass]="{'text-gray-500 bg-gray-100 dark:text-gray-300 dark:bg-gray-700': !agenda.dueDate,
+                                'text-green-800 bg-green-200 dark:text-green-100 dark:bg-green-500': agenda.dueDate && !isOverdue(),
+                                'text-red-800 bg-red-200 dark:text-red-100 dark:bg-red-500': agenda.dueDate && isOverdue()}"
+                    (click)="dueDatePicker.open()">
+                    <mat-icon
+                        class="icon-size-5 text-current"
+                        [svgIcon]="'heroicons_solid:calendar'"></mat-icon>
+                    <span class="ml-2 text-md font-medium">
+                        <ng-container *ngIf="agenda.dueDate">{{agenda.dueDate | date:'longDate'}}</ng-container>
+                        <ng-container *ngIf="!agenda.dueDate">Seçim Yapılmadı</ng-container>
+                    </span>
+                    <mat-form-field
+                        class="fuse-mat-dense invisible absolute inset-0 -mt-2.5 opacity-0 pointer-events-none"
+                        [subscriptSizing]="'dynamic'">
+                        <input
+                            matInput
+                            [formControlName]="'dueDate'"
+                            [matDatepicker]="dueDatePicker">
+                        <mat-datepicker #dueDatePicker>
+                            <mat-datepicker-actions>
+                                <button
+                                    mat-button
+                                    (click)="AgendaForm.get('dueDate').setValue(null)"
+                                    matDatepickerCancel>Clear
+                                </button>
+                                <button
+                                    class=""
+                                    mat-flat-button
+                                    [color]="'primary'"
+                                    matDatepickerApply>Select
+                                </button>
+                            </mat-datepicker-actions>
+                        </mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Notes -->
+        <div class="mt-8">
+            <mat-form-field
+                class="w-full"
+                [subscriptSizing]="'dynamic'">
+                <mat-label>Not</mat-label>
+                <textarea
+                    matInput
+                    [formControlName]="'notes'"
+                    [spellcheck]="false"
+                    cdkTextareaAutosize></textarea>
+            </mat-form-field>
+        </div>
+        <div class="mt-4 sm:mt-6">
+            <!-- Add section button -->
+            <button
+                mat-flat-button
+                [color]="agenda.agendaType === 0 ? 'primary' : 'accent'"
+                (click)="saveAgendadetail(agenda.agendaType)"
+                [matTooltip]="'Shortcut: Ctrl + .'"
+                *ngIf="visible">
+                <mat-icon [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                <span class="ml-2 mr-1">{{agenda.agendaType === 0 ? 'Ajandayı Kaydet' : 'Bölümü Kaydet'}}</span>
+            </button>
+            <button
+                mat-flat-button
+                [color]="this.agendaByIdList.agendaType === 0 ? 'primary' : 'accent'"
+                (click)="updateAgendadetail(this.agendaByIdList)"
+                [matTooltip]="'Shortcut: Ctrl + .'"
+                *ngIf="!visible">
+                <mat-icon [svgIcon]="'heroicons_outline:check'"></mat-icon>
+                <span class="ml-2 mr-1">{{this.agendaByIdList.agendaType === 0 ? 'Ajandayı Güncelle' : 'Bölümü Güncelle'}}</span>
+            </button>
+        </div>
+
+    </form>
+
+</div>

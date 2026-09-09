@@ -1,0 +1,6501 @@
+{
+  "entities": {
+    "VetAccomodation": {
+      "table": "vetaccomodation",
+      "fields": {
+        "type": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Type"
+        },
+        "roomId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "RoomId"
+        },
+        "customerId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CustomerId"
+        },
+        "patientsId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "PatientsId"
+        },
+        "checkinDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "CheckinDate"
+        },
+        "checkOutDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "CheckOutDate"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        },
+        "isLogOut": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsLogOut"
+        },
+        "isArchive": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsArchive"
+        },
+        "accomodationcheckOutId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "AccomodationcheckOutId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAccomodation.cs",
+      "scope": "clinical"
+    },
+    "VetAccomodationCheckOuts": {
+      "table": "vetaccomodationcheckouts",
+      "fields": {
+        "accomodationId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "AccomodationId"
+        },
+        "checkinDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "CheckinDate"
+        },
+        "checkOutDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "CheckOutDate"
+        },
+        "saleBuyId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "SaleBuyId"
+        },
+        "accomodationAmount": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "AccomodationAmount"
+        },
+        "collectionAmount": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "CollectionAmount"
+        },
+        "paymentId": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "PaymentId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAccomodationCheckOuts.cs",
+      "scope": "clinical"
+    },
+    "VetAdress": {
+      "table": "vetadress",
+      "fields": {
+        "province": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Province"
+        },
+        "district": {
+          "sql": "text",
+          "nullable": false,
+          "source": "District"
+        },
+        "county": {
+          "sql": "text",
+          "nullable": false,
+          "source": "County"
+        },
+        "longAdress": {
+          "sql": "text",
+          "nullable": false,
+          "source": "LongAdress"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAdress.cs",
+      "scope": "customers"
+    },
+    "VetAgenda": {
+      "table": "vetagenda",
+      "fields": {
+        "agendaNo": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AgendaNo"
+        },
+        "agendaType": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AgendaType"
+        },
+        "isActive": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "IsActive"
+        },
+        "agendaTitle": {
+          "sql": "text",
+          "nullable": false,
+          "source": "AgendaTitle"
+        },
+        "priority": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "Priority"
+        },
+        "dueDate": {
+          "sql": "timestamptz",
+          "nullable": true,
+          "source": "DueDate"
+        },
+        "notes": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Notes"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAgenda.cs",
+      "scope": "appointments"
+    },
+    "VetAgendaTags": {
+      "table": "vetagendatags",
+      "fields": {
+        "agendaId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "AgendaId"
+        },
+        "tagsId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "TagsId"
+        },
+        "tags": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Tags"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAgendaTags.cs",
+      "scope": "appointments"
+    },
+    "VetAnimalBreedsDef": {
+      "table": "vetanimalbreedsdef",
+      "fields": {
+        "animalType": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "AnimalType"
+        },
+        "breedName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "BreedName"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAnimalBreedsDef.cs",
+      "scope": "definitions"
+    },
+    "VetAnimalColorsDef": {
+      "table": "vetanimalcolorsdef",
+      "fields": {
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAnimalColorsDef.cs",
+      "scope": "definitions"
+    },
+    "VetAnimalsType": {
+      "table": "vetanimalstype",
+      "fields": {
+        "type": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Type"
+        },
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        },
+        "description": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Description"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAnimalsType.cs",
+      "scope": "definitions"
+    },
+    "VetAppointmentTypes": {
+      "table": "vetappointmenttypes",
+      "fields": {
+        "type": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Type"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        },
+        "isChange": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "IsChange"
+        },
+        "isDefaultPrice": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "IsDefaultPrice"
+        },
+        "price": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "Price"
+        },
+        "taxisId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "TaxisId"
+        },
+        "colors": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Colors"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAppointmentTypes.cs",
+      "scope": "appointments"
+    },
+    "VetAppoointments": {
+      "table": "vetappoointments",
+      "fields": {
+        "beginDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "BeginDate"
+        },
+        "endDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "EndDate"
+        },
+        "note": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Note"
+        },
+        "doctorId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "DoctorId"
+        },
+        "customerId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CustomerId"
+        },
+        "patientsId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "PatientsId"
+        },
+        "appointmentType": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AppointmentType"
+        },
+        "isCompleted": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsCompleted"
+        },
+        "vaccineId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "VaccineId"
+        },
+        "isPaymentReceived": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsPaymentReceived"
+        },
+        "isMessage": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsMessage"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetAppoointments.cs",
+      "scope": "appointments"
+    },
+    "VetCasingDefinition": {
+      "table": "vetcasingdefinition",
+      "fields": {
+        "caseName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "CaseName"
+        },
+        "active": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "Active"
+        },
+        "kasa": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Kasa"
+        },
+        "durumu": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "Durumu"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetCasingDefinition.cs",
+      "scope": "finance"
+    },
+    "VetCustomerGroupDef": {
+      "table": "vetcustomergroupdef",
+      "fields": {
+        "code": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Code"
+        },
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetCustomerGroupDef.cs",
+      "scope": "customers"
+    },
+    "VetCustomers": {
+      "table": "vetcustomers",
+      "fields": {
+        "firstName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FirstName"
+        },
+        "lastName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "LastName"
+        },
+        "phoneNumber": {
+          "sql": "text",
+          "nullable": false,
+          "source": "PhoneNumber"
+        },
+        "phoneNumber2": {
+          "sql": "text",
+          "nullable": false,
+          "source": "PhoneNumber2"
+        },
+        "eMail": {
+          "sql": "text",
+          "nullable": false,
+          "source": "EMail"
+        },
+        "taxOffice": {
+          "sql": "text",
+          "nullable": false,
+          "source": "TaxOffice"
+        },
+        "vKNTCNo": {
+          "sql": "text",
+          "nullable": false,
+          "source": "VKNTCNo"
+        },
+        "customerGroup": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CustomerGroup"
+        },
+        "note": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Note"
+        },
+        "discountRate": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "DiscountRate"
+        },
+        "isEmail": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsEmail"
+        },
+        "isPhone": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsPhone"
+        },
+        "isArchive": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsArchive"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetCustomers.cs",
+      "scope": "customers"
+    },
+    "VetDemandProducts": {
+      "table": "vetdemandproducts",
+      "fields": {
+        "ownerId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "OwnerId"
+        },
+        "productId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "ProductId"
+        },
+        "quantity": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Quantity"
+        },
+        "unitPrice": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "UnitPrice"
+        },
+        "amount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Amount"
+        },
+        "stockState": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "StockState"
+        },
+        "isActive": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "isActive"
+        },
+        "reserved": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Reserved"
+        },
+        "barcode": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Barcode"
+        },
+        "taxisId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "TaxisId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetDemandProducts.cs",
+      "scope": "inventory"
+    },
+    "VetDemands": {
+      "table": "vetdemands",
+      "fields": {
+        "date": {
+          "sql": "timestamptz",
+          "nullable": true,
+          "source": "date"
+        },
+        "documentno": {
+          "sql": "text",
+          "nullable": false,
+          "source": "documentno"
+        },
+        "suppliers": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "suppliers"
+        },
+        "deliverydate": {
+          "sql": "timestamptz",
+          "nullable": true,
+          "source": "deliverydate"
+        },
+        "note": {
+          "sql": "text",
+          "nullable": false,
+          "source": "note"
+        },
+        "state": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "state"
+        },
+        "isBuying": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "isBuying"
+        },
+        "isAccounting": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "isAccounting"
+        },
+        "iscomplated": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "iscomplated"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetDemands.cs",
+      "scope": "inventory"
+    },
+    "VetDemandTrans": {
+      "table": "vetdemandtrans",
+      "fields": {
+        "ownerId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "OwnerId"
+        },
+        "productId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "ProductId"
+        },
+        "quantity": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Quantity"
+        },
+        "unitPrice": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "UnitPrice"
+        },
+        "amount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Amount"
+        },
+        "stockState": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "StockState"
+        },
+        "isActive": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "isActive"
+        },
+        "reserved": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Reserved"
+        },
+        "barcode": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Barcode"
+        },
+        "taxisId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "TaxisId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetDemandTrans.cs",
+      "scope": "inventory"
+    },
+    "VetDocuments": {
+      "table": "vetdocuments",
+      "fields": {
+        "sourceId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "SourceId"
+        },
+        "fileName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FileName"
+        },
+        "fileData": {
+          "sql": "bytea",
+          "nullable": false,
+          "source": "FileData"
+        },
+        "size": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Size"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetDocuments.cs",
+      "scope": "files"
+    },
+    "VetExamination": {
+      "table": "vetexamination",
+      "fields": {
+        "date": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "Date"
+        },
+        "status": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Status"
+        },
+        "customerId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "CustomerId"
+        },
+        "patientId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "PatientId"
+        },
+        "bodyTemperature": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "BodyTemperature"
+        },
+        "pulse": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "Pulse"
+        },
+        "respiratoryRate": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "RespiratoryRate"
+        },
+        "weight": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "Weight"
+        },
+        "symptoms": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Symptoms"
+        },
+        "complaintStory": {
+          "sql": "text",
+          "nullable": false,
+          "source": "ComplaintStory"
+        },
+        "treatmentDescription": {
+          "sql": "text",
+          "nullable": false,
+          "source": "TreatmentDescription"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetExamination.cs",
+      "scope": "clinical"
+    },
+    "VetFarms": {
+      "table": "vetfarms",
+      "fields": {
+        "customerId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CustomerId"
+        },
+        "farmName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FarmName"
+        },
+        "farmContact": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FarmContact"
+        },
+        "farmRelationship": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FarmRelationship"
+        },
+        "active": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "Active"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetFarms.cs",
+      "scope": "customers"
+    },
+    "VetLabDocument": {
+      "table": "vetlabdocument",
+      "fields": {
+        "customerId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "CustomerId"
+        },
+        "patientId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "PatientId"
+        },
+        "isRead": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsRead"
+        },
+        "fileName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FileName"
+        },
+        "fileData": {
+          "sql": "bytea",
+          "nullable": false,
+          "source": "FileData"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetLabDocument.cs",
+      "scope": "files"
+    },
+    "VetLogs": {
+      "table": "vetlogs",
+      "fields": {
+        "date": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "Date"
+        },
+        "userId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "UserId"
+        },
+        "userName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "UserName"
+        },
+        "oldValue": {
+          "sql": "text",
+          "nullable": false,
+          "source": "OldValue"
+        },
+        "newValue": {
+          "sql": "text",
+          "nullable": false,
+          "source": "NewValue"
+        },
+        "fieldName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FieldName"
+        },
+        "tenantId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "TenantId"
+        },
+        "tableName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "TableName"
+        },
+        "masterId": {
+          "sql": "text",
+          "nullable": false,
+          "source": "MasterId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetLogs.cs",
+      "scope": "definitions"
+    },
+    "VetMessageLogs": {
+      "table": "vetmessagelogs",
+      "fields": {
+        "sendDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "SendDate"
+        },
+        "user\u0130d": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "User\u0130d"
+        },
+        "customerId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "CustomerId"
+        },
+        "content": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Content"
+        },
+        "itenrationType": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "ItenrationType"
+        },
+        "integrationId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "IntegrationId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetMessageLogs.cs",
+      "scope": "definitions"
+    },
+    "VetParameters": {
+      "table": "vetparameters",
+      "fields": {
+        "appointmentReminderDuration": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AppointmentReminderDuration"
+        },
+        "agendaNoteReminder": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AgendaNoteReminder"
+        },
+        "days": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Days"
+        },
+        "smsCompany": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "SmsCompany"
+        },
+        "cashAccount": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CashAccount"
+        },
+        "creditCardCashAccount": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CreditCardCashAccount"
+        },
+        "bankTransferCashAccount": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "BankTransferCashAccount"
+        },
+        "whatsappTemplate": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "WhatsappTemplate"
+        },
+        "customerWelcomeTemplate": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CustomerWelcomeTemplate"
+        },
+        "automaticAppointmentReminderMessageTemplate": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "AutomaticAppointmentReminderMessageTemplate"
+        },
+        "isOtoCustomerWelcomeMessage": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsOtoCustomerWelcomeMessage"
+        },
+        "displayVetNo": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "DisplayVetNo"
+        },
+        "autoSms": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "AutoSms"
+        },
+        "isAnimalsBreeds": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsAnimalsBreeds"
+        },
+        "isFirstInspection": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsFirstInspection"
+        },
+        "appointmentBeginDate": {
+          "sql": "text",
+          "nullable": false,
+          "source": "AppointmentBeginDate"
+        },
+        "appointmentEndDate": {
+          "sql": "text",
+          "nullable": false,
+          "source": "AppointmentEndDate"
+        },
+        "isExaminationAmuntZero": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsExaminationAmuntZero"
+        },
+        "datetimeStatus": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "DatetimeStatus"
+        },
+        "appointmentInterval": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AppointmentInterval"
+        },
+        "appointmentSeansDuration": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AppointmentSeansDuration"
+        },
+        "petHotelsDateTimeFormat": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "PetHotelsDateTimeFormat"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetParameters.cs",
+      "scope": "definitions"
+    },
+    "VetPatients": {
+      "table": "vetpatients",
+      "fields": {
+        "customerId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "CustomerId"
+        },
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        },
+        "birthDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "BirthDate"
+        },
+        "chipNumber": {
+          "sql": "text",
+          "nullable": true,
+          "source": "ChipNumber"
+        },
+        "sex": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Sex"
+        },
+        "animalType": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AnimalType"
+        },
+        "animalBreed": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AnimalBreed"
+        },
+        "animalColor": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "AnimalColor"
+        },
+        "reportNumber": {
+          "sql": "text",
+          "nullable": true,
+          "source": "ReportNumber"
+        },
+        "specialNote": {
+          "sql": "text",
+          "nullable": true,
+          "source": "SpecialNote"
+        },
+        "sterilization": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "Sterilization"
+        },
+        "images": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "Images"
+        },
+        "active": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "Active"
+        },
+        "isVaccineCalendarCreate": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsVaccineCalendarCreate"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetPatients.cs",
+      "scope": "clinical"
+    },
+    "VetPaymentCollection": {
+      "table": "vetpaymentcollection",
+      "fields": {
+        "customerId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CustomerId"
+        },
+        "collectionId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CollectionId"
+        },
+        "date": {
+          "sql": "timestamptz",
+          "nullable": true,
+          "source": "Date"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": true,
+          "source": "Remark"
+        },
+        "debit": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Debit"
+        },
+        "credit": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Credit"
+        },
+        "paid": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Paid"
+        },
+        "totalPaid": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "TotalPaid"
+        },
+        "total": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Total"
+        },
+        "saleBuyId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "SaleBuyId"
+        },
+        "paymetntId": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "PaymetntId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetPaymentCollection.cs",
+      "scope": "finance"
+    },
+    "VetPaymentMethods": {
+      "table": "vetpaymentmethods",
+      "fields": {
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetPaymentMethods.cs",
+      "scope": "definitions"
+    },
+    "VetPrintTemplate": {
+      "table": "vetprinttemplate",
+      "fields": {
+        "templateName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "TemplateName"
+        },
+        "htmlContent": {
+          "sql": "text",
+          "nullable": false,
+          "source": "HtmlContent"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetPrintTemplate.cs",
+      "scope": "definitions"
+    },
+    "VetProductCategories": {
+      "table": "vetproductcategories",
+      "fields": {
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        },
+        "categoryCode": {
+          "sql": "text",
+          "nullable": false,
+          "source": "CategoryCode"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetProductCategories.cs",
+      "scope": "inventory"
+    },
+    "VetProductMovements": {
+      "table": "vetproductmovements",
+      "fields": {
+        "type": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Type"
+        },
+        "invoiceNo": {
+          "sql": "text",
+          "nullable": false,
+          "source": "InvoiceNo"
+        },
+        "date": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "Date"
+        },
+        "totalAmount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "TotalAmount"
+        },
+        "quantity": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Quantity"
+        },
+        "depotId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "DepotId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetProductMovements.cs",
+      "scope": "inventory"
+    },
+    "VetProducts": {
+      "table": "vetproducts",
+      "fields": {
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        },
+        "productTypeId": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "ProductTypeId"
+        },
+        "unitId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "UnitId"
+        },
+        "categoryId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CategoryId"
+        },
+        "supplierId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "SupplierId"
+        },
+        "productBarcode": {
+          "sql": "text",
+          "nullable": false,
+          "source": "ProductBarcode"
+        },
+        "productCode": {
+          "sql": "text",
+          "nullable": false,
+          "source": "ProductCode"
+        },
+        "ratio": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "Ratio"
+        },
+        "buyingPrice": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "BuyingPrice"
+        },
+        "sellingPrice": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "SellingPrice"
+        },
+        "criticalAmount": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "CriticalAmount"
+        },
+        "active": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "Active"
+        },
+        "sellingIncludeKDV": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "SellingIncludeKDV"
+        },
+        "buyingIncludeKDV": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "BuyingIncludeKDV"
+        },
+        "fixPrice": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "FixPrice"
+        },
+        "isExpirationDate": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsExpirationDate"
+        },
+        "animalType": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "AnimalType"
+        },
+        "numberRepetitions": {
+          "sql": "integer",
+          "nullable": true,
+          "source": "NumberRepetitions"
+        },
+        "storeId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "StoreId"
+        },
+        "taxisId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "TaxisId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetProducts.cs",
+      "scope": "inventory"
+    },
+    "VetRenewalOptions": {
+      "table": "vetrenewaloptions",
+      "fields": {
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetRenewalOptions.cs",
+      "scope": "definitions"
+    },
+    "VetReportFilter": {
+      "table": "vetreportfilter",
+      "fields": {
+        "enterprisesId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "EnterprisesId"
+        },
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        },
+        "filterJson": {
+          "sql": "text",
+          "nullable": false,
+          "source": "FilterJson"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetReportFilter.cs",
+      "scope": "definitions"
+    },
+    "VetRooms": {
+      "table": "vetrooms",
+      "fields": {
+        "roomName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "RoomName"
+        },
+        "price": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "Price"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetRooms.cs",
+      "scope": "clinical"
+    },
+    "VetSaleBuyOwner": {
+      "table": "vetsalebuyowner",
+      "fields": {
+        "type": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Type"
+        },
+        "customerId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "CustomerId"
+        },
+        "date": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "Date"
+        },
+        "invoiceNo": {
+          "sql": "text",
+          "nullable": false,
+          "source": "InvoiceNo"
+        },
+        "paymentType": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "PaymentType"
+        },
+        "total": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Total"
+        },
+        "discount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Discount"
+        },
+        "kDV": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "KDV"
+        },
+        "netPrice": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "NetPrice"
+        },
+        "supplierId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "SupplierId"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        },
+        "demandsGuidId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "demandsGuidId"
+        },
+        "isAppointment": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsAppointment"
+        },
+        "appointmentId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "AppointmentId"
+        },
+        "isExaminations": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsExaminations"
+        },
+        "examinationsId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "ExaminationsId"
+        },
+        "isAccomodation": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "IsAccomodation"
+        },
+        "accomodationId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "AccomodationId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetSaleBuyOwner.cs",
+      "scope": "finance"
+    },
+    "VetSaleBuyTrans": {
+      "table": "vetsalebuytrans",
+      "fields": {
+        "ownerId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "OwnerId"
+        },
+        "productId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "ProductId"
+        },
+        "ratio": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Ratio"
+        },
+        "amount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Amount"
+        },
+        "discount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Discount"
+        },
+        "price": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "Price"
+        },
+        "netPrice": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "NetPrice"
+        },
+        "invoiceNo": {
+          "sql": "text",
+          "nullable": false,
+          "source": "InvoiceNo"
+        },
+        "vatIncluded": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "VatIncluded"
+        },
+        "vatAmount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "VatAmount"
+        },
+        "orderId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "OrderId"
+        },
+        "quantity": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Quantity"
+        },
+        "taxisId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "TaxisId"
+        },
+        "isNew": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "IsNew"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetSaleBuyTrans.cs",
+      "scope": "finance"
+    },
+    "VetShortCuts": {
+      "table": "vetshortcuts",
+      "fields": {
+        "label": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Label"
+        },
+        "description": {
+          "sql": "text",
+          "nullable": false,
+          "source": "description"
+        },
+        "icon": {
+          "sql": "text",
+          "nullable": false,
+          "source": "icon"
+        },
+        "link": {
+          "sql": "text",
+          "nullable": false,
+          "source": "link"
+        },
+        "useRouter": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "useRouter"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetShortCuts.cs",
+      "scope": "appointments"
+    },
+    "VetSmsParameters": {
+      "table": "vetsmsparameters",
+      "fields": {
+        "active": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "Active"
+        },
+        "smsIntegrationType": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "SmsIntegrationType"
+        },
+        "userName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "UserName"
+        },
+        "password": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Password"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetSmsParameters.cs",
+      "scope": "definitions"
+    },
+    "VetSmsTemplate": {
+      "table": "vetsmstemplate",
+      "fields": {
+        "active": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "Active"
+        },
+        "name": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Name"
+        },
+        "content": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Content"
+        },
+        "enableSMS": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "EnableSMS"
+        },
+        "enableAppNotification": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "EnableAppNotification"
+        },
+        "enableEmail": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "EnableEmail"
+        },
+        "enableWhatsapp": {
+          "sql": "boolean",
+          "nullable": true,
+          "source": "EnableWhatsapp"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetSmsTemplate.cs",
+      "scope": "definitions"
+    },
+    "VetStockTracking": {
+      "table": "vetstocktracking",
+      "fields": {
+        "productId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "ProductId"
+        },
+        "status": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "Status"
+        },
+        "piece": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "Piece"
+        },
+        "usedPiece": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "UsedPiece"
+        },
+        "remainingPiece": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "RemainingPiece"
+        },
+        "supplierId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "SupplierId"
+        },
+        "expirationDate": {
+          "sql": "timestamptz",
+          "nullable": true,
+          "source": "ExpirationDate"
+        },
+        "salePrice": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "SalePrice"
+        },
+        "purchasePrice": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "PurchasePrice"
+        },
+        "unitId": {
+          "sql": "uuid",
+          "nullable": true,
+          "source": "UnitId"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetStockTracking.cs",
+      "scope": "inventory"
+    },
+    "VetStores": {
+      "table": "vetstores",
+      "fields": {
+        "active": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "Active"
+        },
+        "depotCode": {
+          "sql": "text",
+          "nullable": false,
+          "source": "DepotCode"
+        },
+        "depotName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "DepotName"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetStores.cs",
+      "scope": "inventory"
+    },
+    "VetSuppliers": {
+      "table": "vetsuppliers",
+      "fields": {
+        "supplierName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "SupplierName"
+        },
+        "email": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Email"
+        },
+        "phone": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Phone"
+        },
+        "adress": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Adress"
+        },
+        "companyName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "CompanyName"
+        },
+        "mersisNo": {
+          "sql": "text",
+          "nullable": false,
+          "source": "MersisNo"
+        },
+        "webSite": {
+          "sql": "text",
+          "nullable": false,
+          "source": "WebSite"
+        },
+        "taxOffice": {
+          "sql": "text",
+          "nullable": false,
+          "source": "TaxOffice"
+        },
+        "taxNumber": {
+          "sql": "text",
+          "nullable": false,
+          "source": "TaxNumber"
+        },
+        "active": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "Active"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetSuppliers.cs",
+      "scope": "inventory"
+    },
+    "VetSymptoms": {
+      "table": "vetsymptoms",
+      "fields": {
+        "symptom": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Symptom"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetSymptoms.cs",
+      "scope": "definitions"
+    },
+    "VetTaxis": {
+      "table": "vettaxis",
+      "fields": {
+        "type": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Type"
+        },
+        "taxName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "TaxName"
+        },
+        "taxRatio": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "TaxRatio"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetTaxis.cs",
+      "scope": "definitions"
+    },
+    "VetUnits": {
+      "table": "vetunits",
+      "fields": {
+        "unitCode": {
+          "sql": "text",
+          "nullable": false,
+          "source": "UnitCode"
+        },
+        "unitName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "UnitName"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetUnits.cs",
+      "scope": "definitions"
+    },
+    "VetVaccine": {
+      "table": "vetvaccine",
+      "fields": {
+        "animalType": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "AnimalType"
+        },
+        "vaccineName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "VaccineName"
+        },
+        "timeDone": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "TimeDone"
+        },
+        "obligation": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Obligation"
+        },
+        "totalSaleAmount": {
+          "sql": "numeric",
+          "nullable": true,
+          "source": "TotalSaleAmount"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetVaccine.cs",
+      "scope": "definitions"
+    },
+    "VetVaccineCalendar": {
+      "table": "vetvaccinecalendar",
+      "fields": {
+        "animalType": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "AnimalType"
+        },
+        "vaccineDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "VaccineDate"
+        },
+        "vaccinationDate": {
+          "sql": "timestamptz",
+          "nullable": true,
+          "source": "VaccinationDate"
+        },
+        "isDone": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "IsDone"
+        },
+        "isAdd": {
+          "sql": "boolean",
+          "nullable": false,
+          "source": "IsAdd"
+        },
+        "patientId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "PatientId"
+        },
+        "customerId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "CustomerId"
+        },
+        "vaccineId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "VaccineId"
+        },
+        "vaccineName": {
+          "sql": "text",
+          "nullable": false,
+          "source": "VaccineName"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetVaccineCalendar.cs",
+      "scope": "clinical"
+    },
+    "VetVaccineMedicine": {
+      "table": "vetvaccinemedicine",
+      "fields": {
+        "vaccineId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "VaccineId"
+        },
+        "productId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "ProductId"
+        },
+        "quantity": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "Quantity"
+        },
+        "salesAmount": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "SalesAmount"
+        },
+        "taxisId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "TaxisId"
+        },
+        "dosingType": {
+          "sql": "integer",
+          "nullable": false,
+          "source": "DosingType"
+        },
+        "remark": {
+          "sql": "text",
+          "nullable": false,
+          "source": "Remark"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetVaccineMedicine.cs",
+      "scope": "definitions"
+    },
+    "VetWeightControl": {
+      "table": "vetweightcontrol",
+      "fields": {
+        "patientId": {
+          "sql": "uuid",
+          "nullable": false,
+          "source": "PatientId"
+        },
+        "weight": {
+          "sql": "numeric",
+          "nullable": false,
+          "source": "Weight"
+        },
+        "controlDate": {
+          "sql": "timestamptz",
+          "nullable": false,
+          "source": "ControlDate"
+        }
+      },
+      "source": "Services\\Vet\\BrewCloud.Vet.Domain\\BrewCloud.Vet.Domain\\Entities\\VetWeightControl.cs",
+      "scope": "clinical"
+    }
+  },
+  "operations": [
+    {
+      "name": "UpdateDatabaseCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Account\\Commands\\UpdateDatabaseCommand.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "connectionString"
+        }
+      ]
+    },
+    {
+      "name": "CreateBalanceSaleCollectionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Commands\\CreateBalanceSaleCollectionCommand.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetPaymentCollection"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        },
+        {
+          "type": "int",
+          "name": "paymentId"
+        },
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "decimal",
+          "name": "amount"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        }
+      ]
+    },
+    {
+      "name": "CreateSaleCollectionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Commands\\CreateSaleCollectionCommand.cs",
+      "entities": [
+        "VetPaymentCollection"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "saleOwnerId"
+        },
+        {
+          "type": "Guid",
+          "name": "customerId"
+        },
+        {
+          "type": "int",
+          "name": "paymentId"
+        },
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "decimal",
+          "name": "amount"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "Guid?",
+          "name": "collectionId"
+        }
+      ]
+    },
+    {
+      "name": "CreateSaleCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Commands\\CreateSaleCommand.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetProducts",
+        "VetTaxis"
+      ],
+      "parameters": [
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        },
+        {
+          "type": "List<SaleTransRequestDto>?",
+          "name": "trans"
+        },
+        {
+          "type": "bool",
+          "name": "isPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "price"
+        },
+        {
+          "type": "Guid",
+          "name": "examinationId"
+        },
+        {
+          "type": "bool?",
+          "name": "isExaminations"
+        },
+        {
+          "type": "bool?",
+          "name": "isAccomodation"
+        },
+        {
+          "type": "Guid?",
+          "name": "accomodationId"
+        }
+      ]
+    },
+    {
+      "name": "DeleteCollectionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Commands\\DeleteCollectionCommand.cs",
+      "entities": [
+        "VetPaymentCollection"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateSaleCollectionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Commands\\UpdateSaleCollectionCommand.cs",
+      "entities": [
+        "VetPaymentCollection"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "saleOwnerId"
+        },
+        {
+          "type": "Guid",
+          "name": "customerId"
+        },
+        {
+          "type": "int",
+          "name": "paymentId"
+        },
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "decimal",
+          "name": "amount"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "Guid?",
+          "name": "collectionId"
+        }
+      ]
+    },
+    {
+      "name": "UpdateSaleCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Commands\\UpdateSaleCommand.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetProducts",
+        "VetTaxis",
+        "VetSaleBuyTrans"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "List<SaleTransRequestDto>",
+          "name": "trans"
+        }
+      ]
+    },
+    {
+      "name": "GetSalesByIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Queries\\GetSalesByIdQuery.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetSaleBuyTrans",
+        "VetTaxis",
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "IsSaleProductControlQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Accounting\\Queries\\IsSaleProductControlQuery.cs",
+      "entities": [
+        "VetProducts",
+        "VetStockTracking"
+      ],
+      "parameters": [
+        {
+          "type": "List<Guid>?",
+          "name": "productIds"
+        }
+      ]
+    },
+    {
+      "name": "CreateAgendaCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Agenda\\Commands\\CreateAgendaCommand.cs",
+      "entities": [
+        "VetAgenda",
+        "VetAgendaTags"
+      ],
+      "parameters": [
+        {
+          "type": "int?",
+          "name": "agendaNo"
+        },
+        {
+          "type": "int?",
+          "name": "agendaType"
+        },
+        {
+          "type": "int?",
+          "name": "isActive"
+        },
+        {
+          "type": "string",
+          "name": "agendaTitle"
+        },
+        {
+          "type": "int?",
+          "name": "priority"
+        },
+        {
+          "type": "DateTime?",
+          "name": "dueDate"
+        },
+        {
+          "type": "string",
+          "name": "notes"
+        }
+      ]
+    },
+    {
+      "name": "DeleteAgendaCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Agenda\\Commands\\DeleteAgendaCommand.cs",
+      "entities": [
+        "VetAgenda",
+        "VetAgendaTags"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateAgendaCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Agenda\\Commands\\UpdateAgendaCommand.cs",
+      "entities": [
+        "VetAgenda",
+        "VetAgendaTags"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "int?",
+          "name": "agendaNo"
+        },
+        {
+          "type": "int?",
+          "name": "agendaType"
+        },
+        {
+          "type": "int?",
+          "name": "isActive"
+        },
+        {
+          "type": "string",
+          "name": "agendaTitle"
+        },
+        {
+          "type": "int?",
+          "name": "priority"
+        },
+        {
+          "type": "DateTime?",
+          "name": "dueDate"
+        },
+        {
+          "type": "string",
+          "name": "notes"
+        }
+      ]
+    },
+    {
+      "name": "AgendaListByIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Agenda\\Queries\\AgendaListByIdQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "AgendaListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Agenda\\Queries\\AgendaListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateAppointmentCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Commands\\CreateAppointmentCommand.cs",
+      "entities": [
+        "VetAppointments",
+        "VetPatients",
+        "VetVaccine",
+        "VetVaccineCalendar",
+        "VetCustomers",
+        "VetParameters"
+      ],
+      "parameters": [
+        {
+          "type": "DateTime",
+          "name": "beginDate"
+        },
+        {
+          "type": "string",
+          "name": "note"
+        },
+        {
+          "type": "string?",
+          "name": "doctorId"
+        },
+        {
+          "type": "string?",
+          "name": "customerId"
+        },
+        {
+          "type": "int",
+          "name": "appointmentType"
+        },
+        {
+          "type": "int",
+          "name": "status"
+        },
+        {
+          "type": "string",
+          "name": "patientId"
+        },
+        {
+          "type": "List<VaccineListDto>?",
+          "name": "vaccineItems"
+        }
+      ]
+    },
+    {
+      "name": "DeleteAppointmentCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Commands\\DeleteAppointmentCommand.cs",
+      "entities": [
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateAppointmentCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Commands\\UpdateAppointmentCommand.cs",
+      "entities": [
+        "VetAppointments",
+        "VetVaccine"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "DateTime",
+          "name": "beginDate"
+        },
+        {
+          "type": "string",
+          "name": "note"
+        },
+        {
+          "type": "Guid?",
+          "name": "doctorId"
+        },
+        {
+          "type": "Guid?",
+          "name": "vaccineId"
+        },
+        {
+          "type": "int",
+          "name": "appointmentType"
+        },
+        {
+          "type": "string?",
+          "name": "customerId"
+        },
+        {
+          "type": "int?",
+          "name": "status"
+        },
+        {
+          "type": "string",
+          "name": "patientId"
+        },
+        {
+          "type": "List<VaccineListDto>?",
+          "name": "vaccineItems"
+        }
+      ]
+    },
+    {
+      "name": "UpdateAppointmentStatusCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Commands\\UpdateAppointmentStatusCommand.cs",
+      "entities": [
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "int",
+          "name": "status"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCompletedAppointmentCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Commands\\UpdateCompletedAppointmentCommand.cs",
+      "entities": [
+        "VetAppointments",
+        "VetPaymentCollection"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool",
+          "name": "isCompleted"
+        }
+      ]
+    },
+    {
+      "name": "UpdatePaymentReceivedAppointmentCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Commands\\UpdatePaymentReceivedAppointmentCommand.cs",
+      "entities": [
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool",
+          "name": "isPaymentReceived"
+        }
+      ]
+    },
+    {
+      "name": "AppointmentDateCheckControlQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Queries\\AppointmentDateCheckControlQuery.cs",
+      "entities": [
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "DateTime",
+          "name": "date"
+        }
+      ]
+    },
+    {
+      "name": "AppointmentFindByIdListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Queries\\AppointmentFindByIdListQuery.cs",
+      "entities": [
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "customerId"
+        },
+        {
+          "type": "Guid?",
+          "name": "patientId"
+        }
+      ]
+    },
+    {
+      "name": "AppointmentsListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Queries\\AppointmentListQuery.cs",
+      "entities": [
+        "VetParameters"
+      ],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "appointmentType"
+        }
+      ]
+    },
+    {
+      "name": "GetAppointmentDailyListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Queries\\GetAppointmentDailyListQuery.cs",
+      "entities": [
+        "VetParameters"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetAppointmentListByPatientIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Appointment\\Queries\\GetAppointmentListByPatientIdQuery.cs",
+      "entities": [
+        "VetParameters"
+      ],
+      "parameters": [
+        {
+          "type": "Guid?",
+          "name": "patientId"
+        }
+      ]
+    },
+    {
+      "name": "BagelSliceGraphListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Clinicalstatistics\\Queries\\BagelSliceGraphListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "ClinicalstatisticsListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Clinicalstatistics\\Queries\\ClinicalstatisticsListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "ClinicalstatisticsListDto",
+          "name": "thisWeekCustomerTotal"
+        },
+        {
+          "type": "ClinicalstatisticsListDto",
+          "name": "paymentTypeTotal"
+        },
+        {
+          "type": "ClinicalstatisticsListDto",
+          "name": "paymentTypeYearsTotal"
+        }
+      ]
+    },
+    {
+      "name": "GraphicListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Clinicalstatistics\\Queries\\GraphicListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "int?",
+          "name": "year"
+        }
+      ]
+    },
+    {
+      "name": "WeekVisitListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Clinicalstatistics\\Queries\\WeekVisitListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "int?",
+          "name": "thisAndLastType"
+        }
+      ]
+    },
+    {
+      "name": "CreateCollectionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\CreateCollectionCommand.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetProducts",
+        "VetPaymentCollection"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        },
+        {
+          "type": "Guid",
+          "name": "collectionId"
+        },
+        {
+          "type": "int",
+          "name": "paymentType"
+        },
+        {
+          "type": "decimal",
+          "name": "amount"
+        },
+        {
+          "type": "decimal",
+          "name": "ratio"
+        },
+        {
+          "type": "bool?",
+          "name": "enterAmount"
+        },
+        {
+          "type": "Guid?",
+          "name": "vaccineid"
+        }
+      ]
+    },
+    {
+      "name": "CreateCustomerCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\CreateCustomerCommand.cs",
+      "entities": [
+        "VetCustomers",
+        "VetFarms",
+        "VetParameters"
+      ],
+      "parameters": [
+        {
+          "type": "CustomersDto",
+          "name": "createCustomers"
+        },
+        {
+          "type": "bool",
+          "name": "isCreateVaccine"
+        }
+      ]
+    },
+    {
+      "name": "CreatePatientCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\CreatePatientCommand.cs",
+      "entities": [
+        "VetPatients",
+        "VetCustomers"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        },
+        {
+          "type": "PatientsDetailsDto",
+          "name": "patientDetails"
+        }
+      ]
+    },
+    {
+      "name": "DeleteCustomerCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\DeleteCustomerCommand.cs",
+      "entities": [
+        "VetCustomers",
+        "VetPatients",
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "DeletePatientCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\DeletePatientCommand.cs",
+      "entities": [
+        "VetPatients"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "DeletePayChartCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\DeletePayChartCommand.cs",
+      "entities": [
+        "VetPaymentCollection",
+        "VetSaleBuyOwner",
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "Guid",
+          "name": "appointmentId"
+        }
+      ]
+    },
+    {
+      "name": "SendMessageCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\SendMessageCommand.cs",
+      "entities": [
+        "VetSmsParameters",
+        "VetCustomers"
+      ],
+      "parameters": [
+        {
+          "type": "MessageType",
+          "name": "type"
+        },
+        {
+          "type": "string",
+          "name": "title"
+        },
+        {
+          "type": "string",
+          "name": "content"
+        },
+        {
+          "type": "Guid",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCustomerArchiveCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\UpdateCustomerArchiveCommand.cs",
+      "entities": [
+        "VetCustomers"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        },
+        {
+          "type": "bool",
+          "name": "archive"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCustomerCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\UpdateCustomerCommand.cs",
+      "entities": [
+        "VetCustomers",
+        "VetAdress"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "firstName"
+        },
+        {
+          "type": "string",
+          "name": "lastName"
+        },
+        {
+          "type": "string",
+          "name": "phoneNumber"
+        },
+        {
+          "type": "string",
+          "name": "phoneNumber2"
+        },
+        {
+          "type": "string",
+          "name": "eMail"
+        },
+        {
+          "type": "string",
+          "name": "taxOffice"
+        },
+        {
+          "type": "string",
+          "name": "vKNTCNo"
+        },
+        {
+          "type": "string",
+          "name": "note"
+        },
+        {
+          "type": "decimal",
+          "name": "discountRate"
+        },
+        {
+          "type": "bool?",
+          "name": "emailNotification"
+        },
+        {
+          "type": "bool?",
+          "name": "smsNotification"
+        },
+        {
+          "type": "string",
+          "name": "province"
+        },
+        {
+          "type": "string",
+          "name": "district"
+        },
+        {
+          "type": "string",
+          "name": "longAdress"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerGroup"
+        }
+      ]
+    },
+    {
+      "name": "UpdatePatientCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Commands\\UpdatePatientCommand.cs",
+      "entities": [
+        "VetPatients",
+        "VetCustomers"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        },
+        {
+          "type": "PatientsDetailsDto",
+          "name": "patientDetails"
+        }
+      ]
+    },
+    {
+      "name": "AnimalBreedsDefListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\AnimalBreedsDefListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CustomersFindByIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\CustomersFindByIdQuery.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetAppointments",
+        "VetPaymentCollection",
+        "VetMessageLogs"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "CustomersListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\CustomersListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "bool",
+          "name": "isArchive"
+        }
+      ]
+    },
+    {
+      "name": "GetFarmCustomersListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\GetFarmCustomersListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "GetPatientsByCustomerIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\GetPatientsByCustomerIdQuery.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "GetPayChartListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\GetPayChartListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "GetPaymentTransactionListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\GetPaymentTransactionListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "GetSalesCustomerListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\GetSalesCustomerListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "GetTransactionMovementListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\GetTransactionMovementListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "VetVetAnimalsTypeListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Customers\\Queries\\VetVetAnimalsTypeListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "GetDashBoardQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Dashboards\\Queries\\GetDashBoardQuery.cs",
+      "entities": [
+        "VetAppointments",
+        "VetCustomers",
+        "VetSaleBuyOwner",
+        "VetPaymentCollection"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "CreateAnimalColorsDefCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\AnimalColorsDef\\Commands\\CreateAnimalColorsDefCommand.cs",
+      "entities": [
+        "VetAnimalColorsDef"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "name"
+        }
+      ]
+    },
+    {
+      "name": "AnimalColorsDefListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\AnimalColorsDef\\Queries\\AnimalColorsDefListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateAppointmentTypesCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\AppointmentTypes\\Commands\\CreateAppointmentTypesCommand.cs",
+      "entities": [
+        "VetAppointmentTypes"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "bool",
+          "name": "isDefaultPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "price"
+        },
+        {
+          "type": "Guid",
+          "name": "taxisId"
+        },
+        {
+          "type": "string",
+          "name": "colors"
+        }
+      ]
+    },
+    {
+      "name": "DeleteAppointmentTypesCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\AppointmentTypes\\Commands\\DeleteAppointmentTypesCommand.cs",
+      "entities": [
+        "VetAppointmentTypes"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateAppointmentTypesCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\AppointmentTypes\\Commands\\UpdateAppointmentTypesCommand.cs",
+      "entities": [
+        "VetAppointmentTypes"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "bool",
+          "name": "isDefaultPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "price"
+        },
+        {
+          "type": "Guid",
+          "name": "taxisId"
+        },
+        {
+          "type": "string",
+          "name": "colors"
+        }
+      ]
+    },
+    {
+      "name": "GetAppointmentTypesListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\AppointmentTypes\\Queries\\GetAppointmentTypesListQuery.cs",
+      "entities": [
+        "VetAppointmentTypes"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "CreateCasingDefinitionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CasingDefinition\\Commands\\CreateCasingDefinitionCommand.cs",
+      "entities": [
+        "VetCasingDefinition"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "caseName"
+        },
+        {
+          "type": "bool",
+          "name": "active"
+        }
+      ]
+    },
+    {
+      "name": "DeleteCasingDefinitionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CasingDefinition\\Commands\\DeleteCasingDefinitionCommand.cs",
+      "entities": [
+        "VetCasingDefinition"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCasingDefinitionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CasingDefinition\\Commands\\UpdateCasingDefinitionCommand.cs",
+      "entities": [
+        "VetCasingDefinition"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "caseName"
+        },
+        {
+          "type": "bool",
+          "name": "durumu"
+        }
+      ]
+    },
+    {
+      "name": "CasingDefinitionListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CasingDefinition\\Queries\\CasingDefinitionListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateCustomerGroupDefCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CustomerGroup\\Commands\\CreateCustomerGroupDefCommand.cs",
+      "entities": [
+        "VetCustomerGroupDef"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "code"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        }
+      ]
+    },
+    {
+      "name": "DeleteCustomerGroupDefCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CustomerGroup\\Commands\\DeleteCustomerGroupDefCommand.cs",
+      "entities": [
+        "VetCustomerGroupDef"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCustomerGroupDefCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CustomerGroup\\Commands\\UpdateCustomerGroupDefCommand.cs",
+      "entities": [
+        "VetCustomerGroupDef"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "code"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        }
+      ]
+    },
+    {
+      "name": "CustomerGroupListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\CustomerGroup\\Queries\\CustomerGroupListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreatePaymentMethodsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PaymentMethods\\Commands\\CreatePaymentMethodsCommand.cs",
+      "entities": [
+        "VetPaymentMethods"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        }
+      ]
+    },
+    {
+      "name": "DeletePaymentMethodsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PaymentMethods\\Commands\\DeletePaymentMethodsCommand.cs",
+      "entities": [
+        "VetPaymentMethods"
+      ],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "recId"
+        }
+      ]
+    },
+    {
+      "name": "UpdatePaymentMethodsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PaymentMethods\\Commands\\UpdatePaymentMethodsCommand.cs",
+      "entities": [
+        "VetPaymentMethods"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        }
+      ]
+    },
+    {
+      "name": "PaymentMethodListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PaymentMethods\\Queries\\PaymentMethodListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreatePrintTemplateCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PrintTemplate\\Commands\\CreatePrintTemplateCommand.cs",
+      "entities": [
+        "VetPrintTemplate"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "templateName"
+        },
+        {
+          "type": "PrintType",
+          "name": "type"
+        },
+        {
+          "type": "string",
+          "name": "htmlContent"
+        }
+      ]
+    },
+    {
+      "name": "DeletePrintTemplateCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PrintTemplate\\Commands\\DeletePrintTemplateCommand.cs",
+      "entities": [
+        "VetPrintTemplate"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdatePrintTemplateCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PrintTemplate\\Commands\\UpdatePrintTemplateCommand.cs",
+      "entities": [
+        "VetPrintTemplate"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "templateName"
+        },
+        {
+          "type": "PrintType",
+          "name": "type"
+        },
+        {
+          "type": "string",
+          "name": "htmlContent"
+        }
+      ]
+    },
+    {
+      "name": "GetPrintTemplateFilterByTypeQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PrintTemplate\\Queries\\GetPrintTemplateFilterByTypeQuery.cs",
+      "entities": [
+        "VetPrintTemplate"
+      ],
+      "parameters": [
+        {
+          "type": "PrintType",
+          "name": "type"
+        }
+      ]
+    },
+    {
+      "name": "GetPrintTemplateListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\PrintTemplate\\Queries\\GetPrintTemplateListQuery.cs",
+      "entities": [
+        "VetPrintTemplate"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "CreateProductCategoriesCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductCategory\\Commands\\CreateProductCategoriesCommand.cs",
+      "entities": [
+        "VetProductCategories"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "categoryCode"
+        }
+      ]
+    },
+    {
+      "name": "DeleteProductCategoriesCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductCategory\\Commands\\DeleteProductCategoriesCommand.cs",
+      "entities": [
+        "VetProductCategories"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateProductCategoriesCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductCategory\\Commands\\UpdateProductCategoriesCommand.cs",
+      "entities": [
+        "VetProductCategories"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "categoryCode"
+        }
+      ]
+    },
+    {
+      "name": "ProductCategoryListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductCategory\\Queries\\ProductCategoryListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateProductDescriptionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductDescription\\Commands\\CreateProductDescriptionCommand.cs",
+      "entities": [
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "Guid",
+          "name": "unitId"
+        },
+        {
+          "type": "Guid?",
+          "name": "categoryId"
+        },
+        {
+          "type": "int?",
+          "name": "productTypeId"
+        },
+        {
+          "type": "Guid?",
+          "name": "supplierId"
+        },
+        {
+          "type": "string",
+          "name": "productBarcode"
+        },
+        {
+          "type": "string",
+          "name": "productCode"
+        },
+        {
+          "type": "decimal",
+          "name": "ratio"
+        },
+        {
+          "type": "decimal",
+          "name": "buyingPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "sellingPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "criticalAmount"
+        },
+        {
+          "type": "bool?",
+          "name": "active"
+        },
+        {
+          "type": "bool?",
+          "name": "sellingIncludeKDV"
+        },
+        {
+          "type": "bool?",
+          "name": "buyingIncludeKDV"
+        },
+        {
+          "type": "bool?",
+          "name": "fixPrice"
+        },
+        {
+          "type": "bool?",
+          "name": "isExpirationDate"
+        },
+        {
+          "type": "int?",
+          "name": "animalType"
+        },
+        {
+          "type": "int?",
+          "name": "numberRepetitions"
+        },
+        {
+          "type": "Guid",
+          "name": "storeId"
+        },
+        {
+          "type": "Guid",
+          "name": "taxisId"
+        }
+      ]
+    },
+    {
+      "name": "DeleteProductDescriptionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductDescription\\Commands\\DeleteProductDescriptionCommand.cs",
+      "entities": [
+        "VetProducts",
+        "VetSaleBuyTrans",
+        "VetDemandTrans"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateProductActiveCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductDescription\\Commands\\UpdateProductActiveCommand.cs",
+      "entities": [
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool?",
+          "name": "active"
+        }
+      ]
+    },
+    {
+      "name": "UpdateProductDescriptionCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductDescription\\Commands\\UpdateProductDescriptionCommand.cs",
+      "entities": [
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "Guid",
+          "name": "unitId"
+        },
+        {
+          "type": "Guid?",
+          "name": "categoryId"
+        },
+        {
+          "type": "int?",
+          "name": "productTypeId"
+        },
+        {
+          "type": "Guid?",
+          "name": "supplierId"
+        },
+        {
+          "type": "string",
+          "name": "productBarcode"
+        },
+        {
+          "type": "string",
+          "name": "productCode"
+        },
+        {
+          "type": "decimal",
+          "name": "ratio"
+        },
+        {
+          "type": "decimal",
+          "name": "buyingPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "sellingPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "criticalAmount"
+        },
+        {
+          "type": "bool?",
+          "name": "active"
+        },
+        {
+          "type": "bool?",
+          "name": "sellingIncludeKDV"
+        },
+        {
+          "type": "bool?",
+          "name": "buyingIncludeKDV"
+        },
+        {
+          "type": "bool?",
+          "name": "fixPrice"
+        },
+        {
+          "type": "bool?",
+          "name": "isExpirationDate"
+        },
+        {
+          "type": "int?",
+          "name": "numberRepetitions"
+        },
+        {
+          "type": "int?",
+          "name": "animalType"
+        },
+        {
+          "type": "Guid",
+          "name": "storeId"
+        },
+        {
+          "type": "Guid",
+          "name": "taxisId"
+        }
+      ]
+    },
+    {
+      "name": "ProductDescriptionFiltersQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductDescription\\Queries\\ProductDescriptionFiltersQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "productType"
+        }
+      ]
+    },
+    {
+      "name": "ProductDescriptionListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductDescription\\Queries\\ProductDescriptionListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "ProductMovementListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\ProductDescription\\Queries\\ProductMovementListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "productId"
+        }
+      ]
+    },
+    {
+      "name": "CreateSmsTemplateCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\SmsTemplate\\Commands\\CreateSmsTemplateCommand.cs",
+      "entities": [
+        "VetSmsTemplate"
+      ],
+      "parameters": [
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "templateName"
+        },
+        {
+          "type": "string",
+          "name": "templateContent"
+        },
+        {
+          "type": "SmsType",
+          "name": "type"
+        },
+        {
+          "type": "bool?",
+          "name": "enableSMS"
+        },
+        {
+          "type": "bool?",
+          "name": "enableAppNotification"
+        },
+        {
+          "type": "bool?",
+          "name": "enableEmail"
+        },
+        {
+          "type": "bool?",
+          "name": "enableWhatsapp"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSmsTemplateCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\SmsTemplate\\Commands\\DeleteSmsTemplateCommand.cs",
+      "entities": [
+        "VetSmsTemplate"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateSmsTemplateCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\SmsTemplate\\Commands\\UpdateSmsTemplateCommand.cs",
+      "entities": [
+        "VetSmsTemplate"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "SmsType",
+          "name": "type"
+        },
+        {
+          "type": "string",
+          "name": "templateName"
+        },
+        {
+          "type": "string",
+          "name": "templateContent"
+        },
+        {
+          "type": "bool?",
+          "name": "enableSMS"
+        },
+        {
+          "type": "bool?",
+          "name": "enableAppNotification"
+        },
+        {
+          "type": "bool?",
+          "name": "enableEmail"
+        },
+        {
+          "type": "bool?",
+          "name": "enableWhatsapp"
+        }
+      ]
+    },
+    {
+      "name": "GetSmsTemplateIdByQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\SmsTemplate\\Queries\\GetSmsTemplateIdByQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "type"
+        }
+      ]
+    },
+    {
+      "name": "GetSmsTemplateListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\SmsTemplate\\Queries\\GetSmsTemplateListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateStockTrackingCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\StockTracking\\Commands\\CreateStockTrackingCommand.cs",
+      "entities": [
+        "VetStockTracking",
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "productId"
+        },
+        {
+          "type": "bool",
+          "name": "status"
+        },
+        {
+          "type": "ProcessTypes",
+          "name": "processType"
+        },
+        {
+          "type": "StockTrackingType",
+          "name": "type"
+        },
+        {
+          "type": "decimal",
+          "name": "piece"
+        },
+        {
+          "type": "Guid?",
+          "name": "supplierId"
+        },
+        {
+          "type": "DateTime?",
+          "name": "expirationDate"
+        },
+        {
+          "type": "decimal",
+          "name": "purchasePrice"
+        }
+      ]
+    },
+    {
+      "name": "DeleteStockTrackingCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\StockTracking\\Commands\\DeleteStockTrackingCommand.cs",
+      "entities": [
+        "VetStockTracking",
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateStockTrackingCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\StockTracking\\Commands\\UpdateStockTrackingCommand.cs",
+      "entities": [
+        "VetStockTracking",
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool",
+          "name": "status"
+        },
+        {
+          "type": "ProcessTypes",
+          "name": "processType"
+        },
+        {
+          "type": "StockTrackingType",
+          "name": "type"
+        },
+        {
+          "type": "decimal",
+          "name": "piece"
+        },
+        {
+          "type": "Guid?",
+          "name": "supplierId"
+        },
+        {
+          "type": "DateTime?",
+          "name": "expirationDate"
+        },
+        {
+          "type": "decimal",
+          "name": "purchasePrice"
+        }
+      ]
+    },
+    {
+      "name": "StockTrackingListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\StockTracking\\Queries\\StockTrackingListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "StockTrackingProductFilterQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\StockTracking\\Queries\\StockTrackingProductFilterQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "productId"
+        }
+      ]
+    },
+    {
+      "name": "CreateTaxisCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\Taxis\\Commands\\CreateTaxisCommand.cs",
+      "entities": [
+        "VetTaxis"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "taxName"
+        },
+        {
+          "type": "int",
+          "name": "taxRatio"
+        }
+      ]
+    },
+    {
+      "name": "DeleteTaxisCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\Taxis\\Commands\\DeleteTaxisCommand.cs",
+      "entities": [
+        "VetTaxis"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateTaxisCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\Taxis\\Commands\\UpdateTaxisCommand.cs",
+      "entities": [
+        "VetTaxis"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "taxName"
+        },
+        {
+          "type": "int",
+          "name": "taxRatio"
+        }
+      ]
+    },
+    {
+      "name": "GetTaxisListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\Taxis\\Queries\\GetTaxisListQuery.cs",
+      "entities": [
+        "VetTaxis"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "CreateUnitsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\UnitDefinitions\\Commands\\CreateUnitsCommand.cs",
+      "entities": [
+        "VetUnits"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "unitCode"
+        },
+        {
+          "type": "string",
+          "name": "unitName"
+        }
+      ]
+    },
+    {
+      "name": "DeleteUnitsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\UnitDefinitions\\Commands\\DeleteUnitsCommand.cs",
+      "entities": [
+        "VetUnits"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateUnitsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\UnitDefinitions\\Commands\\UpdateUnitsCommand.cs",
+      "entities": [
+        "VetUnits"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "unitCode"
+        },
+        {
+          "type": "string",
+          "name": "unitName"
+        }
+      ]
+    },
+    {
+      "name": "UnitsListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Definition\\UnitDefinitions\\Queries\\UnitsListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateDemandCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\Demand\\Commands\\CreateDemandCommand.cs",
+      "entities": [
+        "VetDemands",
+        "VetDemandProducts",
+        "VetDemandTrans"
+      ],
+      "parameters": [
+        {
+          "type": "Guid?",
+          "name": "id"
+        },
+        {
+          "type": "DateTime?",
+          "name": "date"
+        },
+        {
+          "type": "string",
+          "name": "documentno"
+        },
+        {
+          "type": "Guid?",
+          "name": "suppliers"
+        },
+        {
+          "type": "DateTime?",
+          "name": "deliverydate"
+        },
+        {
+          "type": "string",
+          "name": "note"
+        },
+        {
+          "type": "int?",
+          "name": "state"
+        },
+        {
+          "type": "bool?",
+          "name": "iscomplated"
+        },
+        {
+          "type": "List<DemandProductsDto>",
+          "name": "demandProductList"
+        }
+      ]
+    },
+    {
+      "name": "DeleteDemandCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\Demand\\Commands\\DeleteDemandCommand.cs",
+      "entities": [
+        "VetDemands",
+        "VetDemandProducts",
+        "VetDemandTrans"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateDemandCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\Demand\\Commands\\UpdateDemandCommand.cs",
+      "entities": [
+        "VetDemands"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "DateTime?",
+          "name": "date"
+        },
+        {
+          "type": "string",
+          "name": "documentno"
+        },
+        {
+          "type": "Guid?",
+          "name": "suppliers"
+        },
+        {
+          "type": "DateTime?",
+          "name": "deliverydate"
+        },
+        {
+          "type": "string",
+          "name": "note"
+        },
+        {
+          "type": "int?",
+          "name": "state"
+        },
+        {
+          "type": "bool?",
+          "name": "iscomplated"
+        }
+      ]
+    },
+    {
+      "name": "UpdateDemandIsBuyingCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\Demand\\Commands\\UpdateDemandIsBuyingCommand.cs",
+      "entities": [
+        "VetDemands"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool?",
+          "name": "iscomplated"
+        }
+      ]
+    },
+    {
+      "name": "DemandListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\Demand\\Queries\\DemandListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "DemandComplatedListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\DemandComplated\\Queries\\DemandComplatedListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateDemandProductsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\DemandProducts\\Commands\\CreateDemandProductsCommand.cs",
+      "entities": [
+        "VetDemandProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "Guid?",
+          "name": "ownerId"
+        },
+        {
+          "type": "Guid",
+          "name": "productId"
+        },
+        {
+          "type": "decimal?",
+          "name": "quantity"
+        },
+        {
+          "type": "decimal?",
+          "name": "unitPrice"
+        },
+        {
+          "type": "decimal?",
+          "name": "amount"
+        },
+        {
+          "type": "decimal?",
+          "name": "stockState"
+        },
+        {
+          "type": "int?",
+          "name": "isActive"
+        },
+        {
+          "type": "decimal?",
+          "name": "reserved"
+        },
+        {
+          "type": "string",
+          "name": "barcode"
+        }
+      ]
+    },
+    {
+      "name": "DeleteDemandProductsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\DemandProducts\\Commands\\DeleteDemandProductsCommand.cs",
+      "entities": [
+        "VetDemandProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateDemandProductsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\DemandProducts\\Commands\\UpdateDemandProductsCommand.cs",
+      "entities": [
+        "VetDemandProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "Guid?",
+          "name": "ownerId"
+        },
+        {
+          "type": "Guid",
+          "name": "productId"
+        },
+        {
+          "type": "decimal?",
+          "name": "quantity"
+        },
+        {
+          "type": "decimal?",
+          "name": "unitPrice"
+        },
+        {
+          "type": "decimal?",
+          "name": "amount"
+        },
+        {
+          "type": "decimal?",
+          "name": "stockState"
+        },
+        {
+          "type": "int?",
+          "name": "isActive"
+        },
+        {
+          "type": "decimal?",
+          "name": "reserved"
+        },
+        {
+          "type": "string",
+          "name": "barcode"
+        },
+        {
+          "type": "Guid?",
+          "name": "taxisId"
+        }
+      ]
+    },
+    {
+      "name": "DemandProductsListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\DemandProducts\\Queries\\DemandProductsListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "DemandTransListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Demands\\DemandTrans\\Queries\\DemandTransListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "Guid?",
+          "name": "ownerId"
+        },
+        {
+          "type": "Guid",
+          "name": "productId"
+        },
+        {
+          "type": "decimal?",
+          "name": "quantity"
+        },
+        {
+          "type": "decimal?",
+          "name": "unitPrice"
+        },
+        {
+          "type": "decimal?",
+          "name": "amount"
+        },
+        {
+          "type": "decimal?",
+          "name": "stockState"
+        },
+        {
+          "type": "int?",
+          "name": "isActive"
+        },
+        {
+          "type": "decimal?",
+          "name": "reserved"
+        },
+        {
+          "type": "string",
+          "name": "barcode"
+        }
+      ]
+    },
+    {
+      "name": "CreateFileManagerCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\FileManager\\Commands\\CreateFileManagerCommand.cs",
+      "entities": [
+        "VetDocuments"
+      ],
+      "parameters": [
+        {
+          "type": "IFormFile",
+          "name": "file"
+        },
+        {
+          "type": "string",
+          "name": "fileName"
+        },
+        {
+          "type": "string",
+          "name": "size"
+        }
+      ]
+    },
+    {
+      "name": "DeleteFileManagerCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\FileManager\\Commands\\DeleteFileManagerCommand.cs",
+      "entities": [
+        "VetDocuments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "DownloadFileManagerCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\FileManager\\Commands\\DownloadFileManagerCommand.cs",
+      "entities": [
+        "VetDocuments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "GetFileManagerForByIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\FileManager\\Queries\\GetFileManagerForByIdQuery.cs",
+      "entities": [
+        "VetDocuments"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "GetFileManagerListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\FileManager\\Queries\\GetFileManagerListQuery.cs",
+      "entities": [
+        "VetDocuments"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "CreateShortCutsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\GeneralSettings\\ShortCuts\\Commands\\CreateShortCutsCommand.cs",
+      "entities": [
+        "VetShortcut"
+      ],
+      "parameters": [
+        {
+          "type": "VetShortcut",
+          "name": "shortcut"
+        }
+      ]
+    },
+    {
+      "name": "DeleteShortCutsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\GeneralSettings\\ShortCuts\\Commands\\DeleteShortCutsCommand.cs",
+      "entities": [
+        "VetShortcut"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateShortCutsCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\GeneralSettings\\ShortCuts\\Commands\\UpdateShortCutsCommand.cs",
+      "entities": [
+        "VetShortcut"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "VetShortcut",
+          "name": "shortcut"
+        }
+      ]
+    },
+    {
+      "name": "GetShortCutsQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\GeneralSettings\\ShortCuts\\Queries\\GetShortCutsQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "GetVetUsersListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\GeneralSettings\\Users\\Queries\\GetVetUsersListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateLabDocumentCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Lab\\Commands\\CreateLabDocumentCommand.cs",
+      "entities": [
+        "VetLabDocument"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "CustomersLabListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Lab\\Queries\\CustomersLabListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "GetLabDocumentByIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Lab\\Queries\\GetLabDocumentByIdQuery.cs",
+      "entities": [
+        "VetLabDocument"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "patientId"
+        }
+      ]
+    },
+    {
+      "name": "MultiAutoSendMessageCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Message\\Commands\\MultiAutoSendMessageCommand.cs",
+      "entities": [
+        "VetSmsParameters",
+        "VetCustomers",
+        "VetMessageLogs"
+      ],
+      "parameters": [
+        {
+          "type": "List<MessageType>",
+          "name": "type"
+        },
+        {
+          "type": "string",
+          "name": "content"
+        },
+        {
+          "type": "Guid",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "CreateExaminationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Commands\\CreateExaminationCommand.cs",
+      "entities": [
+        "VetExamination",
+        "VetWeightControl",
+        "VetParameters"
+      ],
+      "parameters": [
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "string",
+          "name": "status"
+        },
+        {
+          "type": "string",
+          "name": "customerId"
+        },
+        {
+          "type": "string",
+          "name": "patientId"
+        },
+        {
+          "type": "double",
+          "name": "bodyTemperature"
+        },
+        {
+          "type": "int",
+          "name": "pulse"
+        },
+        {
+          "type": "int",
+          "name": "respiratoryRate"
+        },
+        {
+          "type": "double",
+          "name": "weight"
+        },
+        {
+          "type": "string",
+          "name": "complaintStory"
+        },
+        {
+          "type": "string",
+          "name": "treatmentDescription"
+        },
+        {
+          "type": "string",
+          "name": "symptoms"
+        },
+        {
+          "type": "bool",
+          "name": "isPrice"
+        },
+        {
+          "type": "decimal",
+          "name": "price"
+        },
+        {
+          "type": "List<SaleTransRequestDto>?",
+          "name": "trans"
+        }
+      ]
+    },
+    {
+      "name": "DeleteExaminationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Commands\\DeleteExaminationCommand.cs",
+      "entities": [
+        "VetExamination",
+        "VetSaleBuyOwner",
+        "VetSaleBuyTrans"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateExaminationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Commands\\UpdateExaminationCommand.cs",
+      "entities": [
+        "VetExamination"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "string",
+          "name": "status"
+        },
+        {
+          "type": "string",
+          "name": "customerId"
+        },
+        {
+          "type": "string",
+          "name": "patientId"
+        },
+        {
+          "type": "double",
+          "name": "bodyTemperature"
+        },
+        {
+          "type": "int",
+          "name": "pulse"
+        },
+        {
+          "type": "int",
+          "name": "respiratoryRate"
+        },
+        {
+          "type": "double",
+          "name": "weight"
+        },
+        {
+          "type": "string",
+          "name": "complaintStory"
+        },
+        {
+          "type": "string",
+          "name": "treatmentDescription"
+        },
+        {
+          "type": "string",
+          "name": "symptoms"
+        }
+      ]
+    },
+    {
+      "name": "UpdateExaminationStatusCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Commands\\UpdateExaminationStatusCommand.cs",
+      "entities": [
+        "VetExamination"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "status"
+        }
+      ]
+    },
+    {
+      "name": "GetExaminationByPatientIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Queries\\GetExaminationByPatientIdQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "GetExaminationByRecIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Queries\\GetExaminationByRecIdQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "GetExaminationsBySaleListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Queries\\GetExaminationsBySaleListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "examinationId"
+        }
+      ]
+    },
+    {
+      "name": "GetExaminationsQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Queries\\GetExaminationsQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "GetSymptomsQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\Examination\\Queries\\GetSymptomsQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "UpdatePatientsWeightCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\PatientList\\Commands\\UpdatePatientsWeightCommand.cs",
+      "entities": [
+        "VetWeightControl"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "patientId"
+        },
+        {
+          "type": "double",
+          "name": "weight"
+        }
+      ]
+    },
+    {
+      "name": "GetPatientByIdQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\PatientList\\Queries\\GetPatientByIdQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "GetPatientListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\PatientList\\Queries\\GetPatientListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "GetWeightControlsQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Patient\\PatientList\\Queries\\GetWeightControlsQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "patientId"
+        }
+      ]
+    },
+    {
+      "name": "CreateAccomodationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Accomodation\\Commands\\CreateAccomodationCommand.cs",
+      "entities": [
+        "VetAccomodation",
+        "VetRooms"
+      ],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "type"
+        },
+        {
+          "type": "Guid",
+          "name": "roomId"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        },
+        {
+          "type": "Guid?",
+          "name": "patientsId"
+        },
+        {
+          "type": "DateTime",
+          "name": "checkinDate"
+        },
+        {
+          "type": "DateTime",
+          "name": "checkOutDate"
+        },
+        {
+          "type": "int",
+          "name": "accomodation"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        }
+      ]
+    },
+    {
+      "name": "DeleteAccomodationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Accomodation\\Commands\\DeleteAccomodationCommand.cs",
+      "entities": [
+        "VetAccomodation"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateAccomodationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Accomodation\\Commands\\UpdateAccomodationCommand.cs",
+      "entities": [
+        "VetAccomodation"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "Guid",
+          "name": "roomId"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        },
+        {
+          "type": "Guid?",
+          "name": "patientsId"
+        },
+        {
+          "type": "DateTime",
+          "name": "checkinDate"
+        },
+        {
+          "type": "DateTime",
+          "name": "checkOutDate"
+        },
+        {
+          "type": "int",
+          "name": "accomodation"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCheckOutCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Accomodation\\Commands\\UpdateCheckOutCommand.cs",
+      "entities": [
+        "VetAccomodation",
+        "VetAccomodationCheckOuts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "accomodationId"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        },
+        {
+          "type": "Guid?",
+          "name": "patientsId"
+        },
+        {
+          "type": "Guid",
+          "name": "roomId"
+        },
+        {
+          "type": "DateTime",
+          "name": "checkinDate"
+        },
+        {
+          "type": "DateTime",
+          "name": "checkOutDate"
+        },
+        {
+          "type": "decimal",
+          "name": "accomodationAmount"
+        },
+        {
+          "type": "decimal",
+          "name": "collectionAmount"
+        },
+        {
+          "type": "int",
+          "name": "paymentId"
+        }
+      ]
+    },
+    {
+      "name": "GetAccomodationListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Accomodation\\Queries\\GetAccomodationListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "CreateRoomCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Rooms\\Commands\\CreateRoomCommand.cs",
+      "entities": [
+        "VetRooms"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "roomName"
+        },
+        {
+          "type": "decimal",
+          "name": "price"
+        },
+        {
+          "type": "RoomRriceType",
+          "name": "pricingType"
+        }
+      ]
+    },
+    {
+      "name": "DeleteRoomCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Rooms\\Commands\\DeleteRoomCommand.cs",
+      "entities": [
+        "VetRooms"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateRoomCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Rooms\\Commands\\UpdateRoomCommand.cs",
+      "entities": [
+        "VetRooms"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "roomName"
+        },
+        {
+          "type": "decimal",
+          "name": "price"
+        },
+        {
+          "type": "RoomRriceType",
+          "name": "pricingType"
+        }
+      ]
+    },
+    {
+      "name": "GetRoomListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\PetHotels\\Rooms\\Queries\\GetRoomListQuery.cs",
+      "entities": [
+        "VetRooms"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetAppointmentDashboardQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Reports\\Appointment\\Queries\\GetAppointmentDashboardQuery.cs",
+      "entities": [
+        "VetAppointments"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "CreateReportFilterCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Reports\\Commands\\CreateReportFilterCommand.cs",
+      "entities": [
+        "VetReportFilter"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "filterJson"
+        }
+      ]
+    },
+    {
+      "name": "CreateSaleBuyCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\SaleBuy\\Commands\\CreateSaleBuyCommand.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetProducts",
+        "VetTaxis"
+      ],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "type"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        },
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "Guid?",
+          "name": "productId"
+        },
+        {
+          "type": "Guid?",
+          "name": "supplierId"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "string",
+          "name": "invoiceNo"
+        },
+        {
+          "type": "int",
+          "name": "paymentType"
+        },
+        {
+          "type": "decimal",
+          "name": "amount"
+        },
+        {
+          "type": "Guid?",
+          "name": "demandsGuidId"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSaleBuyCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\SaleBuy\\Commands\\DeleteSaleBuyCommand.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetSaleBuyTrans",
+        "VetDemands"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "Guid",
+          "name": "ownerId"
+        },
+        {
+          "type": "bool?",
+          "name": "allSaleDeleted"
+        }
+      ]
+    },
+    {
+      "name": "UpdateSaleBuyCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\SaleBuy\\Commands\\UpdateSaleBuyCommand.cs",
+      "entities": [
+        "VetSaleBuyOwner",
+        "VetSaleBuyTrans",
+        "VetTaxis",
+        "VetProducts"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "Guid",
+          "name": "ownerId"
+        },
+        {
+          "type": "int",
+          "name": "type"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        },
+        {
+          "type": "DateTime",
+          "name": "date"
+        },
+        {
+          "type": "Guid?",
+          "name": "productId"
+        },
+        {
+          "type": "Guid?",
+          "name": "supplierId"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "string",
+          "name": "invoiceNo"
+        },
+        {
+          "type": "int",
+          "name": "paymentType"
+        },
+        {
+          "type": "decimal",
+          "name": "amount"
+        },
+        {
+          "type": "Guid?",
+          "name": "demandsGuidId"
+        }
+      ]
+    },
+    {
+      "name": "SaleBuyListFilterQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\SaleBuy\\Queries\\SaleBuyListFilterQuery.cs",
+      "entities": [
+        "VetPaymentMethods"
+      ],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "paymentType"
+        },
+        {
+          "type": "DateTime",
+          "name": "beginDate"
+        },
+        {
+          "type": "DateTime",
+          "name": "endDate"
+        }
+      ]
+    },
+    {
+      "name": "SaleBuyListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\SaleBuy\\Queries\\SaleBuyListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "type"
+        }
+      ]
+    },
+    {
+      "name": "UpdateParametersCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Settings\\Parameters\\Commands\\UpdateParametersCommand.cs",
+      "entities": [
+        "VetParameters"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "int?",
+          "name": "appointmentReminderDuration"
+        },
+        {
+          "type": "int?",
+          "name": "agendaNoteReminder"
+        },
+        {
+          "type": "string",
+          "name": "days"
+        },
+        {
+          "type": "Guid?",
+          "name": "smsCompany"
+        },
+        {
+          "type": "Guid?",
+          "name": "cashAccount"
+        },
+        {
+          "type": "Guid?",
+          "name": "creditCardCashAccount"
+        },
+        {
+          "type": "Guid?",
+          "name": "bankTransferCashAccount"
+        },
+        {
+          "type": "Guid?",
+          "name": "whatsappTemplate"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerWelcomeTemplate"
+        },
+        {
+          "type": "Guid?",
+          "name": "automaticAppointmentReminderMessageTemplate"
+        },
+        {
+          "type": "bool?",
+          "name": "isOtoCustomerWelcomeMessage"
+        },
+        {
+          "type": "bool?",
+          "name": "displayVetNo"
+        },
+        {
+          "type": "bool?",
+          "name": "autoSms"
+        },
+        {
+          "type": "bool?",
+          "name": "isAnimalsBreeds"
+        },
+        {
+          "type": "bool?",
+          "name": "isFirstInspection"
+        },
+        {
+          "type": "string",
+          "name": "appointmentBeginDate"
+        },
+        {
+          "type": "string",
+          "name": "appointmentEndDate"
+        },
+        {
+          "type": "bool?",
+          "name": "isExaminationAmuntZero"
+        },
+        {
+          "type": "int?",
+          "name": "datetimestatus"
+        },
+        {
+          "type": "int?",
+          "name": "appointmentinterval"
+        },
+        {
+          "type": "int?",
+          "name": "appointmentSeansDuration"
+        },
+        {
+          "type": "int?",
+          "name": "petHotelsDateTimeFormat"
+        }
+      ]
+    },
+    {
+      "name": "ParametersListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Settings\\Parameters\\Queries\\ParametersListQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid?",
+          "name": "id"
+        },
+        {
+          "type": "int?",
+          "name": "appointmentReminderDuration"
+        },
+        {
+          "type": "int?",
+          "name": "agendaNoteReminder"
+        },
+        {
+          "type": "string",
+          "name": "days"
+        },
+        {
+          "type": "Guid?",
+          "name": "smsCompany"
+        },
+        {
+          "type": "Guid?",
+          "name": "cashAccount"
+        },
+        {
+          "type": "Guid?",
+          "name": "creditCardCashAccount"
+        },
+        {
+          "type": "Guid?",
+          "name": "bankTransferCashAccount"
+        },
+        {
+          "type": "Guid?",
+          "name": "whatsappTemplate"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerWelcomeTemplate"
+        },
+        {
+          "type": "Guid?",
+          "name": "automaticAppointmentReminderMessageTemplate"
+        },
+        {
+          "type": "bool?",
+          "name": "isOtoCustomerWelcomeMessage"
+        },
+        {
+          "type": "bool?",
+          "name": "displayVetNo"
+        },
+        {
+          "type": "bool?",
+          "name": "autoSms"
+        },
+        {
+          "type": "bool?",
+          "name": "isAnimalsBreeds"
+        },
+        {
+          "type": "string",
+          "name": "appointmentBeginDate"
+        },
+        {
+          "type": "string",
+          "name": "appointmentEndDate"
+        },
+        {
+          "type": "bool?",
+          "name": "isExaminationAmuntZero"
+        }
+      ]
+    },
+    {
+      "name": "CreateSmsParametersCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Settings\\SmsParameters\\Commands\\CreateSmsParametersCommand.cs",
+      "entities": [
+        "VetSmsParameters"
+      ],
+      "parameters": [
+        {
+          "type": "SmsParameterType",
+          "name": "smsIntegrationType"
+        },
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "userName"
+        },
+        {
+          "type": "string",
+          "name": "password"
+        }
+      ]
+    },
+    {
+      "name": "UpdateSmsParametersCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Settings\\SmsParameters\\Commands\\UpdateSmsParametersCommand.cs",
+      "entities": [
+        "VetSmsParameters"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "SmsParameterType",
+          "name": "smsIntegrationType"
+        },
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "userName"
+        },
+        {
+          "type": "string",
+          "name": "password"
+        }
+      ]
+    },
+    {
+      "name": "GetSmsParametersIdByQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Settings\\SmsParameters\\Queries\\GetSmsParametersIdByQuery.cs",
+      "entities": [
+        "VetSmsParameters"
+      ],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "smsIntegrationType"
+        }
+      ]
+    },
+    {
+      "name": "GetSmsParametersListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Settings\\SmsParameters\\Queries\\GetSmsParametersListQuery.cs",
+      "entities": [
+        "VetSmsParameters"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetLogsQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Settings\\VetLog\\Queries\\GetLogsQuery.cs",
+      "entities": [
+        "VetLogs"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "masterId"
+        }
+      ]
+    },
+    {
+      "name": "CreateStoreCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Store\\Commands\\CreateStoreCommand.cs",
+      "entities": [
+        "VetStores"
+      ],
+      "parameters": [
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "depotCode"
+        },
+        {
+          "type": "string",
+          "name": "depotName"
+        }
+      ]
+    },
+    {
+      "name": "DeleteStoreCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Store\\Commands\\DeleteStoreCommand.cs",
+      "entities": [
+        "VetStores"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateStoreCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Store\\Commands\\UpdateStoreCommand.cs",
+      "entities": [
+        "VetStores"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "depotCode"
+        },
+        {
+          "type": "string",
+          "name": "depotName"
+        }
+      ]
+    },
+    {
+      "name": "StoreListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Store\\Queries\\StoreListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateSuppliersCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Suppliers\\Commands\\CreateSuppliersCommand.cs",
+      "entities": [
+        "VetSuppliers"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "supplierName"
+        },
+        {
+          "type": "string",
+          "name": "email"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        },
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "adress"
+        },
+        {
+          "type": "InvoiceTpe",
+          "name": "invoiceType"
+        },
+        {
+          "type": "string",
+          "name": "companyName"
+        },
+        {
+          "type": "string",
+          "name": "webSite"
+        },
+        {
+          "type": "string",
+          "name": "taxOffice"
+        },
+        {
+          "type": "string",
+          "name": "taxNumber"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSuppliersCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Suppliers\\Commands\\DeleteSuppliersCommand.cs",
+      "entities": [
+        "VetSuppliers"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateSuppliersCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Suppliers\\Commands\\UpdateSuppliersCommand.cs",
+      "entities": [
+        "VetSuppliers"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "supplierName"
+        },
+        {
+          "type": "string",
+          "name": "email"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        },
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "adress"
+        },
+        {
+          "type": "InvoiceTpe",
+          "name": "invoiceType"
+        },
+        {
+          "type": "string",
+          "name": "companyName"
+        },
+        {
+          "type": "string",
+          "name": "webSite"
+        },
+        {
+          "type": "string",
+          "name": "taxOffice"
+        },
+        {
+          "type": "string",
+          "name": "taxNumber"
+        }
+      ]
+    },
+    {
+      "name": "SuppliersListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Suppliers\\Queries\\SuppliersListQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "CreateVaccineCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Vaccine\\Commands\\CreateVaccineCommand.cs",
+      "entities": [
+        "VetVaccine"
+      ],
+      "parameters": [
+        {
+          "type": "int",
+          "name": "animalType"
+        },
+        {
+          "type": "string",
+          "name": "vaccineName"
+        },
+        {
+          "type": "int",
+          "name": "timeDone"
+        },
+        {
+          "type": "int",
+          "name": "renewalOption"
+        },
+        {
+          "type": "int",
+          "name": "obligation"
+        },
+        {
+          "type": "List<VetVaccineMedicineListDto>",
+          "name": "vaccineMedicine"
+        }
+      ]
+    },
+    {
+      "name": "DeteleVaccineCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Vaccine\\Commands\\DeteleVaccineCommand.cs",
+      "entities": [
+        "VetVaccine",
+        "VetVaccineMedicine"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateVaccineCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Vaccine\\Commands\\UpdateVaccineCommand.cs",
+      "entities": [
+        "VetVaccine",
+        "VetVaccineMedicine"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "int",
+          "name": "animalType"
+        },
+        {
+          "type": "string",
+          "name": "vaccineName"
+        },
+        {
+          "type": "int",
+          "name": "timeDone"
+        },
+        {
+          "type": "int",
+          "name": "renewalOption"
+        },
+        {
+          "type": "int",
+          "name": "obligation"
+        },
+        {
+          "type": "List<VetVaccineMedicineListDto>",
+          "name": "vaccineMedicine"
+        }
+      ]
+    },
+    {
+      "name": "VaccineListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\Vaccine\\Queries\\VaccineListQuery.cs",
+      "entities": [
+        "VetVaccine",
+        "VetVaccineMedicine"
+      ],
+      "parameters": [
+        {
+          "type": "int?",
+          "name": "animalType"
+        },
+        {
+          "type": "Guid?",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "CreateVaccineExaminationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\VaccineCalendar\\Commands\\CreateVaccineExaminationCommand.cs",
+      "entities": [
+        "VetVaccineCalendar",
+        "VetPatients",
+        "VetAppointments"
+      ],
+      "parameters": [
+        {
+          "type": "List<VetVaccineCalendar>",
+          "name": "vaccineCalendars"
+        }
+      ]
+    },
+    {
+      "name": "DeteleVaccineAppointmentCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\VaccineCalendar\\Commands\\DeteleVaccineAppointmentCommand.cs",
+      "entities": [
+        "VetVaccineCalendar"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateVaccineExaminationCommand",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\VaccineCalendar\\Commands\\UpdateVaccineExaminationCommand.cs",
+      "entities": [
+        "VetVaccineCalendar"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "DateTime",
+          "name": "vaccinationDate"
+        },
+        {
+          "type": "DateTime?",
+          "name": "nextVaccinationDate"
+        },
+        {
+          "type": "bool",
+          "name": "createNextAppointment"
+        }
+      ]
+    },
+    {
+      "name": "AllVaccineAppointmentsListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\VaccineCalendar\\Queries\\AllVaccineAppointmentsListQuery.cs",
+      "entities": [
+        "VetVaccineCalendar"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "PatientVaccineListQuery",
+      "source": "Services\\Vet\\BrewCloud.Vet.Application\\BrewCloud.Vet.Application\\Features\\VaccineCalendar\\Queries\\PatientVaccineListQuery.cs",
+      "entities": [
+        "VetVaccineCalendar"
+      ],
+      "parameters": [
+        {
+          "type": "Guid?",
+          "name": "id"
+        },
+        {
+          "type": "Guid?",
+          "name": "patientId"
+        },
+        {
+          "type": "Guid?",
+          "name": "customerId"
+        }
+      ]
+    },
+    {
+      "name": "ComplateSubscriptionCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Account\\Commands\\ComplateSubscriptionCommand.cs",
+      "entities": [
+        "Enterprise",
+        "User",
+        "Customer",
+        "Company",
+        "Rolesetting"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "recId"
+        },
+        {
+          "type": "string",
+          "name": "username"
+        },
+        {
+          "type": "string",
+          "name": "password"
+        },
+        {
+          "type": "string",
+          "name": "company"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        },
+        {
+          "type": "string",
+          "name": "email"
+        },
+        {
+          "type": "string",
+          "name": "activationCode"
+        },
+        {
+          "type": "string",
+          "name": "connectionString"
+        },
+        {
+          "type": "bool",
+          "name": "isFirstCreate"
+        },
+        {
+          "type": "string",
+          "name": "firstLastName"
+        }
+      ]
+    },
+    {
+      "name": "CreateSubscriptionCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Account\\Commands\\CreateSubscriptionCommand.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "tempId"
+        },
+        {
+          "type": "string",
+          "name": "username"
+        },
+        {
+          "type": "string",
+          "name": "password"
+        },
+        {
+          "type": "string",
+          "name": "company"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        },
+        {
+          "type": "string",
+          "name": "email"
+        },
+        {
+          "type": "string",
+          "name": "activationCode"
+        },
+        {
+          "type": "string",
+          "name": "connectionString"
+        }
+      ]
+    },
+    {
+      "name": "CreateTempCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Account\\Commands\\CreateTempCommand.cs",
+      "entities": [
+        "TempAccount"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "username"
+        },
+        {
+          "type": "string",
+          "name": "password"
+        },
+        {
+          "type": "string",
+          "name": "company"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        },
+        {
+          "type": "string",
+          "name": "host"
+        },
+        {
+          "type": "string",
+          "name": "activationCode"
+        }
+      ]
+    },
+    {
+      "name": "CreateBranchCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\CreateBranchCommand.cs",
+      "entities": [
+        "Branch"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "district"
+        },
+        {
+          "type": "string",
+          "name": "address"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        }
+      ]
+    },
+    {
+      "name": "CreateRoleSettingCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\CreateRoleSettingCommand.cs",
+      "entities": [
+        "Rolesetting",
+        "RoleSettingDetail"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "rolecode"
+        },
+        {
+          "type": "string",
+          "name": "mainPage"
+        },
+        {
+          "type": "List<SelectedNavigationDto>",
+          "name": "selectedNavigations"
+        },
+        {
+          "type": "List<SelectedActionsDto>",
+          "name": "selectedActions"
+        }
+      ]
+    },
+    {
+      "name": "CreateTitleDefinationCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\CreateTitleDefinationCommand.cs",
+      "entities": [
+        "TitleDefinitions"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "bool?",
+          "name": "isAppointmentShow"
+        }
+      ]
+    },
+    {
+      "name": "CreateUserCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\CreateUserCommand.cs",
+      "entities": [
+        "User",
+        "Userauthorization"
+      ],
+      "parameters": [
+        {
+          "type": "bool",
+          "name": "active"
+        },
+        {
+          "type": "string",
+          "name": "firstName"
+        },
+        {
+          "type": "string",
+          "name": "lastName"
+        },
+        {
+          "type": "string",
+          "name": "email"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        },
+        {
+          "type": "string",
+          "name": "roleId"
+        },
+        {
+          "type": "string",
+          "name": "appKey"
+        },
+        {
+          "type": "string",
+          "name": "userName"
+        },
+        {
+          "type": "Guid?",
+          "name": "titleId"
+        },
+        {
+          "type": "string[]",
+          "name": "properties"
+        }
+      ]
+    },
+    {
+      "name": "DeleteBranchCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\DeleteBranchCommand.cs",
+      "entities": [
+        "Branch"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "DeleteRoleSettingCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\DeleteRoleSettingCommand.cs",
+      "entities": [
+        "Rolesetting"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "DeleteTileDefinationCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\DeleteTileDefinationCommand.cs",
+      "entities": [
+        "TitleDefinitions"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateBranchCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\UpdateBranchCommand.cs",
+      "entities": [
+        "Branch"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "district"
+        },
+        {
+          "type": "string",
+          "name": "address"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        }
+      ]
+    },
+    {
+      "name": "UpdateCompanyCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\UpdateCompanyCommand.cs",
+      "entities": [
+        "Company"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "companyCode"
+        },
+        {
+          "type": "string",
+          "name": "companyName"
+        },
+        {
+          "type": "string",
+          "name": "eMail"
+        },
+        {
+          "type": "string",
+          "name": "phone"
+        },
+        {
+          "type": "string",
+          "name": "adress"
+        },
+        {
+          "type": "string",
+          "name": "companyTitle"
+        },
+        {
+          "type": "string",
+          "name": "tradeName"
+        },
+        {
+          "type": "int?",
+          "name": "taxNumber"
+        },
+        {
+          "type": "string",
+          "name": "taxOffice"
+        },
+        {
+          "type": "int?",
+          "name": "defaultInvoiceType"
+        },
+        {
+          "type": "bool?",
+          "name": "invoiceAmountNotes"
+        },
+        {
+          "type": "bool?",
+          "name": "invoiceNoAutoCreate"
+        },
+        {
+          "type": "bool?",
+          "name": "invoiceSendEMail"
+        }
+      ]
+    },
+    {
+      "name": "UpdateRoleSettingCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\UpdateRoleSettingCommand.cs",
+      "entities": [
+        "Rolesetting",
+        "RoleSettingDetail",
+        "User",
+        "Userauthorization"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "roleOwnerId"
+        },
+        {
+          "type": "string",
+          "name": "rolecode"
+        },
+        {
+          "type": "string",
+          "name": "mainPage"
+        },
+        {
+          "type": "List<SelectedNavigationDto>",
+          "name": "selectedNavigations"
+        },
+        {
+          "type": "List<SelectedActionsDto>",
+          "name": "selectedActions"
+        }
+      ]
+    },
+    {
+      "name": "UpdateTitleDefinationCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\UpdateTitleDefinationCommand.cs",
+      "entities": [
+        "TitleDefinitions"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "remark"
+        },
+        {
+          "type": "bool?",
+          "name": "isAppointmentShow"
+        }
+      ]
+    },
+    {
+      "name": "UpdateUserCommand",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Commands\\UpdateUserCommand.cs",
+      "entities": [
+        "User",
+        "Userauthorization"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "userId"
+        },
+        {
+          "type": "string",
+          "name": "userName"
+        },
+        {
+          "type": "string",
+          "name": "firstName"
+        },
+        {
+          "type": "string",
+          "name": "lastName"
+        },
+        {
+          "type": "string",
+          "name": "email"
+        },
+        {
+          "type": "string",
+          "name": "roleId"
+        },
+        {
+          "type": "string",
+          "name": "appKey"
+        },
+        {
+          "type": "bool?",
+          "name": "authorizeEnterprise"
+        },
+        {
+          "type": "bool",
+          "name": "isLicenceAccount"
+        },
+        {
+          "type": "string",
+          "name": "titleId"
+        },
+        {
+          "type": "bool?",
+          "name": "active"
+        }
+      ]
+    },
+    {
+      "name": "GetActiveUserQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetActiveUserQuery.cs",
+      "entities": [],
+      "parameters": []
+    },
+    {
+      "name": "GetBranchListQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetBranchListQuery.cs",
+      "entities": [
+        "Branch"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetCompanyQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetCompanyQuery.cs",
+      "entities": [
+        "Company"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetNavigationQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetNavigationQuery.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "bool",
+          "name": "all"
+        },
+        {
+          "type": "Guid?",
+          "name": "roleId"
+        }
+      ]
+    },
+    {
+      "name": "GetRoleSettingByIdQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetRoleSettingByIdQuery.cs",
+      "entities": [
+        "Rolesetting",
+        "RoleSettingDetail"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "GetRoleSettingListQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetRoleSettingListQuery.cs",
+      "entities": [
+        "Rolesetting"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetTitleDefinationQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetTitleDefinationQuery.cs",
+      "entities": [
+        "TitleDefinitions"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetUserRoleSettingListQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetUserRoleSettingListQuery.cs",
+      "entities": [
+        "Rolesetting",
+        "RoleSettingDetail"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "GetUsersListQuery",
+      "source": "Services\\Account\\BrewCloud.Account.Application\\Features\\Settings\\Queries\\GetUsersListQuery.cs",
+      "entities": [
+        "Rolesetting",
+        "User"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "SendMailCommand",
+      "source": "Services\\Mail\\BrewCloud.Mail.Application\\Features\\SmtpMails\\Commands\\SendMailCommand.cs",
+      "entities": [
+        "SmtpSetting"
+      ],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "emailToId"
+        },
+        {
+          "type": "string",
+          "name": "emailToName"
+        },
+        {
+          "type": "string",
+          "name": "emailSubject"
+        },
+        {
+          "type": "string",
+          "name": "emailBody"
+        },
+        {
+          "type": "string",
+          "name": "connectionString"
+        },
+        {
+          "type": "Guid",
+          "name": "recId"
+        },
+        {
+          "type": "int",
+          "name": "mailType"
+        }
+      ]
+    },
+    {
+      "name": "CreateSmtpSettingCommand",
+      "source": "Services\\Mail\\BrewCloud.Mail.Application\\Features\\SmtpSettings\\Commands\\CreateSmtpSettingCommand.cs",
+      "entities": [
+        "SmtpSetting"
+      ],
+      "parameters": [
+        {
+          "type": "bool",
+          "name": "defaults"
+        },
+        {
+          "type": "string",
+          "name": "displayName"
+        },
+        {
+          "type": "string",
+          "name": "emailId"
+        },
+        {
+          "type": "string",
+          "name": "password"
+        },
+        {
+          "type": "string",
+          "name": "host"
+        },
+        {
+          "type": "int",
+          "name": "port"
+        },
+        {
+          "type": "bool",
+          "name": "useSSL"
+        }
+      ]
+    },
+    {
+      "name": "DeleteSmtpSettingCommand",
+      "source": "Services\\Mail\\BrewCloud.Mail.Application\\Features\\SmtpSettings\\Commands\\DeleteSmtpSettingCommand.cs",
+      "entities": [
+        "SmtpSetting"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        }
+      ]
+    },
+    {
+      "name": "UpdateSmtpSettingCommand",
+      "source": "Services\\Mail\\BrewCloud.Mail.Application\\Features\\SmtpSettings\\Commands\\UpdateSmtpSettingCommand.cs",
+      "entities": [
+        "SmtpSetting"
+      ],
+      "parameters": [
+        {
+          "type": "Guid",
+          "name": "id"
+        },
+        {
+          "type": "bool",
+          "name": "defaults"
+        },
+        {
+          "type": "string",
+          "name": "displayName"
+        },
+        {
+          "type": "string",
+          "name": "emailId"
+        },
+        {
+          "type": "string",
+          "name": "password"
+        },
+        {
+          "type": "string",
+          "name": "host"
+        },
+        {
+          "type": "int",
+          "name": "port"
+        },
+        {
+          "type": "bool",
+          "name": "useSSL"
+        }
+      ]
+    },
+    {
+      "name": "GetSmtpSettingsQuery",
+      "source": "Services\\Mail\\BrewCloud.Mail.Application\\Features\\SmtpSettings\\Queries\\GetSmtpSettingsQuery.cs",
+      "entities": [
+        "SmtpSetting"
+      ],
+      "parameters": []
+    },
+    {
+      "name": "SendSmsTransactionsCommand",
+      "source": "Services\\Integrations\\BrewCloud.Integrations.Application\\Features\\Integrations\\SsmTransactions\\Commands\\SendSmsTransactionsCommand.cs",
+      "entities": [],
+      "parameters": [
+        {
+          "type": "string",
+          "name": "title"
+        },
+        {
+          "type": "string",
+          "name": "content"
+        },
+        {
+          "type": "string",
+          "name": "userName"
+        },
+        {
+          "type": "string",
+          "name": "passWord"
+        },
+        {
+          "type": "string[]",
+          "name": "sendPhone"
+        }
+      ]
+    }
+  ]
+}

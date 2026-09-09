@@ -1,0 +1,194 @@
+::ng-deep .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-input-token {
+    display: inline-flex !important;
+    align-items: baseline !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    box-shadow: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+  }
+  
+  ::ng-deep .p-autocomplete .p-autocomplete-multiple-container .p-autocomplete-input-token input {
+    font: inherit;
+    background: transparent;
+    color: currentColor;
+    border: none;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
+    box-sizing: content-box;
+    border-radius: 0 !important;
+    min-width: 100%;
+  }
+  
+  ::ng-deep .p-autocomplete-multiple-container {
+    border: none;
+    outline: none !important;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  ::ng-deep .p-focus {
+    outline: 0 !important;
+    border: 1 solid #fff !important;
+  
+    outline: 0 !important;
+    outline-width: 0 !important;
+    box-shadow: 0 !important;
+    -moz-box-shadow: 0;
+    -webkit-box-shadow: 0;
+  }
+  
+  ::ng-deep .p-autocomplete-panel {
+    position: absolute;
+    overflow: auto;
+    z-index: 99999 !important;
+  }
+  
+  ::ng-deep .mat-dialog-container {
+    overflow: initial !important;
+  }
+  
+  .p-auto-complatecustom {
+    width: 100% !important;
+    display: grid !important;
+  }
+  
+  ::ng-deep .ui-autocomplete-input {
+    border: 0;
+    border-radius: 2px;
+  }
+  
+  ::ng-deep .p-focus {
+    box-shadow: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+  }
+  
+  ::ng-deep .p-autocomplete-input-token.input:focus {
+    border: 1px solid red;
+  }
+  
+  ::ng-deep .dx-htmleditor-content img {
+    vertical-align: middle;
+    padding-right: 10px;
+  }
+  
+  ::ng-deep .dx-htmleditor-content table {
+    width: 50%;
+  }
+  
+  ::ng-deep .options {
+    padding: 20px;
+    background-color: rgba(191, 191, 191, 0.15);
+    margin-top: 20px;
+  }
+  
+  ::ng-deep .caption {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  ::ng-deep .option {
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 40px;
+  }
+  
+  ::ng-deep .option>.dx-selectbox,
+  ::ng-deep .option>.label {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  ::ng-deep .option>.label {
+    margin-right: 10px;
+  }
+  
+  .htmlEditor {
+    overflow: scroll;
+    height: 450px !important;
+  }
+  
+  #languageButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0px;
+    padding-bottom: 5px;
+    padding-top: 15px;
+  }
+  
+  ::ng-deep #fileuploader-container {
+    border: 1px solid #d3d3d3;
+    margin: 20px 20px 0 20px;
+  }
+  
+  .example-card {
+    max-width: 200px;
+    margin-bottom: 40px;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  ::ng-deep #dropzone-external {
+    width: 350px;
+    height: 350px;
+    background-color: rgba(183, 183, 183, 0.1);
+    border-width: 2px;
+    border-style: dashed;
+    padding: 10px;
+  }
+  
+  ::ng-deep #dropzone-external>* {
+    pointer-events: none;
+  }
+  
+  ::ng-deep #dropzone-external.dropzone-active {
+    border-style: solid;
+  }
+  
+  ::ng-deep .widget-container>span {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+  
+  ::ng-deep #dropzone-image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  ::ng-deep #dropzone-text>span {
+    font-weight: 100;
+    opacity: 0.5;
+  }
+  
+  ::ng-deep #upload-progress {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  ::ng-deep .flex-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mat-dialog-container {
+    z-index: 1050 !important; /* TinyMCE'nin z-index'ini geçecek şekilde ayarla */
+  }
+  
+  .tox-tinymce {
+    z-index: 1100 !important; /* TinyMCE toolbar'ın modal üstünde kalmasını sağlar */
+  }

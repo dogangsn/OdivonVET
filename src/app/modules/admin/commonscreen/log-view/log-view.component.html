@@ -1,0 +1,74 @@
+<h1 mat-dialog-title class="mat-dialog-title" mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragHandle>
+  <button class="dialog-close-button">
+    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+      </path>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+    </svg>
+  </button>
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span>İşlem Geçmişi</span>
+      </h5>
+    </div>
+    <div class="modal-body mbody-customeradd">
+
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Tarih </th>
+            <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="oldValue">
+            <th mat-header-cell *matHeaderCellDef> Eski Değer </th>
+            <td mat-cell *matCellDef="let element"> {{element.oldValue}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="newValue">
+            <th mat-header-cell *matHeaderCellDef> Yeni Değer </th>
+            <td mat-cell *matCellDef="let element"> {{element.newValue}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="fieldName">
+            <th mat-header-cell *matHeaderCellDef> Alan Adı </th>
+            <td mat-cell *matCellDef="let element"> {{element.fieldName}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons #paginator
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+
+      </div>
+
+    </div>
+
+  </mat-dialog-content>
+</div>
+
+
+<div class="flex items-center mt-4 sm:mt-0 justify-end mr-7">
+  <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+    Vazgeç
+  </button>
+</div>

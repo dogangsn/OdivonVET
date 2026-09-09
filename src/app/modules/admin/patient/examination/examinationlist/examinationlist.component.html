@@ -1,0 +1,189 @@
+<div class="flex flex-col flex-auto min-w-0">
+
+  <!-- Header -->
+  <div
+    class="flex flex-col sm:flex-row flex-0 sm:items-center sm:justify-between p-6 pb-22 sm:pt-12 sm:pb-28 sm:px-10 bg-default dark:bg-transparent">
+    <div class="flex-1 min-w-0">
+      <!-- Breadcrumbs -->
+      <div>
+        <div class="flex sm:hidden">
+          <a class="inline-flex items-center -ml-1.5 text-secondary font-medium" [routerLink]="'./..'">
+            <mat-icon class="icon-size-5 text-secondary" [svgIcon]="'heroicons_solid:chevron-left'"></mat-icon>
+            <span class="ml-1">Back</span>
+          </a>
+        </div>
+      </div>
+      <!-- Title -->
+      <div class="mt-2">
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
+          Muayene Listesi
+        </h2>
+      </div>
+    </div>
+    <!-- Actions -->
+    <div class="flex shrink-0 items-center mt-6 sm:mt-0 sm:ml-4">
+     
+      <button *ngIf="examinationListAct?.action !== 'Okuma'" class="ml-3" mat-flat-button [color]="'primary'" (click)="addPanelOpen()">
+        <mat-icon class="icon-size-5 mr-2" [svgIcon]="'heroicons_solid:link'"></mat-icon>
+        Yeni Muayne Ekle
+      </button>
+    </div>
+
+  </div>
+
+  <!-- Main -->
+  <div class="flex-auto -mt-16 p-6 sm:p-10 rounded-t-2xl shadow bg-card">
+    <!-- CONTENT GOES HERE -->
+    <div role="status" class="animate-pulse" *ngIf="loader">
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-4" *ngFor="let _ of items"></div>
+    </div>
+
+    <div *ngIf="!loader">
+    <div class="flex items-center mt-4 mb-4 sm:mt-0 md:mt-4">
+      <!-- Search -->
+      <div class="flex-auto">
+        <mat-form-field class="fuse-mat-dense fuse-mat-rounded w-full min-w-50" subscriptSizing="dynamic">
+          <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+          <input matInput [autocomplete]="'off'" [placeholder]="'Search'" (keyup)="applyFilter($event.target.value)">
+        </mat-form-field>
+      </div>
+    </div>
+
+
+    <div class="mat-elevation-z8"  >
+      <table mat-table [dataSource]="dataSource">
+        
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Durum </th>
+          <td mat-cell *matCellDef="let element"> 
+            <mat-icon *ngIf="element.status == 0" class="!text-green-600">circle</mat-icon> 
+             <mat-icon *ngIf="element.status == 1" class="!text-red-600">circle</mat-icon> 
+             <mat-icon *ngIf="element.status == 2" class="!text-yellow-600">circle</mat-icon> 
+             </td>
+        </ng-container>
+        <!-- Examination Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Muayene Tarihi </th>
+          <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+        </ng-container>
+
+        
+
+        <!-- Examination Status Column -->
+        <!-- <ng-container matColumnDef="muayneDurumu">
+          <th mat-header-cell *matHeaderCellDef> Muayne Durumu </th>
+          <td mat-cell *matCellDef="let element"> {{element.muayneDurumu}} </td>
+        </ng-container> -->
+
+        <!-- Customer ID Column -->
+        <ng-container matColumnDef="customerName">
+          <th mat-header-cell *matHeaderCellDef> Müşteri İsmi </th>
+          <td mat-cell *matCellDef="let element"> {{element.customerName}} </td>
+        </ng-container>
+
+        <!-- Patient ID Column -->
+        <ng-container matColumnDef="patientName">
+          <th mat-header-cell *matHeaderCellDef> Hasta İsmi </th>
+          <td mat-cell *matCellDef="let element"> {{element.patientName}} </td>
+        </ng-container>
+
+        <!-- Body Temperature Column -->
+        <!-- <ng-container matColumnDef="bodyTemperature">
+          <th mat-header-cell *matHeaderCellDef> Vücut Sıcaklığı </th>
+          <td mat-cell *matCellDef="let element"> {{element.bodyTemperature}} </td>
+        </ng-container> -->
+
+        <!-- Pulse Column -->
+        <!-- <ng-container matColumnDef="pulse">
+          <th mat-header-cell *matHeaderCellDef> Nabız </th>
+          <td mat-cell *matCellDef="let element"> {{element.pulse}} </td>
+        </ng-container> -->
+
+        <!-- Respiratory Rate Column -->
+        <!-- <ng-container matColumnDef="respiratoryRate">
+          <th mat-header-cell *matHeaderCellDef> Solunum Hızı </th>
+          <td mat-cell *matCellDef="let element"> {{element.respiratoryRate}} </td>
+        </ng-container> -->
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Ağırlık </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <!-- Complaint and History Column -->
+        <ng-container matColumnDef="complaintStory">
+          <th mat-header-cell *matHeaderCellDef> Şikayet ve Geçmiş </th>
+          <td mat-cell *matCellDef="let element"> {{element.complaintStory}} </td>
+        </ng-container>
+
+        <!-- Treatment Description Column -->
+        <ng-container matColumnDef="treatmentDescription">
+          <th mat-header-cell *matHeaderCellDef> Tedavi Açıklaması </th>
+          <td mat-cell *matCellDef="let element"> {{element.treatmentDescription}} </td>
+        </ng-container>
+
+        <!-- Symptoms Column -->
+        <ng-container matColumnDef="symptoms">
+          <th mat-header-cell *matHeaderCellDef> Semptomlar </th>
+          <td class="whitespace-nowrap" mat-cell *matCellDef="let element"> {{element.symptoms.length > 15 ? element.symptoms.slice(0, 15) + '...' : element.symptoms}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container  matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+          <td mat-cell *matCellDef="let element">
+            <button *ngIf="examinationListAct?.action !== 'Okuma'" mat-icon-button color="accent" (click)="redirectToUpdate(element.id)">
+              <mat-icon aria-label="Edit">edit</mat-icon>
+            </button>
+            <button *ngIf="examinationListAct?.action !== 'Okuma'" mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+              <mat-icon class="mat-18">delete</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+
+              <button mat-menu-item *ngIf="examinationListAct?.action !== 'Okuma'" [matMenuTriggerFor]="vertebrates" >
+                <mat-icon>refresh</mat-icon>
+                <span>Durumu Değiştir</span>
+              </button>
+              <button mat-menu-item *ngIf="examinationListAct?.action !== 'Okuma'" (click)="logView(element.id)">
+                <mat-icon>history</mat-icon>
+                <span>İşlem Geçmişi</span>
+              </button>
+             
+            </mat-menu>
+            <mat-menu #vertebrates="matMenu">
+              <button mat-menu-item (click)="redirectToUpdateStatus(element.id,'Aktif')">
+                <mat-icon class="!text-green-600">circle</mat-icon>
+                <span>Aktif</span>
+              </button>
+              <button mat-menu-item (click)="redirectToUpdateStatus(element.id,'Bekliyor')">
+                <mat-icon class="!text-yellow-600">circle</mat-icon>
+                <span>Bekliyor</span>
+              </button>
+              <button mat-menu-item (click)="redirectToUpdateStatus(element.id,'Tamamlandı')">
+                <mat-icon class="!text-red-600">circle</mat-icon>
+                <span>Tamamlandı</span>
+              </button>
+            </mat-menu>
+
+          </td>
+        </ng-container>
+
+        
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons #paginator
+        aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+    </div>
+
+</div>
+
+
+</div>

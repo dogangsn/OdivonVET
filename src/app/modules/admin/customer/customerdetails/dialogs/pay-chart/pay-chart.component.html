@@ -1,0 +1,113 @@
+<h1 mat-dialog-title class="mat-dialog-title">
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+<div class="modalForm">
+  <mat-dialog-content>
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span>Ödeme Tablosu</span>
+      </h5>
+    </div>
+    <div class="modal-body mbody-customeradd">
+
+
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Tarih </th>
+            <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="operation">
+            <th mat-header-cell *matHeaderCellDef> İşlem </th>
+            <td mat-cell *matCellDef="let element"> {{element.operation}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="debit">
+            <th mat-header-cell *matHeaderCellDef> Borç </th>
+            <td mat-cell *matCellDef="let element"> {{element.debit}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="paid">
+            <th mat-header-cell *matHeaderCellDef> Ödenen </th>
+            <td mat-cell *matCellDef="let element"> {{element.paid}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="totalPaid">
+            <th mat-header-cell *matHeaderCellDef> Toplam Ödenen </th>
+            <td mat-cell *matCellDef="let element"> {{element.totalPaid}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Toplam </th>
+            <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Tarih </th>
+            <td mat-cell *matCellDef="let element"> {{ formatDate(element.date) }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="credit">
+            <th mat-header-cell *matHeaderCellDef> Borç Tutarı</th>
+            <td mat-cell *matCellDef="let element"> {{element.credit}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="paid">
+            <th mat-header-cell *matHeaderCellDef> Tahsilat Tutarı </th>
+            <td mat-cell *matCellDef="let element"> {{element.paid}} </td>
+          </ng-container>
+          <!-- 
+            <ng-container matColumnDef="totalPaid">
+              <th mat-header-cell *matHeaderCellDef> Toplam Ödenen </th>
+              <td mat-cell *matCellDef="let element"> {{element.totalPaid}} </td>
+            </ng-container> -->
+      
+          <ng-container matColumnDef="paymentName">
+            <th mat-header-cell *matHeaderCellDef> Ödeme Yöntemi </th>
+            <td mat-cell *matCellDef="let element"> {{element.paymentName}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="remark">
+            <th mat-header-cell *matHeaderCellDef> Açıklama </th>
+            <td mat-cell *matCellDef="let element"> {{element.remark}} </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> İşlemler </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button color="warn" (click)="redirectToDelete(element.id)">
+                <mat-icon class="mat-18">delete</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" (click)="redirectToPrint(element.id)">
+                <mat-icon aria-label="Print">print</mat-icon>
+              </button>
+            </td>
+          </ng-container> -->
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons #paginator
+          aria-label="Select page of periodic elements">
+        </mat-paginator>
+
+      </div>
+
+
+    </div>
+
+  </mat-dialog-content>
+</div>
+
+<div class="flex items-center mt-4 sm:mt-0 justify-end mr-7">
+  <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+    Kapat
+  </button>
+
+</div>

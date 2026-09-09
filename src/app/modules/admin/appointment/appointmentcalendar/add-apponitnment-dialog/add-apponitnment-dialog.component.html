@@ -1,0 +1,187 @@
+<h1 mat-dialog-title class="mat-dialog-title" mat-dialog-title cdkDrag cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragHandle>
+  <button class="dialog-close-button">
+    <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+      <path
+        d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+      </path>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+    </svg>
+  </button>
+  <button class="dialog-close-button" (click)="closeDialog()" [tabIndex]="-1">
+    <span class="material-icons"> highlight_off </span>
+  </button>
+</h1>
+
+<div class="modalForm w-full">
+  <mat-dialog-content class="w-full">
+    <div class="modal-header">
+      <h5 class="modal-title">
+        <span *ngIf="selectedAppointment">Randevu Güncelle</span>
+        <span *ngIf="!selectedAppointment">Randevu Ekle</span>
+      </h5>
+    </div>
+
+
+
+    <div class="modal-body mbody-customeradd w-full">
+      <div role="status" class="animate-pulse" *ngIf="loader">
+        <div class="w-full">
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700 mb-11"></div>
+          <div class="flex gap-2 mb-11">
+            <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+            <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          </div>
+          <div class="flex gap-2 mb-11">
+            <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+            <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          </div>
+          <div class="flex items-center mb-4 mt-3 gap-2">
+            <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700"></div>
+          </div>
+          <div class="h-13 w-full bg-gray-200 rounded-sm dark:bg-gray-700 mb-11"></div>
+
+        </div>
+      </div>
+      <div class="qm-pr-content w-full" *ngIf="!loader">
+        <div class="container-fluid w-full" [formGroup]="appointmentAdd">
+
+          <div class="flex float : left gt-xs:flex-row">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Hekim</mat-label>
+              <mat-select [formControlName]="'doctorId'" name="doctorId">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let item of vetDoctorList" [value]="item.id">{{item.firstname}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="float : left flex  gt-xs:flex-row" *ngIf="visibleCustomer">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Müşteri</mat-label>
+              <mat-select [formControlName]="'customerId'" [placeholder]="'Müşteri'" name="customerId"
+                (selectionChange)="handleCustomerChange($event)">
+                <mat-select-filter [ngModelOptions]="{standalone: true}" [ngModel]="selectedCustomerId">
+                </mat-select-filter>
+                <mat-option *ngFor="let item of customers" [value]="item.id">{{item.firstName}}
+                  {{item.lastName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="flex-auto gt-xs:pl-3 ml-3">
+              <mat-label>Hasta</mat-label>
+              <mat-select [formControlName]="'patientId' " name="patientId" [placeholder]="'Hasta'">
+                <mat-option [value]="00000000-0000-0000-0000-000000000000">Tümü</mat-option>
+                <mat-option *ngFor="let item of patientList" [value]="item.id">{{item.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf="!visibleCustomer" class="flex float: left gt-xs:flex-row">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Hasta</mat-label>
+              <mat-select [formControlName]="'patientId' " name="patientId" [placeholder]="'Hasta'">
+                <mat-option [value]="00000000-0000-0000-0000-000000000000">Tümü</mat-option>
+                <mat-option *ngFor="let item of patientList" [value]="item.id">{{item.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="flex float: left gt-xs:flex-row">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Randevu Tipi</mat-label>
+              <mat-select [placeholder]="'Randevu Tipi'" [formControlName]="'appointmentType'" name="doctor"
+                (selectionChange)="onAppointmentTypeChange($event)">
+                <mat-option *ngFor="let item of appointmentTypes" [value]="item.type">{{item.remark}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="flex-auto gt-xs:pl-3 ml-3">
+              <mat-label>Randevu Durumu</mat-label>
+              <mat-select [(value)]="selectedStatus" (selectionChange)="onStatusChange($event)"
+                [formControlName]="'status'">
+                <mat-option *ngFor="let status of statusTypeList" [value]="status.value">
+                  {{ status.label }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf="selectedAppointmentType === 1  || isVaccine"
+            class="flex items-center my-4 sm:my-0 justify-end mr-7">
+            <button class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'" (click)="addVaccine()">
+              Ekle
+            </button>
+          </div>
+          <div *ngIf="selectedAppointmentType === 1 || isVaccine" class="flex float: left gt-xs:flex-row my-3 w-full">
+            <div class="card-list flex-auto flex flex-wrap w-full">
+              <div class="card w-full my-2" *ngFor="let item of addVaccineList">
+                <mat-card-content class="w-full p-3">
+                  <div class="content-between flex">
+                    <mat-form-field class="flex-auto gt-xs:pl-3 w-full">
+                      <mat-label>Aşı Tipi</mat-label>
+                      <mat-select [placeholder]="'Aşı Tipi'" name="selectedVaccineId"
+                        [formControlName]="'selectedVaccineId'"
+                        (selectionChange)="onVaccineTypeChange($event, item.id)">
+                        <mat-option *ngFor="let vaccineItem of vaccine"
+                          [value]="vaccineItem.id">{{vaccineItem.vaccineName}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <mat-checkbox class="mb-2" [checked]="item.isComplated" [color]="'primary'"
+                      (change)="onCheckboxChange($event, item.id)">
+                      Yapıldı
+                    </mat-checkbox>
+                  </div>
+                  <div class="dx-field w-full ">
+                    <dx-date-box class="w-full bg-transparent border" [value]="now"  [type]="dateType"  [min]="now"
+                      [stylingMode]="stylingMode" [inputAttr]="{ 'aria-label': 'Date And Time' }"
+                      (onValueChanged)="handleValueChangeList($event, item.id)">
+                    </dx-date-box>
+                  </div>
+                  <div class="order-1 sm:order-2 sm:ml-3 w-full">
+                    <button mat-icon-button (click)="deletedVaccine(item.id)">
+                      <mat-icon class="text-hint" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                    </button>
+                  </div>
+                </mat-card-content>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="selectedAppointmentType !== 1 && !isVaccine" class="flex float: left gt-xs:flex-row mb-3">
+            <div class="dx-field mt-1 flex-wrap w-full h-full">
+              <mat-label class="font-medium text-base text-gray-700 mb-1">Randevu Tarihi</mat-label>
+              <div class="dx-field w-full h-full">
+                <dx-date-box class="w-full h-full bg-transparent border" [value]="now" [type]="dateType" [min]="now"
+                  [stylingMode]="stylingMode" [inputAttr]="{ 'aria-label': 'Date And Time' }"
+                  (onValueChanged)="handleValueChange($event)" [pickerOptions]="TimeIntervals">
+                </dx-date-box>
+              </div>
+            </div>
+            
+            <div *ngIf="datetimestatus === 1" class="dx-field mt-1 flex-wrap w-full h-full ml-3">
+              <mat-label class="font-medium text-base text-gray-700 mb-1">Randevu Saati</mat-label>
+              <div class="dx-field w-full h-full">
+                <dx-date-box class="w-full h-full bg-transparent border" [min]="morning8" [max]="evening8" type="time" [interval]="appointmentinterval"
+                  [inputAttr]="{ 'aria-label': 'Time' }"  (onValueChanged)="handleTimeValueChange($event)">
+                </dx-date-box>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex float : left gt-xs:flex-row gap-t-3">
+            <mat-form-field class="flex-auto gt-xs:pl-3">
+              <mat-label>Not</mat-label>
+              <input matInput [formControlName]="'note'" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
+
+<div class="flex items-center mt-4 sm:mt-0 justify-end mr-7">
+  <button class="ml-auto sm:ml-0" mat-stroked-button (click)="closeDialog()">
+    Vazgeç
+  </button>
+  <button [disabled]="buttonDisabled" class="order-first sm:order-last ml-3" mat-flat-button [color]="'primary'"
+    (click)="addOrUpdateAppointment()">
+    Kaydet
+  </button>
+</div>
