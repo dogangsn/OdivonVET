@@ -27,8 +27,8 @@ async function setup(page:Page,options:{confirm?:boolean;missing?:boolean;rpcFai
 }
 async function fill(page:Page){await page.getByLabel('Klinik adı').fill('Test Klinik');await page.getByLabel('Ad soyad').fill('Test Owner');await page.getByLabel('E-posta adresi').fill('owner@example.test');await page.getByLabel('Parola',{exact:true}).fill('test-password-1234');}
 test('missing configuration and confirmation requirement block signup with visible feedback',async({page})=>{
- let calls=await setup(page,{missing:true});await expect(page.getByRole('alert')).toContainText('bağlanılamadı');await expect(page.getByRole('button',{name:'Üye ol',exact:true})).toBeDisabled();expect(calls.signup).toBe(0);
- await page.unrouteAll({behavior:'wait'});calls=await setup(page,{confirm:true});await expect(page.getByRole('alert')).toContainText('henüz kullanıma açılmadı');await expect(page.getByRole('button',{name:'Üye ol',exact:true})).toBeDisabled();expect(calls.signup).toBe(0);
+ let calls=await setup(page,{missing:true});await expect(page.getByRole('alert')).toContainText('bağlanılamadı');await expect(page.getByRole('button',{name:'Üye ol',exact:true})).toBeEnabled();expect(calls.signup).toBe(0);
+ await page.unrouteAll({behavior:'wait'});calls=await setup(page,{confirm:true});await expect(page.getByRole('alert')).toContainText('henüz kullanıma açılmadı');await fill(page);await expect(page.getByText('18/12+')).toBeVisible();await page.getByRole('button',{name:'Üye ol',exact:true}).click();await expect(page.getByRole('alert')).toContainText('Confirm email');expect(calls.signup).toBe(0);
 });
 test('validation, password visibility and successful membership produce one signup without a clinic-code field',async({page})=>{
  const calls=await setup(page);await expect(page.getByLabel('Klinik kodu')).toHaveCount(0);

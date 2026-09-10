@@ -14,6 +14,7 @@ export class RegistrationComponent implements OnInit,OnDestroy {
  busy=false;loading=true;ready=false;hasAccount=false;showPassword=false;message='';application:any;
  captchaToken='';private widget:any;private timer:any;private destroyed=false;
  constructor(private fb:FormBuilder,private clinics:ClinicClientService){}
+ get passwordLength(){return this.form.controls.password.value?.length||0;}
  ngOnInit(){void this.initialize();}
  ngOnDestroy(){this.destroyed=true;clearTimeout(this.timer);if(this.widget!==undefined)(window as any).turnstile?.remove(this.widget);}
  async initialize(){
@@ -43,9 +44,10 @@ export class RegistrationComponent implements OnInit,OnDestroy {
   this.form.controls.email.disable();this.form.controls.password.disable();
  }
  async submit(){
-  if(this.busy||!this.ready)return;
+  if(this.busy||this.loading)return;
   this.form.patchValue({name:(this.form.value.name||'').trim(),owner:(this.form.value.owner||'').trim()});
   this.form.markAllAsTouched();if(this.form.invalid)return;
+  if(!this.ready){this.message='Üyelik için Supabase Auth ayarındaki “Confirm email” seçeneği kapatılmalı. Bağlantı hazır olduğunda yeniden deneyin.';return;}
   this.busy=true;this.message='';
   try{
    const client=await this.clinics.management();
