@@ -14,7 +14,7 @@
     <p class="odivon-subtitle">{{hasAccount?'Üyeliğiniz hazır. Klinik bilgilerinizi tamamlayın.':'Hesabınızı oluşturun, kliniğinizi birlikte hazırlayalım.'}}</p>
     <div *ngIf="loading" class="odivon-notice" role="status">Kayıt hizmetine bağlanılıyor…</div>
     <div *ngIf="message" class="odivon-error" role="alert">{{message}}</div>
-    <button *ngIf="!loading&&!ready" mat-stroked-button type="button" (click)="initialize()">Bağlantıyı yeniden kontrol et</button>
+    <button *ngIf="!loading&&!ready" mat-stroked-button type="button" (click)="retryInitialize()">Bağlantıyı yeniden kontrol et</button>
     <form [formGroup]="form" (ngSubmit)="submit()" [attr.aria-busy]="busy">
      <mat-form-field appearance="outline"><mat-label>Klinik adı</mat-label><input matInput formControlName="name" autocomplete="organization" maxlength="120"><mat-error>2–120 karakter arasında klinik adı girin.</mat-error></mat-form-field>
      <mat-form-field appearance="outline"><mat-label>Ad soyad</mat-label><input matInput formControlName="owner" autocomplete="name" maxlength="120"><mat-error>Adınızı ve soyadınızı girin.</mat-error></mat-form-field>
@@ -23,7 +23,7 @@
       <mat-form-field appearance="outline"><mat-label>Parola</mat-label><input matInput [type]="showPassword?'text':'password'" formControlName="password" autocomplete="new-password" minlength="12" maxlength="72"><button mat-button matSuffix type="button" (click)="showPassword=!showPassword" [attr.aria-label]="showPassword?'Parolayı gizle':'Parolayı göster'">{{showPassword?'Gizle':'Göster'}}</button><mat-hint>En az 12 karakter kullanın.</mat-hint><mat-hint align="end">{{passwordLength}}/12+</mat-hint><mat-error>Parolanız en az 12 karakter olmalı.</mat-error></mat-form-field>
      </ng-container>
      <div id="registration-captcha"></div>
-     <button class="odivon-submit" mat-flat-button type="submit" [disabled]="busy||loading"><span *ngIf="busy" class="odivon-spinner" aria-hidden="true"></span>{{busy?'İşleminiz tamamlanıyor…':hasAccount?'Başvuruyu tamamla':'Üye ol'}}</button>
+     <button class="odivon-submit" mat-flat-button type="submit" [disabled]="busy"><span *ngIf="busy" class="odivon-spinner" aria-hidden="true"></span>{{busy?'İşleminiz tamamlanıyor…':loading?'Bağlantı kontrol ediliyor…':hasAccount?'Başvuruyu tamamla':'Üye ol'}}</button>
     </form>
     <p class="odivon-fineprint">14 günlük denemeniz kliniğiniz kullanıma hazır olduğunda başlar.</p>
     <button *ngIf="!hasAccount" class="odivon-resume" type="button" (click)="resume()" [disabled]="busy||loading||!ready">Daha önce başvurdum, hesabımla devam et</button>

@@ -12,10 +12,10 @@ import {ClinicClientService} from 'app/core/supabase/clinic-client.service';
 export class RegistrationComponent implements OnInit,OnDestroy {
  form=this.fb.group({name:['',[Validators.required,Validators.minLength(2),Validators.maxLength(120)]],owner:['',[Validators.required,Validators.minLength(2),Validators.maxLength(120)]],email:['',[Validators.required,Validators.email]],password:['',[Validators.required,Validators.minLength(12)]]});
  busy=false;loading=true;ready=false;hasAccount=false;showPassword=false;message='';application:any;
- captchaToken='';private widget:any;private timer:any;private destroyed=false;
+ captchaToken='';private widget:any;private timer:any;private destroyed=false;private initialization:Promise<void>;
  constructor(private fb:FormBuilder,private clinics:ClinicClientService){}
  get passwordLength(){return this.form.controls.password.value?.length||0;}
- ngOnInit(){void this.initialize();}
+ ngOnInit(){this.retryInitialize();}
  ngOnDestroy(){this.destroyed=true;clearTimeout(this.timer);if(this.widget!==undefined)(window as any).turnstile?.remove(this.widget);}
  async initialize(){
   this.loading=true;this.ready=false;this.message='';
@@ -38,13 +38,15 @@ export class RegistrationComponent implements OnInit,OnDestroy {
   }catch{this.message='Kayıt hizmetine bağlanılamadı. Lütfen yeniden deneyin.';}
   finally{this.loading=false;}
  }
+ retryInitialize(){this.initialization=this.initialize();}
  private restoreAccount(user:any){
   this.hasAccount=true;const m=user.user_metadata||{};
   this.form.patchValue({name:m.clinic_name||this.form.value.name,owner:m.owner_name||this.form.value.owner,email:user.email,password:''});
   this.form.controls.email.disable();this.form.controls.password.disable();
  }
  async submit(){
-  if(this.busy||this.loading)return;
+  if(this.busy)return;
+  if(this.loading)await this.initialization;
   this.form.patchValue({name:(this.form.value.name||'').trim(),owner:(this.form.value.owner||'').trim()});
   this.form.markAllAsTouched();if(this.form.invalid)return;
   if(!this.ready){this.message='Üyelik için Supabase Auth ayarındaki “Confirm email” seçeneği kapatılmalı. Bağlantı hazır olduğunda yeniden deneyin.';return;}
