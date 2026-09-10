@@ -63,7 +63,7 @@ test('sign in resolves the clinic from email without asking for a code',async({p
 test('desktop and mobile branding fit the viewport',async({page})=>{
  await setup(page);await expect(page.getByRole('button',{name:'Üye ol',exact:true})).toBeEnabled();
  await expect(page.locator('.odivon-brand img')).toHaveCSS('width','40px');
- expect(await page.locator('.odivon-brand img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
+ await expect.poll(()=>page.locator('.odivon-brand img').evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
  await page.screenshot({path:'.local/registration-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});await expect(page.locator('.odivon-story')).toBeHidden();await expect(page.locator('.odivon-mobile-brand')).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
