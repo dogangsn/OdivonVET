@@ -57,3 +57,5 @@ Envanterdeki bir işlemin eşleştirilmiş olması, onun bütün ekran senaryola
 Fuse ve diğer ticari arayüz bağımlılıklarının mevcut lisans dosyaları korunmuştur.
 
 Kayıt ve canlı ortam değişkenleri: [Kurulum rehberi](docs/registration-deployment.md).
+
+Canlı Supabase kurulumu `npm run deploy:management`, Cloudflare Pages ayarları [Cloudflare yayın rehberi](docs/cloudflare-pages.md) üzerinden yönetilir. Dolu `.env.deploy` dosyası Git'e eklenmez.

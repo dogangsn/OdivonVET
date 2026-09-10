@@ -32,7 +32,7 @@ Deno.serve(async req=>{
     return {state:'functions',function_index:j.function_index+1};
    },
    owner:async(j:any)=>{
-    await api.call('/projects/'+j.project_ref+'/config/auth','PATCH',{...smtp,site_url:origin,uri_allow_list:origin+'/auth/callback*',disable_signup:true});
+    await api.call('/projects/'+j.project_ref+'/config/auth','PATCH',{...smtp,site_url:origin,uri_allow_list:origin+'/auth/callback*',disable_signup:true,mailer_autoconfirm:false,password_min_length:12});
     const keys=await api.call('/projects/'+j.project_ref+'/api-keys');
     const service=keys.find((k:any)=>k.name==='service_role')?.api_key;const anon=keys.find((k:any)=>k.name==='anon')?.api_key;
     if(!service||!anon)throw new Error('Project keys unavailable');

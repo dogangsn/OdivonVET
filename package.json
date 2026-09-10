@@ -8,17 +8,21 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "npm run config && ng build --configuration production",
+    "build": "npm run config:production && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "node --test tests/*.test.mjs",
     "test:ui": "ng test --watch=false --browsers=ChromeHeadless",
     "db:test": "node --test tests/database.test.mjs",
     "config": "node --env-file-if-exists=.env scripts/configure.mjs",
+    "config:production": "node --env-file-if-exists=.env scripts/configure.mjs --production",
     "supabase:bundle": "node scripts/bundle-provisioning.mjs",
     "supabase:prepare": "node scripts/bundle-provisioning.mjs && node scripts/prepare-local.mjs",
     "supabase:seed": "node --env-file-if-exists=.env scripts/create-local-owner.mjs",
-    "check:edge": "deno check --config supabase/deno.json supabase/management/functions/clinic-provisioner/index.ts supabase/management/functions/clinic-directory/index.ts supabase/management/functions/clinic-maintenance/index.ts supabase/management/functions/clinic-activate/index.ts supabase/clinic/functions/message-worker/index.ts supabase/clinic/functions/clinic-members/index.ts",
-    "test:registration": "playwright test"
+    "check:edge": "npx --yes deno@2.9.6 check --config supabase/deno.json supabase/management/functions/clinic-provisioner/index.ts supabase/management/functions/clinic-directory/index.ts supabase/management/functions/clinic-maintenance/index.ts supabase/management/functions/clinic-activate/index.ts supabase/clinic/functions/message-worker/index.ts supabase/clinic/functions/clinic-members/index.ts",
+    "test:registration": "playwright test",
+    "deploy:management": "node --env-file-if-exists=.env.deploy scripts/deploy-management.mjs",
+    "verify:live": "node --env-file-if-exists=.env.deploy scripts/verify-live.mjs",
+    "deploy:cloudflare": "npm run build && wrangler pages deploy dist/odivon-vet --project-name odivon-vet --branch master"
   },
   "dependencies": {
     "@angular-material-components/color-picker": "15.0.0",
@@ -102,6 +106,7 @@
     "style-loader": "^3.3.4",
     "tailwindcss": "3.2.4",
     "typescript": "4.9.4",
-    "webpack": "^5.90.3"
+    "webpack": "^5.90.3",
+    "wrangler": "^4.35.0"
   }
 }

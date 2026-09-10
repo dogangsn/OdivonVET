@@ -4,18 +4,22 @@
 Yerelde `.env`, canlıda hosting ortam değişkenleri kullanılır:
 - `NEXT_PUBLIC_SUPABASE_URL`: Odivon yönetim projesinin URL'si.
 - `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`: aynı projenin public anahtarı.
+- `ODIVON_TURNSTILE_SITE_KEY`: Cloudflare Turnstile public site anahtarı.
 - `ODIVON_MANAGEMENT_URL` / `ODIVON_MANAGEMENT_PUBLIC_KEY` tanımlanmışsa karşılık gelen NEXT_PUBLIC değerinden önceliklidir. Kullanılmayan eski değişkenleri kaldırın.
 
-`npm run build`, önce `npm run config` çalıştırır. Eksik/geçersiz ayarlar derlemeyi durdurur. Çıktı `dist/odivon-vet`; tarayıcı `assets/odivon-config.json` okur. Bu dosya ve `.env` Git'e girmez. Değer değişikliği yeniden yayın gerektirir. Service-role, veritabanı parolası ve Management API token bu dosyaya konmaz.
+`npm run build`, önce production yapılandırmasını üretir. Supabase URL, publishable anahtar veya Turnstile site anahtarı eksik/geçersizse derleme durur. Çıktı `dist/odivon-vet`; tarayıcı `assets/odivon-config.json` okur. Bu dosya ve `.env` Git'e girmez. Değer değişikliği yeniden yayın gerektirir. Service-role, veritabanı parolası ve Management API token bu dosyaya konmaz.
 
 Netlify/Cloudflare Pages için çıktıdaki `_headers`, Vercel için `vercel.json` yapılandırma dosyasına `Cache-Control: no-cache, max-age=0, must-revalidate` uygular. Diğer hostinglerde bu başlığı aynı URL için tanımlayın; SPA yönlendirmesini yalnız uygulama yollarına uygulayın. Yayından sonra ağ panelinde dosyanın JSON döndüğünü ve Cache-Control başlığını kontrol edin. Angular fetch ayrıca `cache: no-cache` kullanır.
 
 ## Yönetim Supabase projesi
-Public anahtar sunucu ayarı değiştiremez. Supabase Dashboard/CLI yönetim erişimiyle:
-1. `supabase/management/migrations` altındaki henüz uygulanmamış SQL dosyalarını tarih sırasıyla uygulayın. Mevcut tablolar varsa körlemesine başlangıç migration'ını çalıştırmayın; migration geçmişini karşılaştırın.
-2. Auth'ta e-posta sağlayıcısını ve yeni kayıtları açın, **Confirm email** seçeneğini kapatın; minimum parolayı 12 karakter yapın. Bu ayar yalnız yönetim projesine aittir; klinik davet akışını değiştirmeyin.
-3. Site URL'yi canlı uygulama adresine ayarlayın. CAPTCHA aktifse public Turnstile site anahtarını `ODIVON_TURNSTILE_SITE_KEY` olarak, secret anahtarını yalnız Supabase Auth ayarına girin.
-4. Mevcut provisioning dokümanına göre Edge Functions ve sunucu secret'larını kurun. `provisioning_enabled=false` varsayılanında başvuru bekleme listesine alınır; üyelik başarılı olması klinik kurulumunun hazır olduğunu ifade etmez.
+Public anahtar sunucu ayarı değiştiremez. `.env.deploy.example` dosyasını `.env.deploy` olarak kopyalayıp yönetim token'ı, organizasyon, worker/activation token'ları, Turnstile secret ve SMTP değerlerini yalnız yerelde doldurun. `npm run deploy:management`:
+
+1. Yönetim migration'larını checksum tablosu ve transaction kilidiyle uygular.
+2. Yönetim Auth'ta kaydı açar, **Confirm email** seçeneğini kapatır, minimum parolayı 12 yapar ve Turnstile'ı etkinleştirir.
+3. Edge Function secret'larını ve dört yönetim işlevini dağıtır.
+4. Vault ile zamanlayıcı secret'larını yazar, `pg_cron`/`pg_net` görevlerini kurar ve smoke testlerini çalıştırır.
+
+`ODIVON_ENABLE_PROVISIONING=false` ilk dağıtımın güvenli varsayılanıdır. Smoke kontrollerinden sonra değer `true` yapılıp komut yeniden çalıştırıldığında üç deneme slotu etkinleşir. Üyeliğin başarılı olması kliniğin hemen hazır olduğu anlamına gelmez.
 
 Doğrudan üyelik: Auth signUp -> oturum -> `register_clinic(p_name,p_owner)` -> `clinic_applications`. Auth'un Confirm email kapalı ayarı hesabı otomatik onaylar; RPC yine geçerli onaylı Auth kullanıcısı ister. Klinik kodu sunucuda üretilir. Hesap oluşup RPC başarısız olursa aynı oturumla başvuru tamamlanabilir. Oturum kaybolmuşsa kayıt ekranındaki “Daha önce başvurdum” seçeneği yönetim hesabına giriş yapar; klinik girişi ayrı kalır.
 

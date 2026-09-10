@@ -1,5 +1,5 @@
 import {writeFile, mkdir} from 'node:fs/promises';
-export function configuration(env) {
+export function configuration(env,{requireTurnstile=false}={}) {
  const project = (url, publishableKey) => {
   if (!url || !publishableKey) throw new Error('Supabase URL and public key are required.');
   const parsed = new URL(url);
@@ -18,10 +18,12 @@ export function configuration(env) {
   if (!/^[a-z0-9][a-z0-9-]{2,47}$/.test(code)) throw new Error('Invalid clinic code.');
   clinics.push({code,...project(env.ODIVON_CLINIC_URL,env.ODIVON_CLINIC_PUBLIC_KEY)});
  }
- return {management,clinics,...(env.ODIVON_TURNSTILE_SITE_KEY ? {turnstileSiteKey:env.ODIVON_TURNSTILE_SITE_KEY} : {})};
+ const turnstileSiteKey=env.ODIVON_TURNSTILE_SITE_KEY?.trim();
+ if(requireTurnstile&&!turnstileSiteKey)throw new Error('ODIVON_TURNSTILE_SITE_KEY is required for production builds.');
+ return {management,clinics,...(turnstileSiteKey ? {turnstileSiteKey} : {})};
 }
 if (import.meta.main) {
- const config = configuration(process.env);
+ const config = configuration(process.env,{requireTurnstile:process.argv.includes('--production')});
  await mkdir('src/assets',{recursive:true});
  await writeFile('src/assets/odivon-config.json',JSON.stringify(config,null,2));
  console.log('Public Odivon configuration generated.');

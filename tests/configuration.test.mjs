@@ -12,4 +12,6 @@ test('missing, invalid and secret configuration cannot be published',()=>{
  assert.throws(()=>configuration({}));
  const key='eyJhbGciOiJIUzI1NiJ9.'+Buffer.from(JSON.stringify({role:'service_role'})).toString('base64url')+'.signature';
  assert.throws(()=>configuration({...env,NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:key}));
+ assert.throws(()=>configuration(env,{requireTurnstile:true}),/ODIVON_TURNSTILE_SITE_KEY/);
+ assert.equal(configuration({...env,ODIVON_TURNSTILE_SITE_KEY:'1x00000000000000000000AA'},{requireTurnstile:true}).turnstileSiteKey,'1x00000000000000000000AA');
 });

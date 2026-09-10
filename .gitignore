@@ -6,6 +6,7 @@
 /.local
 /.env*
 !/.env.example
+!/.env.deploy.example
 /supabase/**/.temp
 /src/assets/odivon-config.json
 *.log
