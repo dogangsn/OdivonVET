@@ -35,11 +35,11 @@ test('validation, password visibility and successful membership produce one sign
  await page.getByRole('button',{name:'Üye ol',exact:true}).click();expect(calls.signup).toBe(0);await expect(page.getByText('Geçerli bir e-posta adresi girin.')).toBeVisible();
  await fill(page);await page.getByRole('button',{name:'Parolayı göster'}).click();await expect(page.getByLabel('Parola',{exact:true})).toHaveAttribute('type','text');
  await page.getByRole('button',{name:'Üye ol',exact:true}).click();await expect(page.getByRole('button',{name:'İşleminiz tamamlanıyor…'})).toBeDisabled();
- await expect(page.getByRole('heading',{name:'Üyeliğiniz tamamlandı.'})).toBeVisible();expect(calls.signup).toBe(1);expect(calls.rpc).toBe(1);
+ await expect(page.getByRole('heading',{name:'Başvurunuz oluşturuldu.'})).toBeVisible();expect(calls.signup).toBe(1);expect(calls.rpc).toBe(1);
 });
 test('partial registration retries the application without creating another account',async({page})=>{
  const calls=await setup(page,{rpcFail:true});await fill(page);await page.getByRole('button',{name:'Üye ol',exact:true}).click();await expect(page.getByRole('alert')).toContainText('Hesabınız oluşturuldu');
- await page.getByRole('button',{name:'Başvuruyu tamamla',exact:true}).click();await expect(page.getByRole('heading',{name:'Üyeliğiniz tamamlandı.'})).toBeVisible();expect(calls.signup).toBe(1);expect(calls.rpc).toBe(2);
+ await page.getByRole('button',{name:'Başvuruyu tamamla',exact:true}).click();await expect(page.getByRole('heading',{name:'Başvurunuz oluşturuldu.'})).toBeVisible();expect(calls.signup).toBe(1);expect(calls.rpc).toBe(2);
 });
 test('existing email stays on form and does not claim success',async({page})=>{
  const calls=await setup(page,{existing:true});await fill(page);await page.getByRole('button',{name:'Üye ol',exact:true}).click();await expect(page.getByRole('alert')).toContainText('zaten var');expect(calls.rpc).toBe(0);
@@ -76,7 +76,7 @@ test('platform account sign in opens its pending clinic application',async({page
  await page.getByLabel('Parola',{exact:true}).fill('test-password-1234');
  await page.getByRole('button',{name:'Giriş Yap'}).click();
  await expect(page).toHaveURL(/\/auth\/registration$/);
- await expect(page.getByText('Başvurunuz alındı. Kapasite açıldığında kliniğiniz hazırlanacak.')).toBeVisible();
+ await expect(page.getByText('Klinik kurulumu henüz başlatılmadı. Bu hesapla klinik ekranlarına giriş yapılamaz.')).toBeVisible();
 });
 test('desktop and mobile branding fit the viewport',async({page})=>{
  await setup(page);await expect(page.getByRole('button',{name:'Üye ol',exact:true})).toBeEnabled();

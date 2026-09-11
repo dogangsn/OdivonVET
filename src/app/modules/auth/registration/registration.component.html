@@ -29,7 +29,7 @@
     <button *ngIf="!hasAccount" class="odivon-resume" type="button" (click)="resume()" [disabled]="busy||loading||!ready">Daha önce başvurdum, hesabımla devam et</button>
    </ng-container>
    <ng-template #completed>
-    <span class="odivon-success-icon" aria-hidden="true">✓</span><span class="odivon-eyebrow">HOŞ GELDİNİZ</span><h1>Üyeliğiniz tamamlandı.</h1><p class="odivon-subtitle">{{application.clinic_name}}</p>
+    <span class="odivon-success-icon" aria-hidden="true">✓</span><span class="odivon-eyebrow">BAŞVURU DURUMU</span><h1>{{application.state==='ready'?'Kliniğiniz hazır.':'Başvurunuz oluşturuldu.'}}</h1><p class="odivon-subtitle">{{application.clinic_name}}</p>
     <div class="odivon-notice" role="status">{{stateLabel(application.state)}}</div>
     <div *ngIf="message" class="odivon-error" role="alert">{{message}}</div>
     <p class="odivon-fineprint" *ngIf="application.state==='ready'">Klinik giriş kodunuz: <strong>{{application.code}}</strong></p>
