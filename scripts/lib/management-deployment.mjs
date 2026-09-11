@@ -24,7 +24,7 @@ commit;`;
 
 export function authConfig(env){
  const origin=env.ODIVON_APP_ORIGIN;
- return {
+ const config={
   site_url:origin,
   uri_allow_list:[origin+'/auth/callback',origin+'/auth/registration',origin+'/auth/reset-password'].join(','),
   disable_signup:false,
@@ -33,20 +33,20 @@ export function authConfig(env){
   password_min_length:12,
   security_captcha_enabled:true,
   security_captcha_provider:'turnstile',
-  security_captcha_secret:env.ODIVON_TURNSTILE_SECRET,
-  smtp_host:env.ODIVON_SMTP_HOST,
-  smtp_port:env.ODIVON_SMTP_PORT,
-  smtp_user:env.ODIVON_SMTP_USER,
-  smtp_pass:env.ODIVON_SMTP_PASSWORD,
-  smtp_admin_email:env.ODIVON_SMTP_FROM,
-  smtp_sender_name:'Odivon Vet'
+  security_captcha_secret:env.ODIVON_TURNSTILE_SECRET
  };
+ const smtp=['ODIVON_SMTP_HOST','ODIVON_SMTP_PORT','ODIVON_SMTP_USER','ODIVON_SMTP_PASSWORD','ODIVON_SMTP_FROM'];
+ if(smtp.every(name=>env[name]?.trim()))Object.assign(config,{
+  smtp_host:env.ODIVON_SMTP_HOST,smtp_port:env.ODIVON_SMTP_PORT,smtp_user:env.ODIVON_SMTP_USER,
+  smtp_pass:env.ODIVON_SMTP_PASSWORD,smtp_admin_email:env.ODIVON_SMTP_FROM,smtp_sender_name:'Odivon Vet'
+ });
+ return config;
 }
 
 export function requiredDeploymentEnv(env){
  const defaults={ODIVON_MANAGEMENT_PROJECT_REF:'bchqsyqimcudbybdovjx',ODIVON_APP_ORIGIN:'https://vet.odivon.com',ODIVON_SUPABASE_REGION:'eu-central-1'};
  const values={...defaults,...env};
- const required=['SUPABASE_ACCESS_TOKEN','ODIVON_ORGANIZATION_SLUG','ODIVON_WORKER_TOKEN','ODIVON_CLINIC_WORKER_MASTER','ODIVON_ACTIVATION_TOKEN','ODIVON_TURNSTILE_SECRET','ODIVON_SMTP_HOST','ODIVON_SMTP_PORT','ODIVON_SMTP_USER','ODIVON_SMTP_PASSWORD','ODIVON_SMTP_FROM'];
+ const required=['SUPABASE_ACCESS_TOKEN','ODIVON_ORGANIZATION_SLUG','ODIVON_WORKER_TOKEN','ODIVON_CLINIC_WORKER_MASTER','ODIVON_ACTIVATION_TOKEN','ODIVON_TURNSTILE_SECRET'];
  const missing=required.filter(name=>!values[name]?.trim());
  if(missing.length)throw new Error('Missing deployment environment: '+missing.join(', '));
  if(!/^https:\/\//.test(values.ODIVON_APP_ORIGIN))throw new Error('ODIVON_APP_ORIGIN must use HTTPS.');
@@ -62,11 +62,10 @@ export function managementSecrets(env){return [
  {name:'WORKER_TOKEN',value:env.ODIVON_WORKER_TOKEN},
  {name:'CLINIC_WORKER_MASTER',value:env.ODIVON_CLINIC_WORKER_MASTER},
  {name:'ACTIVATION_TOKEN',value:env.ODIVON_ACTIVATION_TOKEN},
- {name:'SMTP_HOST',value:env.ODIVON_SMTP_HOST},
- {name:'SMTP_PORT',value:env.ODIVON_SMTP_PORT},
- {name:'SMTP_USER',value:env.ODIVON_SMTP_USER},
- {name:'SMTP_PASSWORD',value:env.ODIVON_SMTP_PASSWORD},
- {name:'SMTP_FROM',value:env.ODIVON_SMTP_FROM}
+ ...[
+  ['SMTP_HOST','ODIVON_SMTP_HOST'],['SMTP_PORT','ODIVON_SMTP_PORT'],['SMTP_USER','ODIVON_SMTP_USER'],
+  ['SMTP_PASSWORD','ODIVON_SMTP_PASSWORD'],['SMTP_FROM','ODIVON_SMTP_FROM']
+ ].filter(([,source])=>env[source]?.trim()).map(([name,source])=>({name,value:env[source]}))
 ];}
 
 export function vaultUpsertSql(managementUrl,workerToken){return `create extension if not exists supabase_vault with schema vault;

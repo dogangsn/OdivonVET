@@ -8,7 +8,17 @@ export class AuthService {
  get accessToken():string{return localStorage.getItem('accessToken')||'';}
  set accessToken(value:string){localStorage.setItem('accessToken',value);}
  signIn(credentials:{email:string;password:string;rememberMe?:boolean}):Observable<any>{return defer(async()=>{
-  const client=await this.clinics.connectForEmail(credentials.email);
+  let client;
+  try{client=await this.clinics.connectForEmail(credentials.email);}
+  catch(directoryError){
+   // A management account is created before its isolated clinic project exists.
+   // Authenticate it privately so the user can see the application state without
+   // exposing account existence through the public clinic directory.
+   const management=await this.clinics.management();
+   const {data,error}=await management.auth.signInWithPassword({email:credentials.email.trim(),password:credentials.password});
+   if(!error&&data.user)return {applicationPending:true};
+   throw directoryError;
+  }
   const {data,error}=await client.auth.signInWithPassword({email:credentials.email,password:credentials.password});
   if(error)throw error;
   try{const p=await this.clinics.loadProfile();this.users.user={id:p.id,name:p.name,email:p.email};return data;}

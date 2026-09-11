@@ -96,7 +96,14 @@ export class AuthSignInComponent implements OnInit
         // Sign in
         this._authService.signIn(this.signInForm.value)
             .subscribe(
-                () => {
+                (result) => {
+
+                    // The platform account is valid, but its isolated clinic may
+                    // still be queued. Registration shows the authenticated status.
+                    if (result?.applicationPending) {
+                        this._router.navigateByUrl('/auth/registration');
+                        return;
+                    }
 
                     // Set the redirect url.
                     // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user

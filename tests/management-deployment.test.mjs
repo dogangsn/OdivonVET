@@ -20,6 +20,13 @@ test('management deployment requires secrets and applies safe production default
  assert.equal(managementSecrets(env).some(item=>item.name==='WORKER_TOKEN'&&item.value===env.ODIVON_WORKER_TOKEN),true);
 });
 
+test('SMTP is optional until invitation delivery is configured',()=>{
+ const withoutSmtp=Object.fromEntries(Object.entries(valid).filter(([name])=>!name.startsWith('ODIVON_SMTP_')));
+ const env=requiredDeploymentEnv(withoutSmtp);
+ assert.equal('smtp_host' in authConfig(env),false);
+ assert.equal(managementSecrets(env).some(item=>item.name.startsWith('SMTP_')),false);
+});
+
 test('management migrations are checksum tracked and escape SQL safely',()=>{
  const sql="select 'clinic';";const query=managementMigrationQuery('001_test',sql);
  assert.match(query,new RegExp(checksum(sql)));assert.match(query,/checksum mismatch/);assert.match(query,/select ''clinic''/);

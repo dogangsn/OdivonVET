@@ -60,6 +60,24 @@ test('sign in resolves the clinic from email without asking for a code',async({p
  await expect.poll(()=>directoryBody).toEqual({email:'owner@example.test'});
  await expect(page.getByText('Klinik hesabı bulunamadı veya e-posta/parola hatalı')).toBeVisible();
 });
+test('platform account sign in opens its pending clinic application',async({page})=>{
+ await page.route('**/assets/odivon-config.json',route=>route.fulfill({json:{management:{url:'https://registration-test.supabase.co',publishableKey:'sb_publishable_test'},clinics:[]}}));
+ await page.route('https://registration-test.supabase.co/**',route=>{
+  const path=new URL(route.request().url()).pathname;
+  if(path==='/functions/v1/clinic-directory')return route.fulfill({status:404,json:{error:'Klinik bulunamadı'}});
+  if(path==='/auth/v1/token')return route.fulfill({json:{user,access_token:jwt,refresh_token:'test-refresh-token',token_type:'bearer',expires_in:3600}});
+  if(path==='/auth/v1/user')return route.fulfill({json:user});
+  if(path==='/auth/v1/settings')return route.fulfill({json:{disable_signup:false,external:{email:true},mailer_autoconfirm:true}});
+  if(path==='/rest/v1/clinic_applications')return route.fulfill({json:[application]});
+  return route.fulfill({status:500,json:{message:'Unexpected test request: '+path}});
+ });
+ await page.goto('/auth/sign-in');
+ await page.getByLabel('E-Posta').fill(user.email);
+ await page.getByLabel('Parola',{exact:true}).fill('test-password-1234');
+ await page.getByRole('button',{name:'Giriş Yap'}).click();
+ await expect(page).toHaveURL(/\/auth\/registration$/);
+ await expect(page.getByText('Başvurunuz alındı. Kapasite açıldığında kliniğiniz hazırlanacak.')).toBeVisible();
+});
 test('desktop and mobile branding fit the viewport',async({page})=>{
  await setup(page);await expect(page.getByRole('button',{name:'Üye ol',exact:true})).toBeEnabled();
  await expect(page.locator('.odivon-brand img')).toHaveCSS('width','40px');
