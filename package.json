@@ -22,7 +22,7 @@
     "test:registration": "playwright test",
     "deploy:management": "node --env-file-if-exists=.env.deploy scripts/deploy-management.mjs",
     "verify:live": "node --env-file-if-exists=.env.deploy scripts/verify-live.mjs",
-    "deploy:cloudflare": "npm run build && wrangler pages deploy dist/odivon-vet --project-name odivon-vet --branch master"
+    "deploy:cloudflare": "npm run build && wrangler pages deploy dist/odivon-vet --project-name odivonvet --branch master"
   },
   "dependencies": {
     "@angular-material-components/color-picker": "15.0.0",
