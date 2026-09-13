@@ -1,5 +1,5 @@
 import {createClient} from 'npm:@supabase/supabase-js@2.116.0';
-import {clinicWorkerToken} from '../clinic-provisioner/token.mjs';
+import {clinicWorkerToken} from './token.mjs';
 Deno.serve(async req=>{
  const token=Deno.env.get('WORKER_TOKEN');if(!token||req.method!=='POST'||req.headers.get('authorization')!=='Bearer '+token)return new Response('Unauthorized',{status:401});
  const master=Deno.env.get('CLINIC_WORKER_MASTER');if(!master)return new Response('Worker configuration required',{status:503});

@@ -14,10 +14,12 @@ test('management deployment requires secrets and applies safe production default
  const env=requiredDeploymentEnv(valid);
  assert.equal(env.ODIVON_MANAGEMENT_PROJECT_REF,'bchqsyqimcudbybdovjx');
  assert.equal(env.ODIVON_APP_ORIGIN,'https://vet.odivon.com');
+ assert.equal(env.ODIVON_TRIAL_SLOTS,'3');
  const auth=authConfig(env);
  assert.equal(auth.mailer_autoconfirm,true);assert.equal(auth.password_min_length,12);
  assert.equal(auth.security_captcha_provider,'turnstile');assert.equal(auth.security_captcha_enabled,true);
  assert.equal(managementSecrets(env).some(item=>item.name==='WORKER_TOKEN'&&item.value===env.ODIVON_WORKER_TOKEN),true);
+ assert.equal(managementSecrets(env).some(item=>item.name.startsWith('SUPABASE_')),false);
 });
 
 test('SMTP is optional until invitation delivery is configured',()=>{

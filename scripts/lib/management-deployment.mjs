@@ -44,21 +44,22 @@ export function authConfig(env){
 }
 
 export function requiredDeploymentEnv(env){
- const defaults={ODIVON_MANAGEMENT_PROJECT_REF:'bchqsyqimcudbybdovjx',ODIVON_APP_ORIGIN:'https://vet.odivon.com',ODIVON_SUPABASE_REGION:'eu-central-1'};
+ const defaults={ODIVON_MANAGEMENT_PROJECT_REF:'bchqsyqimcudbybdovjx',ODIVON_APP_ORIGIN:'https://vet.odivon.com',ODIVON_SUPABASE_REGION:'eu-central-1',ODIVON_TRIAL_SLOTS:'3'};
  const values={...defaults,...env};
  const required=['SUPABASE_ACCESS_TOKEN','ODIVON_ORGANIZATION_SLUG','ODIVON_WORKER_TOKEN','ODIVON_CLINIC_WORKER_MASTER','ODIVON_ACTIVATION_TOKEN','ODIVON_TURNSTILE_SECRET'];
  const missing=required.filter(name=>!values[name]?.trim());
  if(missing.length)throw new Error('Missing deployment environment: '+missing.join(', '));
  if(!/^https:\/\//.test(values.ODIVON_APP_ORIGIN))throw new Error('ODIVON_APP_ORIGIN must use HTTPS.');
  for(const name of ['ODIVON_WORKER_TOKEN','ODIVON_CLINIC_WORKER_MASTER','ODIVON_ACTIVATION_TOKEN'])if(values[name].length<32)throw new Error(name+' must be at least 32 characters.');
+ if(!/^\d+$/.test(values.ODIVON_TRIAL_SLOTS)||Number(values.ODIVON_TRIAL_SLOTS)>100)throw new Error('ODIVON_TRIAL_SLOTS must be between 0 and 100.');
  return values;
 }
 
 export function managementSecrets(env){return [
  {name:'APP_ORIGIN',value:env.ODIVON_APP_ORIGIN},
- {name:'SUPABASE_MANAGEMENT_TOKEN',value:env.SUPABASE_ACCESS_TOKEN},
- {name:'SUPABASE_ORGANIZATION_SLUG',value:env.ODIVON_ORGANIZATION_SLUG},
- {name:'SUPABASE_REGION',value:env.ODIVON_SUPABASE_REGION},
+ {name:'ODIVON_MANAGEMENT_TOKEN',value:env.SUPABASE_ACCESS_TOKEN},
+ {name:'ODIVON_ORGANIZATION_SLUG',value:env.ODIVON_ORGANIZATION_SLUG},
+ {name:'ODIVON_REGION',value:env.ODIVON_SUPABASE_REGION},
  {name:'WORKER_TOKEN',value:env.ODIVON_WORKER_TOKEN},
  {name:'CLINIC_WORKER_MASTER',value:env.ODIVON_CLINIC_WORKER_MASTER},
  {name:'ACTIVATION_TOKEN',value:env.ODIVON_ACTIVATION_TOKEN},

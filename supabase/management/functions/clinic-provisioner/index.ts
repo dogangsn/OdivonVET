@@ -9,13 +9,15 @@ Deno.serve(async req=>{
  const db=createClient(env('SUPABASE_URL'),env('SUPABASE_SERVICE_ROLE_KEY'),{auth:{persistSession:false}});
  let job:any;
  try{
-  const api=new ManagementApi(env('SUPABASE_MANAGEMENT_TOKEN'));const org=env('SUPABASE_ORGANIZATION_SLUG');const origin=env('APP_ORIGIN');
+  const api=new ManagementApi(env('ODIVON_MANAGEMENT_TOKEN'));const org=env('ODIVON_ORGANIZATION_SLUG');const origin=env('APP_ORIGIN');
   const smtp={smtp_host:env('SMTP_HOST'),smtp_port:env('SMTP_PORT'),smtp_user:env('SMTP_USER'),smtp_pass:env('SMTP_PASSWORD'),smtp_admin_email:env('SMTP_FROM'),smtp_sender_name:'Odivon Vet'};
   const claim=await db.rpc('claim_clinic_job');if(claim.error)throw claim.error;job=claim.data;
   if(!job)return Response.json({state:'idle'});
   const result=await advance(job,{
    markCreating:async()=>{const r=await db.rpc('mark_clinic_creating',{p_id:job.id,p_lease:job.lease_id});if(r.error||!r.data)throw new Error('Lease lost');},
-   createProject:(name:string)=>api.call('/projects','POST',{name,organization_slug:org,region:Deno.env.get('SUPABASE_REGION')||'eu-central-1',desired_instance_size:'micro',db_pass:crypto.randomUUID()+crypto.randomUUID()}),
+   // Omitting instance size lets Supabase select the organization plan's valid
+   // default (Free for development, Micro after upgrading to Pro).
+   createProject:(name:string)=>api.call('/projects','POST',{name,organization_slug:org,region:Deno.env.get('ODIVON_REGION')||'eu-central-1',db_pass:crypto.randomUUID()+crypto.randomUUID()}),
    listProjects:()=>api.call('/projects'),
    healthy:async(ref:string)=>(await api.call('/projects/'+ref)).status==='ACTIVE_HEALTHY',
    migrate:async(j:any)=>{

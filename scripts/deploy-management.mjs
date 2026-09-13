@@ -49,10 +49,11 @@ for(const slug of MANAGEMENT_FUNCTIONS){const fn=await api.call('/projects/'+ref
 await api.query(ref,"select id from public.clinic_applications limit 0");
 
 const rows=await api.query(ref,"select trial_slots,provisioning_enabled from private.platform_settings where id=true");
-if(rows[0]?.trial_slots!==3)throw new Error('Unexpected trial slot count; refusing to enable provisioning.');
+const trialSlots=Number(env.ODIVON_TRIAL_SLOTS);
+if(rows[0]?.trial_slots!==trialSlots)await api.query(ref,"update private.platform_settings set trial_slots=$1 where id=true",[trialSlots]);
 if(env.ODIVON_ENABLE_PROVISIONING==='true'){
- await api.query(ref,"update private.platform_settings set provisioning_enabled=true where id=true and trial_slots=3");
- console.log('Automatic provisioning enabled for three trial slots.');
+ await api.query(ref,"update private.platform_settings set provisioning_enabled=true where id=true and trial_slots=$1",[trialSlots]);
+ console.log('Automatic provisioning enabled for',trialSlots,'trial slot(s).');
 }else console.log('Provisioning remains disabled. Set ODIVON_ENABLE_PROVISIONING=true after smoke checks.');
 
 console.log('Management deployment completed for',ref);
