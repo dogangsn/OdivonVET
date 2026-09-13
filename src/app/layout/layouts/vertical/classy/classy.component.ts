@@ -22,7 +22,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
 
     isScreenSmall: boolean;
     navigation: Navigation;
-    user: User;
+    user: User = {id: '', name: '', email: ''};
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
