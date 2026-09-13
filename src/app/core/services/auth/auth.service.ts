@@ -27,7 +27,19 @@ export class AuthService {
  check():Observable<boolean>{return defer(async()=>{try{const p=await this.clinics.loadProfile();this.users.user={id:p.id,name:p.name,email:p.email};return true;}catch{return false;}});}
  isLoggedIn():boolean{return !!this.accessToken;}
  signInUsingToken():Observable<boolean>{return this.check();}
- signOut():Observable<boolean>{return defer(async()=>{const client=await this.clinics.client();await client.removeAllChannels();const {error}=await client.auth.signOut();if(error)throw error;for(const k of ['accessToken','actions','navigation','odivon-profile'])localStorage.removeItem(k);return true;});}
+ signOut():Observable<boolean>{return defer(async()=>{
+  try{
+   const client=await this.clinics.client();
+   await client.removeAllChannels();
+   await client.auth.signOut();
+  }catch{
+   // Local logout must still complete when the network or remote session is unavailable.
+  }
+  try{await (await this.clinics.management()).auth.signOut();}catch{}
+  const sessionKeys=Object.keys(localStorage).filter(key=>key.startsWith('odivon-clinic-'));
+  for(const key of ['accessToken','actions','navigation','odivon-profile','odivon-clinic-code','odivon-management',...sessionKeys])localStorage.removeItem(key);
+  return true;
+ });}
  forgotPassword(email:string):Observable<any>{return defer(async()=>{const c=await this.clinics.client();const {data,error}=await c.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/auth/callback?clinic='+encodeURIComponent(this.clinics.code)});if(error)throw error;return data;});}
  resetPassword(password:string):Observable<any>{return defer(async()=>{const c=await this.clinics.client();const {data,error}=await c.auth.updateUser({password});if(error)throw error;return data;});}
  unlockSession(credentials:{email:string;password:string}):Observable<any>{return this.signIn(credentials);}
