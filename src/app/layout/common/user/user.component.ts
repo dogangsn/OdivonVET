@@ -51,7 +51,7 @@ export class UserComponent implements OnInit, OnDestroy
     {
         this.tokenInfo = GeneralService.tokenInfo();
         this._userService.user$.pipe(takeUntil(this._unsubscribeAll)).subscribe(user => {
-            this.user = user;
+            this.user = user ?? {id: '', name: '', email: ''};
             this._changeDetectorRef.markForCheck();
         });
     }
