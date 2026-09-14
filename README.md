@@ -50,6 +50,7 @@ Giriş ve klinik başvuru sayfası tarayıcıda kontrol edildi. Canlı proje olu
 - [Veritabanı ve dosya yedekleme / geri yükleme](docs/backup-restore.md)
 - [Pilot kabul senaryoları ve doğrulama sınırları](docs/pilot-acceptance.md)
 - [Güncel uygulama durumu ve sonraki işler](docs/implementation-status.md)
+- [Yeni sohbet devir notu](docs/NEXT-CHAT-HANDOFF.md)
 - [Kaynak işlem envanteri](docs/feature-inventory.md)
 
 Envanterdeki bir işlemin eşleştirilmiş olması, onun bütün ekran senaryolarının doğrulandığı anlamına gelmez. Özellikle çok depolu stok/alış akışları, otomatik hatırlatmalar, finansal ekranların tüm filtreleri, eski özel rol ekranlarının yeni sabit rollere uyarlanması ve tüm menülerin görsel kabulü pilot öncesi takip edilmelidir.
